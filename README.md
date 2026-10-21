@@ -1,4 +1,4 @@
-# Design Workflow Template
+# Siam Design Workflow
 
 A reusable set of standards and fill-in templates for the design team, covering a product from first research to final UI QA. It is written for both designers and Claude Code: every file states what must be documented, and Claude follows the same rules (see [CLAUDE.md](CLAUDE.md)).
 
@@ -78,7 +78,7 @@ To get the FRD, ask Claude to "Create the FRD" once all screens are complete.
 
 1. Create a new repository from this one (on GitHub: **Use this template**, or with the GitHub CLI). This requires the repo to be marked as a template under **Settings → General → Template repository**.
    ```bash
-   gh repo create my-project-design --private --template RAMZYX/design-workflow-template --clone
+   gh repo create my-project-design --private --template RAMZYX/siam-design-workflow --clone
    ```
 2. Fill in `02-foundation/memory.md` → *Project profile* and `01-research/information-architecture.md` → *Context*.
 3. Work through the phases. Replace every `[PLACEHOLDER]` with approved project information, or mark it `TBD`.

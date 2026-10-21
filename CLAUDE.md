@@ -1,4 +1,4 @@
-# CLAUDE.md — Design Workflow Template
+# CLAUDE.md — Siam Design Workflow
 
 This repository is the design team's **reusable workflow template**. It holds standards and fill-in templates that take a product from research → foundation → design system → development → testing. It contains no product code.
 
