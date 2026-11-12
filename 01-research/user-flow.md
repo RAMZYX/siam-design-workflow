@@ -21,7 +21,7 @@ last_updated: "[YYYY-MM-DD]"
 | Entry points | `[SCREEN IDS, LINKS, DEEP LINKS]` |
 | Preconditions | `[AUTH, ROLE, DATA, STATUS]` |
 | Success exit / destination | `[END STATE AND SCREEN ID]` |
-| Design / prototype | `[LINK]` |
+| Design / prototype (optional) | `[FIGMA / OTHER LINK / N/A]` |
 | FRD / functional memory | `[LINKS]` |
 | Flow diagram | `[LINK]` |
 

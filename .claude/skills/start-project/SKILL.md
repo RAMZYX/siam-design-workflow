@@ -1,6 +1,6 @@
 ---
 name: start-project
-description: Set up a new design project from this workflow template. Use when the user starts a new product, release or client project, or asks to "start a project", "set up the project", or fill in the project profile. Fills the project profile in memory.md and the context section of information-architecture.md.
+description: Set up a new design project from this workflow template. Use when the user starts a new product, release or client project, or asks to "start a project", "set up the project", or fill in the project profile. Fills the project profile in memory.md, the context section of information-architecture.md, and the design-system type in 03-design-system/README.md.
 ---
 
 # Start a project
@@ -11,6 +11,7 @@ Set up the project's living records so every later phase has a shared source of 
 - `CLAUDE.md`
 - `02-foundation/memory.md` — sections 1 (Project profile), 2 (Users and roles), 3 (Global business rules)
 - `01-research/information-architecture.md` — section 1 (Context)
+- `03-design-system/README.md` — Project design-system type
 - `02-foundation/design-principles.md` — §7 Step 1 "Understand the context"
 
 ## Steps
@@ -22,7 +23,8 @@ Set up the project's living records so every later phase has a shared source of 
    - User roles
    - Top user tasks
    - In scope / out of scope
-   - Links: Figma, existing design system, requirements, decisions
+   - Design-system situation: foundation-only (moodboards/inspiration), partial, or complete — see `03-design-system/README.md`
+   - Links (all optional): Figma, existing design system or code, requirements, decisions
    - Owner(s)
    Accept partial answers. Anything not given stays `TBD`.
 
@@ -35,7 +37,9 @@ Set up the project's living records so every later phase has a shared source of 
 
 3. **Fill `01-research/information-architecture.md` §1 Context** with the same facts. Update the front matter (`project`, `owner`, `last_updated`).
 
-4. **Do not** invent roles, rules, screens or navigation. Do not start the sitemap here — that is `/map-ia`.
+4. **Fill `03-design-system/README.md` → Project design-system type** (type, primary source, Figma file or `N/A`, owner). Record inspiration links only as non-binding references.
+
+5. **Do not** invent roles, rules, screens or navigation. Do not start the sitemap here — that is `/map-ia`.
 
 ## Finish
 Summarise what was filled, list the open questions created, and suggest the next step: `/map-ia` for structure, then `/user-flow` for each top task.

@@ -1,6 +1,19 @@
 # Color System — [PROJECT]
 
-**Owner:** `[DESIGNER]` · **Version:** `[VERSION]` · **Status:** `Draft / Review / Approved` · **Figma variables:** `[LINK]`
+## Specification metadata
+| Field | Value |
+|---|---|
+| Source type | `[figma / markdown / code / hybrid / none]` |
+| Figma URL — variables (optional) | `[URL / N/A]` |
+| Specification status | `[approved / draft / proposed / missing / conflicting]` |
+| Owner | `[DESIGNER]` |
+| Version | `[VERSION]` |
+| Last reviewed | `[YYYY-MM-DD]` |
+| Related specifications | [`typography.md`](typography.md), [`elevation.md`](elevation.md), [`accessibility.md`](../../02-foundation/accessibility.md) |
+| Inspiration / moodboard (non-binding, optional) | `[LINKS / N/A]` |
+| Open decisions | `[IDs / NONE]` |
+
+Field rules: [design-system index](../README.md#specification-metadata). Columns named "Figma variable" or "link" are optional — use a Markdown or code reference, or `N/A`.
 
 > Enter **actual project colors**. The rows below illustrate what must be documented; token names and values are placeholders.
 
@@ -52,15 +65,15 @@
 | `[color.text.primary]` | `[RAW TOKEN]` | `[RAW TOKEN]` | `[TOKEN OR N/A]` |
 
 ## 6. Contrast verification
-Target project accessibility standard: `[WCAG 2.1 AA OR APPROVED STANDARD]`. WCAG 2.1 AA commonly requires **4.5:1** normal text, **3:1** large text, and **3:1** for essential non-text UI boundaries/states; verify exceptions and actual combinations.
+Target project accessibility standard: `[WCAG 2.1 AA OR APPROVED STANDARD]`. Required ratios are defined in [`accessibility.md`](../../02-foundation/accessibility.md) §1, which is authoritative. For reference, WCAG 2.1 AA commonly requires **4.5:1** normal text, **3:1** large text, and **3:1** for essential non-text UI boundaries/states; verify exceptions and actual combinations.
 
 | Foreground token | Background token | Theme | Contrast ratio | Content type | Required ratio | Pass/fail | Evidence |
 |---|---|---|---|---|---|---|---|
 | `[TEXT]` | `[SURFACE]` | `Light` | `[X:1]` | `[NORMAL/LARGE/UI]` | `[RATIO]` | `TBD` | `[LINK]` |
 
 ## 7. Usage guidance and exceptions
-**Do:** `[APPROVED EXAMPLES WITH FIGMA LINKS]`  
-**Don't:** `[PROHIBITED EXAMPLES WITH FIGMA LINKS]`  
+**Do:** `[APPROVED EXAMPLES — FIGMA, MARKDOWN OR CODE REFERENCE]`  
+**Don't:** `[PROHIBITED EXAMPLES]`  
 **Color-blind-safe status communication:** `[ICON/TEXT/SHAPE RULES; NEVER COLOR ALONE]`  
 **Deprecated colors:** `[TOKEN → REPLACEMENT / N/A]`
 
@@ -70,4 +83,5 @@ Target project accessibility standard: `[WCAG 2.1 AA OR APPROVED STANDARD]`. WCA
 - [ ] Every required state and theme mapped.
 - [ ] Contrast checked for real foreground/background pairs.
 - [ ] No hard-coded values where semantic tokens exist.
-- [ ] Approved Figma references and owner provided.
+- [ ] Source references (Figma optional) and owner provided.
+- [ ] Unknown values marked `TBD`; nothing taken from inspiration without approval.

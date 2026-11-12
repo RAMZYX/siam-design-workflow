@@ -24,13 +24,13 @@ last_updated: "[YYYY-MM-DD]"
 ## 2. Source links
 | Resource | Link / path | Version / owner | Purpose |
 |---|---|---|---|
-| Approved design and screen images | `[FIGMA / EXPORT LINK]` | `[VERSION]` | Visual specification |
+| Approved design and screen images | `[FIGMA / EXPORT LINK / APPROVED SPEC PATH]` | `[VERSION]` | Visual specification |
 | Interactive prototype | `[LINK]` | `[VERSION]` | Interactions |
 | FRD | `[LINK]` | `[VERSION]` | Functional requirements |
 | Functional memory | `[memory.md PATH]` | `[VERSION]` | Logic and decisions |
-| User flows | `[01-flows/ LINKS]` | `[VERSION]` | Task journeys |
-| Information architecture | `[01-flows/information-architecture.md]` | `[VERSION]` | Navigation |
-| Design system / tokens | `[LINK]` | `[VERSION]` | UI components and styles |
+| User flows | `[01-research/ FLOW FILES]` | `[VERSION]` | Task journeys |
+| Information architecture | `[01-research/information-architecture.md]` | `[VERSION]` | Navigation |
+| Design system / tokens | `[03-design-system/README.md]` | `[VERSION]` | UI components and styles |
 | Assets and icon library | `[FOLDER LINK]` | `[VERSION]` | Export files |
 | Content and microcopy | `[LINK]` | `[VERSION]` | Approved strings |
 | UI QA checklist | `[05-testing/ui-qa-checklist.md]` | `[VERSION]` | Verification |
@@ -47,7 +47,7 @@ Include important modals, drawers, responsive variants, and error/empty states.
 |---|---|---|---|---|---|
 | `[COMPONENT]` | `[YES/NO/UNKNOWN]` | `[STATES]` | `[LINK]` | `[SCR-IDS]` | `[DETAILS]` |
 
-**Reuse policy:** Prefer existing approved components, typography, colors, and patterns. Any new component or exception requires explicit project approval.
+**Reuse policy:** Prefer existing approved components, typography, colors, and patterns. Any new component or exception requires explicit project approval. Take component status from [`03-design-system/component-registry.md`](../03-design-system/component-registry.md); components with status `proposed`, `missing` or `conflicting` are handoff blockers or open questions, not ready specs.
 
 ## 5. Layout and design tokens
 | Area | Source / token link | Project exception |

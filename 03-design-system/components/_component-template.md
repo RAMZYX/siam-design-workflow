@@ -1,17 +1,25 @@
 # Component — [COMPONENT NAME]
 
-> **Duplicate this file** as `[component-name].md`. Designer fills values from the approved Figma component. Do not create a new component merely because this template exists.
+> **Duplicate this file** as `[component-name].md` in this folder (e.g. `button.md`) and add a row to [`../component-registry.md`](../component-registry.md). Fill values from the approved source — a Figma component, approved code, or an approved Markdown decision. Do not create a spec for a component the project does not use, and do not create a new component merely because this template exists.
+>
+> Sections that do not apply may be marked `N/A` with a reason. Unknown values stay `TBD`; proposals are labelled `proposed`, never `approved`.
 
 | Metadata | Value |
 |---|---|
 | Component ID / name | `[CMP-001 / NAME]` |
 | Category | `[ACTION / INPUT / NAVIGATION / DATA / FEEDBACK / OVERLAY]` |
+| Source type | `[figma / markdown / code / hybrid / none]` |
+| Figma URL — component set (optional) | `[URL / N/A]` |
+| Specification status | `[approved / draft / proposed / missing / conflicting / deprecated]` |
 | Owner / reviewer | `[NAMES]` |
-| Status | `Draft / Review / Approved / Deprecated` |
-| Version / updated | `[VERSION / DATE]` |
-| Figma component set | `[LINK]` |
-| Code component / story | `[LINK / TBD]` |
+| Version | `[VERSION]` |
+| Last reviewed | `[YYYY-MM-DD]` |
+| Code component / story | `[PATH / LINK / TBD]` |
+| Related specifications | `[TOKEN FILES, RELATED COMPONENTS]` |
 | Used on screens | `[SCR-IDs]` |
+| Open decisions | `[IDs / NONE]` |
+
+Field rules: [design-system index](../README.md#specification-metadata). Columns named "Figma link", "Figma variant" or "Design examples" are optional — use a Markdown or code reference, or `N/A`.
 
 ## 1. Purpose and usage
 **What it does:** `[PURPOSE]`  
@@ -24,7 +32,7 @@
 | A | `[LABEL]` | `[YES/NO]` | `[RULE]` | `[TOKEN]` |
 | B | `[ICON]` | `[YES/NO]` | `[RULE]` | `[TOKEN]` |
 
-**Annotated anatomy image / Figma:** `[LINK]`
+**Annotated anatomy image / Figma (optional):** `[LINK / N/A]`
 
 ## 3. Variants and sizes
 | Variant | Size | Height / width | Padding / gap | Typography | Icon size | Radius | Figma variant |
@@ -84,8 +92,9 @@
 - [ ] Every variant, size and applicable state represented.
 - [ ] All visual properties mapped to approved tokens.
 - [ ] Behavior, keyboard and accessibility specified.
-- [ ] Responsive variants and Figma links included.
-- [ ] Inventory status and owner updated.
+- [ ] Responsive variants and source references (Figma optional) included.
+- [ ] Registry row, status and owner updated in `../component-registry.md`.
+- [ ] Conflicts between sources recorded as open decisions, not resolved silently.
 
 ## Change history
 | Date | Version | Change | Approval |

@@ -7,7 +7,7 @@ last_updated: "[YYYY-MM-DD]"
 ---
 # UI QA Checklist — [Project / Release]
 
-**Designer instructions:** Use this to compare built UI with the approved design, FRD, and interaction standards. Duplicate the screen/state matrix for every relevant viewport, role, and state. Never mark Pass without actually testing.
+**Designer instructions:** Use this to compare built UI with the approved design, FRD, and interaction standards. Duplicate the screen/state matrix for every relevant viewport, role, and state. Never mark Pass without actually testing. If there is no Figma design, the baseline is the approved specifications in `03-design-system/` and `memory.md`; checks against a spec with status `draft`, `proposed`, `missing` or `conflicting` are `Blocked` or logged as open questions, not `Pass`.
 
 ## 1. Test setup
 | Attribute | Value |
@@ -16,7 +16,7 @@ last_updated: "[YYYY-MM-DD]"
 | Platform / browser / device | `[VALUES]` |
 | Screen ID / name | `[SCR-ID / NAME]` |
 | Viewport / zoom | `[WIDTH × HEIGHT / ZOOM]` |
-| Design baseline / version | `[FIGMA LINK / DATE]` |
+| Design baseline / version | `[FIGMA LINK (OPTIONAL) / APPROVED SPEC PATHS / DATE]` |
 | FRD / user flow / memory | `[LINKS]` |
 | Design tokens / system | `[LINK]` |
 | Tester / test date | `[NAME / DATE]` |

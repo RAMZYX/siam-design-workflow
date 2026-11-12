@@ -12,15 +12,15 @@ Only report what was actually tested. Untested checks stay `Not tested`.
 - `05-testing/ui-qa-checklist.md` — the template
 - `02-foundation/memory.md` — expected behaviour for the screens under test
 - `02-foundation/accessibility.md` — §10 testing protocol
-- `03-design-system/Design Foundation/` — expected token values
-- The approved design (Figma link) for comparison
+- `03-design-system/README.md` and the foundation files and component specs it links to — expected values and their status
+- The approved design for comparison: a Figma link if one exists; otherwise the approved specs above are the baseline
 
 ## Steps
 
 1. **Set up.** Confirm the build URL or local dev server, the screens (`SCR-` IDs), roles, viewports and design baseline. Create `05-testing/qa-[release-or-screen].md` from the template; fill §1 Test setup.
 
 2. **Test in the browser.** Use the browser tools to open the build:
-   - **Visual (V01–V06):** compare against the Figma frame; check spacing, type, colours and tokens via computed styles; try long and short content.
+   - **Visual (V01–V06):** compare against the Figma frame if there is one, otherwise against the approved specs; check spacing, type, colours and tokens via computed styles; try long and short content. A check whose spec is `draft`, `proposed`, `missing` or `conflicting` is `Blocked` (with the reason), not `Pass`.
    - **Components and states (C01–C09):** click every control; trigger loading, empty, error, success, disabled and permission states where possible; submit forms with invalid data; check behaviour against `memory.md` and flows.
    - **Responsive (R01–R05):** resize to each specified viewport (at least 375, 768, desktop); check reflow at 320 px, no horizontal scroll, nav/table/overlay adaptation.
    - **Accessibility (A01–A07):** keyboard-only pass (Tab order, visible focus, no traps, Escape on dialogs), contrast on real colours, labels and accessible names from the accessibility tree, colour-only meaning, zoom 200%.

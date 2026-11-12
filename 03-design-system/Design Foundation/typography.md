@@ -1,6 +1,19 @@
 # Typography — [PROJECT]
 
-**Owner:** `[DESIGNER]` · **Version:** `[VERSION]` · **Figma text styles:** `[LINK]`
+## Specification metadata
+| Field | Value |
+|---|---|
+| Source type | `[figma / markdown / code / hybrid / none]` |
+| Figma URL — text styles (optional) | `[URL / N/A]` |
+| Specification status | `[approved / draft / proposed / missing / conflicting]` |
+| Owner | `[DESIGNER]` |
+| Version | `[VERSION]` |
+| Last reviewed | `[YYYY-MM-DD]` |
+| Related specifications | [`color-system.md`](color-system.md), [`03-responsiveness.md`](03-responsiveness.md) |
+| Inspiration / moodboard (non-binding, optional) | `[LINKS / N/A]` |
+| Open decisions | `[IDs / NONE]` |
+
+Field rules: [design-system index](../README.md#specification-metadata). Columns named "Figma link" are optional — use a Markdown or code reference, or `N/A`.
 
 ## 1. Font family inventory
 | Role | Font family | Fallback stack | Source/license | Platforms | Notes |
@@ -17,7 +30,7 @@
 | `[font.weight.bold]` | `[VALUE]` | `[YES/NO]` | `[HEADING]` |
 
 ## 3. Complete responsive type scale
-Document **every actual Figma text style** (not just headings). Use px/rem or platform units consistently.
+Document **every approved text style** (not just headings), whether it comes from Figma, code or an approved Markdown specification. Use px/rem or platform units consistently.
 
 | Style token | Purpose | Desktop size | Tablet size | Mobile size | Weight | Line height | Letter spacing | Case | Figma link |
 |---|---|---|---|---|---|---|---|---|---|
@@ -52,11 +65,12 @@ Document **every actual Figma text style** (not just headings). Use px/rem or pl
 | Codes / IDs | `[MONOSPACE OR OTHER]` | `[WRAP/COPY]` | `[EXAMPLE]` |
 
 ## 6. Do / don't and approval
-**Approved typography specimens:** `[FIGMA LINKS]`  
+**Approved typography specimens:** `[FIGMA, MARKDOWN OR CODE REFERENCES]`  
 **Disallowed overrides:** `[UNAPPROVED SIZES, SYNTHETIC WEIGHTS, ETC.]`
 
 - [ ] Font families, licenses, weights and fallbacks recorded.
 - [ ] Every text style has desktop/mobile dimensions and exact line height.
 - [ ] Heading hierarchy, truncation and number formatting defined.
 - [ ] Accessibility at zoom and on narrow viewports reviewed.
-- [ ] All values match approved Figma styles.
+- [ ] All values match the approved source (Figma, code or Markdown).
+- [ ] Unknown values marked `TBD`; nothing taken from inspiration without approval.

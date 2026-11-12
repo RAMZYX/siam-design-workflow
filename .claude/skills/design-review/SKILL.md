@@ -18,7 +18,7 @@ Review against **this team's** standards, not general taste.
 
 ## Steps
 
-1. **Get the target.** Figma link (use Figma tools for a screenshot and design context), image, URL, or code. Confirm the screen's purpose, role and platform — from `memory.md` if recorded.
+1. **Get the target.** Figma link (if available, use Figma tools for a screenshot and design context), image, URL, Markdown spec, or code — Figma is not required. Confirm the screen's purpose, role and platform — from `memory.md` if recorded. Run the `/design-context` workflow to know which project specs are `approved`, `proposed`, `missing` or `conflicting` before judging consistency.
 
 2. **Review in this order** (functional problems before cosmetic ones):
    1. User goal, clarity, hierarchy, navigation.
@@ -33,7 +33,9 @@ Review against **this team's** standards, not general taste.
 4. **Write findings** as a table: ID, severity (Critical / High / Medium / Low), location, issue, standard broken (file + section), recommendation.
 
 ## Rules
-- Say what you could not check (e.g. keyboard behaviour from a static image) — never claim it passed.
+- Say what you could not check (e.g. keyboard behaviour from a static image, or Figma when no link or tool was available) — never claim it passed.
+- Judge consistency only against `approved` specs; inspiration is not a standard.
+- This skill critiques against standards. To test a build against approved specs and log defects, use `/ui-qa`.
 - Don't recommend new components or patterns when an existing one fits.
 - Don't edit the design or `memory.md` unless asked; offer `/update-memory` for logic gaps.
 

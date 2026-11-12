@@ -10,7 +10,7 @@ Prototypes become products. Build on the production stack from commit one.
 ## Read first
 - `CLAUDE.md`
 - `04-development/PROTOTYPE-STACK.md` — the whole file; it is the authority for this skill
-- `03-design-system/Design Foundation/` — colour, typography, spacing, radius files for the token block
+- `03-design-system/README.md` — links to the colour, typography, spacing, grid, radius and elevation files for the token block; use only `approved` values
 - `02-foundation/memory.md` and `01-research/information-architecture.md` — screens and routes, if they exist
 
 ## Steps

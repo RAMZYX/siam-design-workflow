@@ -1,6 +1,21 @@
 # Responsiveness and Platform Behavior — [PROJECT]
 
-**Owner:** `[DESIGNER]` · **Version:** `[VERSION]` · **Responsive Figma frames:** `[LINK]`
+> Authoritative file for supported platforms, breakpoint ranges and responsive adaptation. Columns, margins, gutters and containers per breakpoint live in [`grid.md`](grid.md).
+
+## Specification metadata
+| Field | Value |
+|---|---|
+| Source type | `[figma / markdown / code / hybrid / none]` |
+| Figma URL — responsive frames (optional) | `[URL / N/A]` |
+| Specification status | `[approved / draft / proposed / missing / conflicting]` |
+| Owner | `[DESIGNER]` |
+| Version | `[VERSION]` |
+| Last reviewed | `[YYYY-MM-DD]` |
+| Related specifications | [`grid.md`](grid.md), [`spacing.md`](spacing.md) |
+| Inspiration / moodboard (non-binding, optional) | `[LINKS / N/A]` |
+| Open decisions | `[IDs / NONE]` |
+
+Field rules: [design-system index](../README.md#specification-metadata). Columns named "Design link", "Design frame" or "Design reference" are optional — use a Markdown or code reference, or `N/A`.
 
 ## 1. Supported platforms
 | Platform | Supported? | Min viewport/device | Input modes | Browser/OS scope | Design link |
@@ -10,12 +25,14 @@
 | Native mobile | `[YES/NO]` | `[DEVICE]` | `[TOUCH]` | `[IOS/ANDROID]` | `[LINK]` |
 | PWA | `[YES/NO]` | `[DEVICE]` | `[TOUCH/KEYBOARD]` | `[SCOPE]` | `[LINK]` |
 
-## 2. Breakpoints and containers
-| Breakpoint token | Min width | Max width | Container width | Grid columns | Margins / gutters | Design frame |
-|---|---|---|---|---|---|---|
-| `[breakpoint.sm]` | `[VALUE]` | `[VALUE]` | `[VALUE]` | `[COUNT]` | `[VALUES]` | `[LINK]` |
-| `[breakpoint.md]` | `[VALUE]` | `[VALUE]` | `[VALUE]` | `[COUNT]` | `[VALUES]` | `[LINK]` |
-| `[breakpoint.lg]` | `[VALUE]` | `[VALUE]` | `[VALUE]` | `[COUNT]` | `[VALUES]` | `[LINK]` |
+## 2. Breakpoints
+Container width, grid columns, margins and gutters for each breakpoint are specified in [`grid.md`](grid.md) §1.
+
+| Breakpoint token | Min width | Max width | Design frame |
+|---|---|---|---|
+| `[breakpoint.sm]` | `[VALUE]` | `[VALUE]` | `[LINK]` |
+| `[breakpoint.md]` | `[VALUE]` | `[VALUE]` | `[LINK]` |
+| `[breakpoint.lg]` | `[VALUE]` | `[VALUE]` | `[LINK]` |
 
 ## 3. Navigation transformation
 | Pattern | Desktop | Tablet | Mobile | Change trigger / rule | Design reference |

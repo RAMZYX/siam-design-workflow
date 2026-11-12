@@ -1,99 +1,85 @@
 # CLAUDE.md — Siam Design Workflow
 
-This repository is the design team's **reusable workflow template**. It holds standards and fill-in templates that take a product from research → foundation → design system → development → testing. It contains no product code.
+Instructions and routing for Claude Code. Detailed requirements live in the topic files linked below; this file says **where to look and how to decide**, not the rules themselves.
 
-Most files are **templates with `[PLACEHOLDER]` values**. When working on a real project, fill them with that project's approved information — never with values invented by you or copied from another product.
+The repo is a reusable template: most files contain `[PLACEHOLDER]` values that each project fills with its own approved information.
 
-## Folder map — what to read for which task
+## 1. Project principles
+- Design for the user's task first; follow [`design-principles.md`](02-foundation/design-principles.md).
+- Document what every screen and component **does**, not only how it looks.
+- **Never invent** product rules, tokens, component variants, validation limits, copy, permissions, API paths, Figma links, owners or approval statuses. Write `TBD` and open a question.
+- Accessibility (WCAG 2.1 AA baseline) is a requirement, not polish.
+- Design every relevant state (loading, empty, error, success, disabled, permission), per [`ux-standards.md`](02-foundation/ux-standards.md) §7.
+- Before calling work done, check it against the checklist in each topic file you used.
+- Report honestly: never mark anything tested, approved, verified or `Pass` without evidence.
 
-| Folder | Files | Read when |
-|---|---|---|
-| `01-research/` | `information-architecture.md`, `user-flow.md` | Defining sitemap, navigation, roles, or a task flow. Duplicate `user-flow.md` once per user task. |
-| `02-foundation/` | `design-principles.md` | **Every design or UI task.** Universal principles, MUST/MUST NOT rules, 7-step workflow, quality scorecard. |
-| | `ux-standards.md` | Forms, navigation, tables, search, overlays, states, destructive actions. |
-| | `accessibility.md` | Any UI work. Baseline is WCAG 2.1 AA. |
-| | `content-and-microcopy.md` | Writing or changing any UI text, errors, empty states, buttons. |
-| | `memory.md` | **Before changing any screen or flow, and after every confirmed change.** The project's living functional truth. |
-| | `frd-template.md` | **Only** when the user explicitly asks to create the FRD. |
-| `03-design-system/Design Foundation/` | `color-system.md`, `typography.md`, `spacing-and-grid.md`, `radius-and-elevation.md`, `02-iconography.md`, `03-responsiveness.md`, `motion.md` | Applying or documenting visual tokens. |
-| | `_component-template.md` | Documenting a component. Duplicate as `[component-name].md`; do not edit the template itself. |
-| `04-development/` | `PROTOTYPE-STACK.md` | **Before scaffolding any prototype or frontend app.** Required stack and tooling from the first commit. |
-| | `dev-handoff.md` | Preparing a developer handoff for a release. |
-| `05-testing/` | `ui-qa-checklist.md` | Checking built UI against the design, FRD and standards. |
-| `.claude/skills/` | 10 skills | Project skills for this workflow — see *Skills* below. |
-
-Files refer to each other by bare filename (e.g. `memory.md`). Resolve them using the table above. Note: `dev-handoff.md` mentions `01-flows/`; in this repo those files live in `01-research/`.
-
-## Order of authority
-
-When instructions conflict, apply them in this order (from `design-principles.md` §3):
-
+## 2. Source-of-truth rules
+Order of authority when sources disagree:
 1. Explicit task requirements and approved product decisions
-2. The project's existing design system, brand, architecture and patterns
-3. Platform conventions and the specialist files in this repo
+2. Approved project specs: design system (`03-design-system/`), `memory.md`, flows, IA
+3. Platform conventions and the standards in `02-foundation/`
 4. Universal principles in `design-principles.md`
-5. Personal preference or trends
+5. Preference or trends
 
-If two sources disagree, record the conflict in `memory.md` → *Open questions and conflicts*. Never resolve it silently.
+- **One topic, one authoritative file.** The [design-system index](03-design-system/README.md) lists them. Summaries elsewhere link to the authoritative file and lose to it.
+- Specification statuses (`approved`, `draft`, `proposed`, `missing`, `conflicting`, `deprecated`) are defined in the [index](03-design-system/README.md#specification-statuses). Only `approved` specs can be built from without reporting a gap.
+- Functional requirements in `memory.md` use their own statuses (`Confirmed`, `Proposed`, `Open`, `Implemented (verified)`, `Deprecated`).
+- **Inspiration and moodboards are never approved rules.**
 
-## Non-negotiable rules
+## 3. Documentation discovery
+| Need | Start here |
+|---|---|
+| Design-system topics and components | [`03-design-system/README.md`](03-design-system/README.md) |
+| Component list and status | [`03-design-system/component-registry.md`](03-design-system/component-registry.md) |
+| Screen and flow logic | [`02-foundation/memory.md`](02-foundation/memory.md) |
+| Sitemap and navigation | [`01-research/information-architecture.md`](01-research/information-architecture.md) |
+| User flows | `01-research/flow-*.md` (template: [`user-flow.md`](01-research/user-flow.md)) |
+| Workflow overview | [`README.md`](README.md) |
 
-- **Never invent product rules.** No made-up validation limits, password policies, timers, page sizes, permissions, API paths, error copy, fees or navigation. Write `TBD`, `[COPY TBD]` or `TBD — Decision Required` and log an open question.
-- **`memory.md` workflow:** read the relevant entries before touching a screen or flow; after a confirmed change, update elements, flows, validations, states, dependencies, acceptance criteria, status and the change log.
-- **No FRD until asked.** Only when the user says something like "Create the FRD" — then read `frd-template.md` and all of `memory.md` and follow that process.
-- **Preserve and extend before replacing.** Reuse existing components, tokens and patterns. A new component or pattern needs justification and approval.
-- **Design every relevant state:** loading, empty (first use vs. filtered), error, success, disabled, permission-denied, partial success.
-- **Accessibility is a requirement, not polish:** contrast 4.5:1 / 3:1, keyboard access, visible focus, labels, never colour alone.
-- **Prototypes use the required stack** in `PROTOTYPE-STACK.md` (TypeScript strict, React, Vite, Tailwind tokens, TanStack Router/Query, zod, MSW). No localStorage-as-database.
-- **Report honestly.** Never mark something tested, accessible, user-validated or `Pass` without evidence. Separate what was verified from what was not.
+`02-foundation/` files refer to each other by bare filename (e.g. `accessibility.md`); they are all in `02-foundation/`.
 
-## Shared vocabulary
-
-**IDs** — keep stable across revisions so files stay traceable:
-
-| Prefix | Meaning | Prefix | Meaning |
-|---|---|---|---|
-| `SCR-` | Screen / overlay | `FLOW-` | Cross-screen journey |
-| `NAV-` | Navigation group | `ROLE-` | User role |
-| `INT-` | Interaction rule | `VAL-` | Field validation |
-| `BR-` | Business rule | `DEP-` | Data / API dependency |
-| `AC-` | Acceptance criterion | `CMP-` | Component |
-| `AST-` | Asset | `UI-` | QA defect |
-| `Q-` / `IA-Q` / `H-` | Open question (memory / IA / handoff) | `S01`, `D01`, `ALT-`, `ERR-` | Flow steps, decisions, alternates, errors |
-
-**Requirement status** (in `memory.md`): `Confirmed`, `Proposed`, `Open`, `Implemented (verified)`, `Deprecated`.
-**QA status:** `Pass`, `Fail`, `Not tested`, `N/A` (with reason), `Blocked`.
-
-## Working on a task
-
-1. Understand the user goal, platform and constraints; ask only when the answer changes the outcome.
-2. Read `design-principles.md` plus the specialist files for the task (table above) and the relevant `memory.md` entries.
-3. Define the flow and states before styling; use project tokens and components.
-4. Implement or document; flag unknowns as `TBD`.
-5. Check the work against the relevant checklist (`design-principles.md` §8 scorecard, `ux-standards.md` §11, `accessibility.md` §11, `content-and-microcopy.md` §14).
-6. Update `memory.md` and say what was verified and what was not.
-
-## Skills
-
-Use the matching skill when a task fits it:
-
-| Phase | Skill | Purpose |
+## 4. Task-to-file routing
+| Task | Read | Skill |
 |---|---|---|
-| Setup | `/start-project` | Fill the project profile, roles and context |
-| Research | `/map-ia` | Sitemap, page inventory, navigation, role visibility |
-| Research | `/user-flow` | One flow file per user task |
-| Foundation | `/update-memory` | Record screen logic in `memory.md` after each change |
-| Design system | `/document-tokens` | Fill colour, type, spacing, radius, icon, responsive, motion files |
-| Design system | `/document-component` | Component spec from `_component-template.md` |
-| Review | `/design-review` | Review and score against this repo's standards |
-| Development | `/scaffold-prototype` | New prototype on the required stack |
-| Development | `/dev-handoff` | Release handoff index |
-| Testing | `/ui-qa` | Test a build and log defects |
+| Any screen or component work | Resolve context first | `/design-context` |
+| New project setup | `memory.md`, `information-architecture.md`, `03-design-system/README.md` | `/start-project` |
+| Sitemap / navigation | `information-architecture.md`, `ux-standards.md` §3 | `/map-ia` |
+| User flow | `user-flow.md`, `memory.md`, `ux-standards.md` | `/user-flow` |
+| Record screen logic | `memory.md`, `ux-standards.md` §10, `content-and-microcopy.md` §13 | `/update-memory` |
+| Foundations (colour, type, spacing, grid, radius, elevation, icons, responsive, motion) | The topic file from the index, `accessibility.md` §1 | `/document-tokens` |
+| Component spec | `components/_component-template.md`, `component-registry.md`, token files | `/document-component` |
+| Review a design against standards | All of `02-foundation/` | `/design-review` |
+| Test a built UI against approved specs | `ui-qa-checklist.md`, `memory.md`, specs | `/ui-qa` |
+| UI copy | `content-and-microcopy.md` | — |
+| New prototype / app | [`PROTOTYPE-STACK.md`](04-development/PROTOTYPE-STACK.md) | `/scaffold-prototype` |
+| Developer handoff | `dev-handoff.md`, `memory.md`, registry | `/dev-handoff` |
+| FRD | `frd-template.md` + all of `memory.md` — **only when the user explicitly asks** | — |
 
-There is no FRD skill by design: follow *No FRD until asked* above.
+`/design-review` critiques a design against the standards; `/ui-qa` tests a build against approved specs and logs defects.
 
-## Editing this template repo
+## 5. Missing Figma handling
+Figma is optional everywhere. When there is no Figma link, or Figma tools are unavailable:
+1. Use approved Markdown specs, then existing code, then related approved components.
+2. Check the project type in the [index](03-design-system/README.md#project-design-system-type): `foundation-only`, `partial` or `complete`.
+3. Proceed only with what is `approved`. For anything missing, write a proposal marked `proposed` and ask the owner.
+4. Say in your report that Figma was not checked.
 
-- Keep files generic and reusable. Do not put one project's data into the templates on `main`.
-- Keep placeholder style consistent: `` `[UPPERCASE PLACEHOLDER]` ``.
-- When a standard changes, update its own file; do not duplicate rules across files.
+## 6. Component reuse requirements
+- Check the [component registry](03-design-system/component-registry.md) and existing code before creating anything.
+- Reuse and extend approved components and tokens; do not introduce a new component, variant, pattern or dependency without justification and approval.
+- Components use semantic tokens, never raw values.
+- Create a component spec only for a component the project actually uses.
+
+## 7. Approval and conflict handling
+- Ask before removing or contradicting approved content, and before any destructive or ambiguous change.
+- When Figma, Markdown, code or `memory.md` disagree: mark the item `conflicting`, record both values and the affected IDs, add an open decision with the owner, and do not pick one silently.
+- Never change a status to `approved` yourself.
+
+## 8. Documentation update rules
+- After a confirmed screen or flow change, update `memory.md` (elements, interactions, validations, states, acceptance criteria, change log).
+- After creating or changing a component spec, update its row in the registry.
+- Keep IDs stable (`SCR-`, `FLOW-`, `NAV-`, `ROLE-`, `INT-`, `VAL-`, `BR-`, `DEP-`, `AC-`, `CMP-`, `AST-`, `UI-`, `Q-`, `IA-Q`, `H-`). Never renumber or reuse.
+- Edit a rule only in its authoritative file; link to it from elsewhere instead of copying it.
+- Deprecated paths (`spacing-and-grid.md`, `radius-and-elevation.md`) are redirect stubs; do not add content to them.
+- Keep this template generic: project data belongs in each project's own copy. Placeholders use the form `` `[UPPERCASE PLACEHOLDER]` ``.
+- Run `node scripts/check-docs.mjs` after changing files or paths.

@@ -1,6 +1,20 @@
 # Iconography — [PROJECT]
 
-**Owner:** `[DESIGNER]` · **Version:** `[VERSION]` · **Icon library:** `[FIGMA / PACKAGE LINK]`
+## Specification metadata
+| Field | Value |
+|---|---|
+| Source type | `[figma / markdown / code / hybrid / none]` |
+| Figma URL — icon library (optional) | `[URL / N/A]` |
+| Icon package (if code-based) | `[PACKAGE / VERSION / N/A]` |
+| Specification status | `[approved / draft / proposed / missing / conflicting]` |
+| Owner | `[DESIGNER]` |
+| Version | `[VERSION]` |
+| Last reviewed | `[YYYY-MM-DD]` |
+| Related specifications | [`color-system.md`](color-system.md), [`spacing.md`](spacing.md), [`accessibility.md`](../../02-foundation/accessibility.md) |
+| Inspiration / moodboard (non-binding, optional) | `[LINKS / N/A]` |
+| Open decisions | `[IDs / NONE]` |
+
+Field rules: [design-system index](../README.md#specification-metadata). Columns named "Figma link" are optional — use a Markdown or code reference, or `N/A`.
 
 ## 1. Icon source and visual language
 | Attribute | Approved decision | Source |
@@ -42,7 +56,7 @@
 **Icon-only button:** `[REQUIRED ACCESSIBLE NAME / TOOLTIP RULE]`  
 **Never color alone:** `[TEXT/SHAPE ACCOMPANIMENT]`  
 **RTL mirroring:** `[WHICH ICONS MIRROR]`  
-**Do/don't examples:** `[FIGMA LINKS]`
+**Do/don't examples:** `[FIGMA, MARKDOWN OR CODE REFERENCES]`
 
 ## 6. Requesting/adding an icon
 | Step | Owner / action |

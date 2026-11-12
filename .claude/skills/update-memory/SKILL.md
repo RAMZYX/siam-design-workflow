@@ -13,11 +13,11 @@ description: Record a designed or changed screen's functional logic in 02-founda
 - `02-foundation/ux-standards.md` — §10 Interaction specification format
 - `02-foundation/content-and-microcopy.md` — §13 Microcopy specification
 - `02-foundation/accessibility.md` — §9 Screen-reader notes (for complex screens)
-- The source of the change: Figma link, screenshot, code, or the user's description
+- The source of the change: Figma link (optional), screenshot, code, approved Markdown, or the user's description
 
 ## Steps
 
-1. **Identify affected IDs.** Find the screen(s) in §4 Screen inventory. New screen → add a row with the next `SCR-` ID.
+1. **Identify affected IDs.** Find the screen(s) in §4 Screen inventory. New screen → add a row with the next `SCR-` ID. If you don't yet know which specs apply or whether they are approved, run the `/design-context` workflow first.
 
 2. **Fill or update the screen's §5 block** (duplicate the template block for a new screen):
    - A. Every element, including icons, menus, overlays and conditional controls — what it **does**, not only what it shows.

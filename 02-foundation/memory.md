@@ -23,7 +23,7 @@ This file stores the product's evolving functional truth: screen behavior, UI in
 | Project / release | `[NAME / VERSION]` |
 | Platforms | `[WEB / MOBILE / ADMIN / OTHER]` |
 | Product purpose | `[PURPOSE]` |
-| Approved design / design system | `[LINKS]` |
+| Approved design / design system | `[FIGMA (OPTIONAL), MARKDOWN OR CODE REFERENCES]` |
 | Requirements / decisions | `[LINKS]` |
 | Owner | `[OWNER]` |
 | Last updated | `[DATE]` |
@@ -46,7 +46,7 @@ Record shared rules for sessions, navigation, notifications, pagination, search/
 ## 4. Screen inventory
 List every page, meaningful modal, drawer, bottom sheet, wizard step, and role variant.
 
-| Screen ID | Screen | Platform/role | Entry point | Design link | Design status | Logic completeness | Implementation verification |
+| Screen ID | Screen | Platform/role | Entry point | Design link (optional) | Design status | Logic completeness | Implementation verification |
 |---|---|---|---|---|---|---|---|
 | SCR-001 | `[SCREEN]` | `[PLATFORM / ROLE]` | `[FROM]` | `[LINK]` | `[STATUS]` | `Open` | `Not checked` |
 

@@ -12,17 +12,16 @@ The handoff is an **index** that links approved sources. It does not replace the
 - `04-development/dev-handoff.md` — the template
 - `02-foundation/memory.md` — screens, interactions, validations, states, dependencies, open questions
 - `01-research/information-architecture.md` and `01-research/flow-*.md`
-- `03-design-system/Design Foundation/` — token and component files
+- `03-design-system/README.md` — links to every foundation file
+- `03-design-system/component-registry.md` — component status for §4
 - `05-testing/ui-qa-checklist.md` — for the QA plan link
-
-Note: the template mentions `01-flows/`; in this repo flows and IA live in `01-research/`. Use the real paths.
 
 ## Steps
 
 1. **Confirm scope:** project, release, platforms, roles, included/excluded modules. If the user wants to keep the template clean, write to `04-development/dev-handoff-[release].md`.
 
 2. **Fill each section from the sources** (do not re-derive behaviour):
-   - §1 Summary and §2 Source links (real paths and Figma links).
+   - §1 Summary and §2 Source links (real paths; Figma links only where they exist, otherwise the approved spec paths).
    - §3 Screen list — every `SCR-` in scope, including overlays, responsive variants, error/empty states. *Ready?* = `Yes` only if the screen is FRD-ready in `memory.md`.
    - §4 Component inventory — existing vs. new; new components need approval noted.
    - §5 Tokens — link the design-foundation files.

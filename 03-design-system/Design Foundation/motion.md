@@ -1,6 +1,20 @@
 # Motion — [PROJECT] (Optional)
 
-**Owner:** `[DESIGNER]` · **Version:** `[VERSION]` · **Status:** `Applicable / Not applicable / Draft / Approved`
+## Specification metadata
+| Field | Value |
+|---|---|
+| Applicability | `[applicable / not applicable]` — if not applicable, stop here |
+| Source type | `[figma / markdown / code / hybrid / none]` |
+| Figma URL — motion prototype (optional) | `[URL / N/A]` |
+| Specification status | `[approved / draft / proposed / missing / conflicting]` |
+| Owner | `[DESIGNER]` |
+| Version | `[VERSION]` |
+| Last reviewed | `[YYYY-MM-DD]` |
+| Related specifications | [`accessibility.md`](../../02-foundation/accessibility.md) |
+| Inspiration / moodboard (non-binding, optional) | `[LINKS / N/A]` |
+| Open decisions | `[IDs / NONE]` |
+
+Field rules: [design-system index](../README.md#specification-metadata).
 
 ## 1. Motion principles
 **Why motion is used:** `[FEEDBACK / ORIENTATION / HIERARCHY]`  

@@ -33,17 +33,30 @@ The core idea: **document what every screen *does*, not only how it looks** — 
 | `memory.md` | The project's living functional record: roles, business rules, screen inventory and per-screen logic. |
 | `frd-template.md` | The standard for generating the Functional Requirements Document — used only when the FRD is requested. |
 
-### `03-design-system/Design Foundation/`
+### `03-design-system/`
+Start at the [design-system index](03-design-system/README.md). It records the project's design-system type (foundation-only, partial or complete), links every topic file, and defines the metadata and statuses used in them. Figma is optional throughout.
+
+| File | Use it to |
+|---|---|
+| [`README.md`](03-design-system/README.md) | Index, project type, metadata fields, statuses and the rules for missing specs. |
+| [`component-registry.md`](03-design-system/component-registry.md) | Track each component: spec path, Figma and code references, status, owner, open decisions. |
+| [`components/_component-template.md`](03-design-system/components/_component-template.md) | Spec for one component — duplicate as `components/[component-name].md` (e.g. `button.md`) when the component is used. |
+
+**`Design Foundation/`** — one authoritative file per topic:
+
 | File | Use it to |
 |---|---|
 | `color-system.md` | Palette, semantic colours, state matrix, themes and contrast checks. |
 | `typography.md` | Fonts, weights and the full responsive type scale. |
-| `spacing-and-grid.md` | Spacing tokens, grids and layout templates. |
-| `radius-and-elevation.md` | Corner radius and shadow scales, and layering rules. |
+| `spacing.md` | Spacing scale, component internal spacing, alignment and density. |
+| `grid.md` | Layout grids per breakpoint, containers and layout templates. |
+| `radius.md` | Corner radius scale. |
+| `elevation.md` | Shadow and elevation levels, component mapping and layering. |
 | `02-iconography.md` | Icon source, sizes, states and semantic icon map. |
-| `03-responsiveness.md` | Breakpoints, navigation changes and responsive QA. |
+| `03-responsiveness.md` | Platforms, breakpoint ranges, navigation and content adaptation, responsive QA. |
 | `motion.md` | Duration and easing tokens and reduced-motion rules (optional). |
-| `_component-template.md` | Spec for one component — duplicate as `[component-name].md`. |
+
+`spacing-and-grid.md` and `radius-and-elevation.md` are kept only as redirects to the split files.
 
 ### `04-development/`
 | File | Use it to |
@@ -61,12 +74,13 @@ Claude Code slash commands for each step of the workflow. Run them inside Claude
 
 | Skill | What it does |
 |---|---|
-| `/start-project` | Asks for the project basics and fills the project profile, roles and context. |
+| `/design-context` | Before screen or component work: finds the approved specs, Figma, code and memory entries, and reports what can proceed and what is missing or conflicting. |
+| `/start-project` | Asks for the project basics and fills the project profile, roles, context and design-system type. |
 | `/map-ia` | Builds the sitemap, page inventory, navigation and role visibility. |
 | `/user-flow` | Creates a flow file for one user task, with a Mermaid diagram. |
 | `/update-memory` | Records a screen's elements, interactions, validations and states in `memory.md`. |
-| `/document-tokens` | Fills the colour, type, spacing, radius, icon, responsive or motion file and checks contrast. |
-| `/document-component` | Writes a component spec from the component template. |
+| `/document-tokens` | Fills a foundation file (colour, type, spacing, grid, radius, elevation, icons, responsive, motion) and checks contrast. |
+| `/document-component` | Writes a component spec from the template and adds it to the registry — from Figma, code, Markdown, or as a proposal. |
 | `/design-review` | Reviews a design against these standards and scores it. |
 | `/scaffold-prototype` | Starts a new prototype on the required stack. |
 | `/dev-handoff` | Builds the developer handoff document for a release. |
@@ -76,19 +90,31 @@ To get the FRD, ask Claude to "Create the FRD" once all screens are complete.
 
 ## Starting a new project from this template
 
-1. Create a new repository from this one (on GitHub: **Use this template**, or with the GitHub CLI). This requires the repo to be marked as a template under **Settings → General → Template repository**.
+1. Create a new repository from this one — on GitHub click **Use this template** (template mode is turned on for this repo), or use the GitHub CLI:
    ```bash
    gh repo create my-project-design --private --template RAMZYX/siam-design-workflow --clone
    ```
-2. Fill in `02-foundation/memory.md` → *Project profile* and `01-research/information-architecture.md` → *Context*.
+2. Run `/start-project` in Claude Code, or fill in `02-foundation/memory.md` → *Project profile*, `01-research/information-architecture.md` → *Context* and `03-design-system/README.md` → *Project design-system type* by hand.
 3. Work through the phases. Replace every `[PLACEHOLDER]` with approved project information, or mark it `TBD`.
 4. Keep `memory.md` up to date as screens change. Ask for the FRD only once the screens are complete.
 
 ## Conventions
 
 - **Placeholders** look like `` `[VALUE]` ``. Replace them; don't leave them in finished documents.
-- **IDs** (`SCR-001`, `FLOW-001`, `BR-001`, `AC-001` …) stay stable so flows, memory, FRD, handoff and QA all link up. See [CLAUDE.md](CLAUDE.md) for the full list.
+- **IDs** (`SCR-001`, `FLOW-001`, `BR-001`, `CMP-001`, `AC-001` …) stay stable so flows, memory, FRD, handoff and QA all link up. See [CLAUDE.md](CLAUDE.md) for the full list.
+- **Specification statuses** (`approved`, `draft`, `proposed`, `missing`, `conflicting`) are defined in the [design-system index](03-design-system/README.md#specification-statuses). Inspiration and moodboards are never approved rules.
+- **Figma is optional.** Every Figma field accepts `N/A`; Markdown or code references work instead.
 - **Never mark a check `Pass`** or a screen *verified* without actually testing it.
+
+## Checking the docs
+
+Run this after moving, renaming or linking files (needs Node.js 18 or newer, no install step):
+
+```bash
+node scripts/check-docs.mjs
+```
+
+It checks that internal links and referenced paths exist, that skills are well formed, that every design-system file is linked from the index, and that the component registry and component specs match. GitHub runs the same check on every push and pull request.
 
 ## Updating the template
 

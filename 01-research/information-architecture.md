@@ -16,7 +16,7 @@ last_updated: "[YYYY-MM-DD]"
 | Platforms | `[WEB / MOBILE / ADMIN]` |
 | Audiences / roles | `[ROLES]` |
 | Top user tasks | `[TASKS]` |
-| Figma / visual sitemap | `[LINK]` |
+| Figma / visual sitemap (optional) | `[LINK / N/A]` |
 | Flows / FRD | `[LINKS]` |
 | In / out of scope | `[BOUNDARIES]` |
 

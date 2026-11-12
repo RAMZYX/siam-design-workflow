@@ -105,7 +105,7 @@ For presentation output: use overview slides, role slides, platform/role section
 **User role(s):** `[ROLES]`  
 **Purpose:** `[GOAL]`  
 **Preconditions / entry point:** `[WHEN AND FROM WHERE]`  
-**Design reference:** `[LINK]`
+**Design reference:** `[FIGMA / MARKDOWN / CODE REFERENCE / N/A]`
 
 #### A. Screen Elements
 | Element | Type | Default / displayed data | Visibility or enablement rule | Action / outcome |
