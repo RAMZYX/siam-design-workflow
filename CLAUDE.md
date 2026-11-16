@@ -25,6 +25,7 @@ Order of authority when sources disagree:
 - Specification statuses (`approved`, `draft`, `proposed`, `missing`, `conflicting`, `deprecated`) are defined in the [index](03-design-system/README.md#specification-statuses). Only `approved` specs can be built from without reporting a gap.
 - Functional requirements in `memory.md` use their own statuses (`Confirmed`, `Proposed`, `Open`, `Implemented (verified)`, `Deprecated`).
 - **Inspiration and moodboards are never approved rules.**
+- **Motion numbers:** the project's approved `motion.md` wins over the built-in defaults in the `motion-system` and `ui-animation` skills. Those defaults are `proposed` until the owner approves them.
 
 ## 3. Documentation discovery
 | Need | Start here |
@@ -50,6 +51,7 @@ Order of authority when sources disagree:
 | Component spec | `components/_component-template.md`, `component-registry.md`, token files | `/document-component` |
 | Review a design against standards | All of `02-foundation/` | `/design-review` |
 | Test a built UI against approved specs | `ui-qa-checklist.md`, `memory.md`, specs | `/ui-qa` |
+| Animation and motion (timing, UI motion, transitions, Lottie, Rive, native, haptics, motion specs and reviews) | `motion.md`, `accessibility.md`, then the [animation-and-motion guide](.claude/skills/animation-and-motion/README.md) | Not slash commands: read the matching `SKILL.md` in `.claude/skills/animation-and-motion/<skill>/` |
 | UI copy | `content-and-microcopy.md` | — |
 | New prototype / app | [`PROTOTYPE-STACK.md`](04-development/PROTOTYPE-STACK.md) | `/scaffold-prototype` |
 | Developer handoff | `dev-handoff.md`, `memory.md`, registry | `/dev-handoff` |

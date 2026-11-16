@@ -46,6 +46,33 @@ function anchors(file) {
 
 const files = walk(root);
 const basenames = new Set(files.map((f) => basename(f)));
+const skillsDir = join(root, '.claude', 'skills');
+
+// Skill folders, including skills grouped one level down (e.g. .claude/skills/animation-and-motion/<skill>/).
+function skillFolders() {
+  const out = [];
+  for (const name of existsSync(skillsDir) ? readdirSync(skillsDir) : []) {
+    const dir = join(skillsDir, name);
+    if (!statSync(dir).isDirectory()) continue;
+    if (existsSync(join(dir, 'SKILL.md'))) { out.push({ dir, name }); continue; }
+    const children = readdirSync(dir).filter((c) => statSync(join(dir, c)).isDirectory());
+    const grouped = children.filter((c) => existsSync(join(dir, c, 'SKILL.md')));
+    if (!grouped.length) { fail(dir, 'skill folder has no SKILL.md and no grouped skills'); continue; }
+    for (const c of children) {
+      if (!grouped.includes(c)) fail(join(dir, c), 'folder in a skill group has no SKILL.md');
+      else out.push({ dir: join(dir, c), name: c });
+    }
+  }
+  return out;
+}
+const skills = skillFolders();
+
+// A backtick path resolves from the repo root, the file's own folder, its skill folder, or any skill folder
+// (skills refer to their own `scripts/` and to sibling skills' files).
+function refExists(file, ref) {
+  if (existsSync(join(root, ref)) || existsSync(join(dirname(file), ref))) return true;
+  return skills.some((s) => existsSync(join(s.dir, ref)));
+}
 
 // 1. Markdown links and 2. backtick path references.
 for (const file of files) {
@@ -65,7 +92,7 @@ for (const file of files) {
     if (/[\[\]*<>{}|]|\s/.test(ref)) continue; // placeholders, globs, prose
     const top = ref.split('/')[0];
     if (ROOT_ENTRIES.includes(top)) {
-      if (!existsSync(join(root, ref))) fail(file, `referenced path does not exist → ${ref}`);
+      if (!refExists(file, ref)) fail(file, `referenced path does not exist → ${ref}`);
     } else if (/^[\w.-]+\.md$/.test(ref) && !basenames.has(ref) && !EXAMPLE_FILES.has(ref)) {
       fail(file, `referenced file not found anywhere in repo → ${ref}`);
     }
@@ -73,10 +100,8 @@ for (const file of files) {
 }
 
 // 3. Skills are well formed.
-const skillsDir = join(root, '.claude', 'skills');
-for (const name of existsSync(skillsDir) ? readdirSync(skillsDir) : []) {
-  const file = join(skillsDir, name, 'SKILL.md');
-  if (!existsSync(file)) { fail(join(skillsDir, name), 'skill folder has no SKILL.md'); continue; }
+for (const { dir, name } of skills) {
+  const file = join(dir, 'SKILL.md');
   const fm = readFileSync(file, 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!fm) { fail(file, 'missing front matter'); continue; }
   const skillName = fm[1].match(/^name:\s*(.+)$/m)?.[1].trim();

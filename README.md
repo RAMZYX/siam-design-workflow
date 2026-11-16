@@ -88,6 +88,8 @@ Claude Code slash commands for each step of the workflow. Run them inside Claude
 
 To get the FRD, ask Claude to "Create the FRD" once all screens are complete.
 
+**`.claude/skills/animation-and-motion/`** holds 17 more skills for motion work: timing tokens (`motion-system`), product UI motion, web and native animation, page transitions, scroll storytelling, Lottie and Rive, haptics and sound, motion accessibility, motion specs and motion review. They sit in a subfolder, so they don't show up as slash commands: ask Claude to use one by name. See the [animation-and-motion guide](.claude/skills/animation-and-motion/README.md) for which to use, the extra tools some need, and how they defer to the project's approved `motion.md`.
+
 ## Starting a new project from this template
 
 1. Create a new repository from this one — on GitHub click **Use this template** (template mode is turned on for this repo), or use the GitHub CLI:
