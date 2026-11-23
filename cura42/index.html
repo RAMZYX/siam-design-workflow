@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cura42 Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* =====================================================================
+   BOOK THEME. Neutral and identical for every product. Never brand it.
+   Layout: fixed left navigation by part; one continuous 960px reading
+   column; product styling lives only inside .p preview frames.
+   ===================================================================== */
+:root {
+  --bk-bg: #ffffff; --bk-side: #fafafa; --bk-sunk: #f4f4f5; --bk-panel: #ffffff;
+  --bk-border: #e4e4e7; --bk-border-2: #d4d4d8;
+  --bk-text: #18181b; --bk-text-2: #52525b; --bk-text-3: #71717a;
+  --bk-invert: #18181b; --bk-on-invert: #ffffff;
+  --bk-ok: #15803d; --bk-ok-bg: #ecfdf3; --bk-no: #b91c1c; --bk-no-bg: #fef2f2; --bk-warn: #a16207; --bk-warn-bg: #fefce8; --bk-info: #1d4ed8; --bk-info-bg: #eff6ff;
+  --bk-focus: #2563eb; --bk-code: #f4f4f5;
+  --bk-font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bk-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --bk-r: 12px; --bk-r-sm: 8px; --bk-side-w: 264px; --bk-col: 960px; --bk-gut: 56px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bk-bg: #0e0e10; --bk-side: #121215; --bk-sunk: #18181b; --bk-panel: #141417;
+    --bk-border: #27272a; --bk-border-2: #3f3f46;
+    --bk-text: #fafafa; --bk-text-2: #a1a1aa; --bk-text-3: #8b8b94;
+    --bk-invert: #fafafa; --bk-on-invert: #18181b;
+    --bk-ok: #4ade80; --bk-ok-bg: #0f2a1a; --bk-no: #f87171; --bk-no-bg: #2c1212; --bk-warn: #facc15; --bk-warn-bg: #2a2408; --bk-info: #93c5fd; --bk-info-bg: #0f1d33;
+    --bk-focus: #60a5fa; --bk-code: #1d1d21;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bk-bg: #0e0e10; --bk-side: #121215; --bk-sunk: #18181b; --bk-panel: #141417;
+  --bk-border: #27272a; --bk-border-2: #3f3f46;
+  --bk-text: #fafafa; --bk-text-2: #a1a1aa; --bk-text-3: #8b8b94;
+  --bk-invert: #fafafa; --bk-on-invert: #18181b;
+  --bk-ok: #4ade80; --bk-ok-bg: #0f2a1a; --bk-no: #f87171; --bk-no-bg: #2c1212; --bk-warn: #facc15; --bk-warn-bg: #2a2408; --bk-info: #93c5fd; --bk-info-bg: #0f1d33;
+  --bk-focus: #60a5fa; --bk-code: #1d1d21;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { margin: 0; }
+body { background: var(--bk-bg); color: var(--bk-text); font-family: var(--bk-font); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, h4, p, ul, ol, dl, figure { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--bk-focus); outline-offset: 2px; border-radius: 4px; }
+code, .mono { font-family: var(--bk-mono); font-size: 12.5px; }
+:not(pre) > code { padding: 1px 6px; border-radius: 5px; background: var(--bk-code); border: 1px solid var(--bk-border); white-space: nowrap; }
+.logo { display: block; width: var(--lw, 140px); max-width: 100%; height: auto; object-fit: contain; }
+.ico { width: 16px; height: 16px; flex: none; }
+.sec, .comp, .demo, .stack, .hero, .ch-head, .rule, .dd, .who { grid-template-columns: minmax(0, 1fr); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Sidebar */
+.side { position: fixed; inset: 0 auto 0 0; width: var(--bk-side-w); display: flex; flex-direction: column; background: var(--bk-side); border-right: 1px solid var(--bk-border); z-index: 30; padding-left: env(safe-area-inset-left, 0px); }
+.side__head { display: flex; flex-direction: column; gap: 12px; padding: calc(24px + env(safe-area-inset-top, 0px)) 24px 20px; border-bottom: 1px solid var(--bk-border); }
+.side__title { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 600; }
+.side__ver { font-family: var(--bk-mono); font-size: 11px; font-weight: 500; color: var(--bk-text-3); padding: 2px 6px; border: 1px solid var(--bk-border); border-radius: 6px; }
+.side__nav { flex: 1; overflow-y: auto; padding: 16px 12px; display: flex; flex-direction: column; gap: 18px; }
+.nav-group { display: flex; flex-direction: column; gap: 1px; }
+.nav-group__title { padding: 0 12px 6px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--bk-text-3); }
+.nav-link { display: block; padding: 6px 12px; border-radius: var(--bk-r-sm); font-size: 14px; font-weight: 500; color: var(--bk-text-2); text-decoration: none; }
+.nav-link--sub { padding: 4px 12px 4px 24px; font-size: 13px; font-weight: 400; color: var(--bk-text-3); }
+.nav-link:hover { background: var(--bk-sunk); color: var(--bk-text); }
+.nav-link[aria-current] { background: var(--bk-panel); color: var(--bk-text); box-shadow: 0 0 0 1px var(--bk-border), 0 1px 2px rgba(0,0,0,.04); }
+.side__foot { padding: 14px 24px calc(18px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--bk-border); display: grid; gap: 10px; }
+.side__foot > div { display: grid; gap: 6px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; padding: 3px; border-radius: 9px; background: var(--bk-sunk); border: 1px solid var(--bk-border); }
+.seg button { border: 0; background: transparent; padding: 5px 8px; border-radius: 6px; font-size: 12.5px; font-weight: 500; color: var(--bk-text-2); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--bk-panel); color: var(--bk-text); box-shadow: 0 0 0 1px var(--bk-border), 0 1px 2px rgba(0,0,0,.06); }
+.label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--bk-text-3); }
+.topbar { display: none; }
+
+/* Page rhythm: chapter 72 / section 56 / block 20 / heading 6 */
+.main { margin-left: var(--bk-side-w); min-height: 100vh; }
+.wrap { max-width: calc(var(--bk-col) + 2 * var(--bk-gut)); margin: 0 auto; padding-left: max(var(--bk-gut), env(safe-area-inset-left, 0px)); padding-right: max(var(--bk-gut), env(safe-area-inset-right, 0px)); }
+.chapter { padding-block: 72px; }
+.chapter + .chapter { border-top: 1px solid var(--bk-border); }
+.part { background: var(--bk-sunk); border-top: 1px solid var(--bk-border); border-bottom: 1px solid var(--bk-border); }
+.part .wrap { padding-block: 44px; display: grid; gap: 6px; }
+.part__n { font-family: var(--bk-mono); font-size: 12px; color: var(--bk-text-3); text-transform: uppercase; letter-spacing: .06em; }
+.part h2 { font-size: 40px; line-height: 1.1; font-weight: 650; letter-spacing: -.03em; }
+.part p { font-size: 16px; color: var(--bk-text-2); }
+.ch-head { display: grid; gap: 10px; padding-bottom: 28px; margin-bottom: 40px; border-bottom: 1px solid var(--bk-border); }
+.ch-head h1 { font-size: 32px; line-height: 1.2; font-weight: 650; letter-spacing: -.025em; }
+.ch-head p { font-size: 16.5px; line-height: 1.6; color: var(--bk-text-2); max-width: 68ch; }
+.ch-src { display: inline-flex; align-items: center; gap: 6px; justify-self: start; font-size: 12.5px; color: var(--bk-text-3); text-decoration: none; }
+.ch-src:hover { color: var(--bk-text); }
+.sec { display: grid; gap: 20px; scroll-margin-top: 24px; }
+.sec + .sec { margin-top: 56px; }
+.sec-head { display: grid; gap: 6px; max-width: 68ch; }
+.sec-head h2 { font-size: 20px; line-height: 1.3; font-weight: 600; letter-spacing: -.01em; }
+.sec-head p { color: var(--bk-text-2); }
+.sec-head--row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; max-width: none; }
+.prose { display: grid; gap: 14px; max-width: 70ch; }
+.prose p { color: var(--bk-text-2); }
+.prose p:first-child { color: var(--bk-text); font-size: 16px; }
+.muted { color: var(--bk-text-2); }
+.small { font-size: 13px; color: var(--bk-text-3); }
+
+/* Book components */
+.card { background: var(--bk-panel); border: 1px solid var(--bk-border); border-radius: var(--bk-r); padding: 24px; min-width: 0; }
+.card h3 { font-size: 15.5px; font-weight: 600; }
+.card p { font-size: 14px; color: var(--bk-text-2); }
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stack { display: grid; gap: 8px; align-content: start; }
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--bk-border); border-radius: var(--bk-r); background: var(--bk-panel); }
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; min-width: 560px; }
+.tbl th { text-align: left; padding: 11px 16px; font-size: 12px; font-weight: 600; color: var(--bk-text-3); background: var(--bk-sunk); border-bottom: 1px solid var(--bk-border); white-space: nowrap; }
+.tbl td { padding: 12px 16px; border-bottom: 1px solid var(--bk-border); vertical-align: top; color: var(--bk-text-2); }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl td:first-child { font-weight: 500; color: var(--bk-text); }
+.tbl--fixed td:first-child { width: 30%; }
+.tbl--wide { min-width: 900px; }
+.tbl--wide td:nth-child(4) { min-width: 240px; }
+.rule { display: grid; gap: 12px; align-content: start; }
+.rule__tag { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
+.rule--do .rule__tag { color: var(--bk-ok); }
+.rule--dont .rule__tag { color: var(--bk-no); }
+.list { list-style: none; padding: 0; display: grid; gap: 8px; }
+.list li { position: relative; padding-left: 18px; font-size: 14px; color: var(--bk-text-2); }
+.list li::before { content: ""; position: absolute; left: 3px; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--bk-border-2); }
+.rows { list-style: none; padding: 0; border-top: 1px solid var(--bk-border); }
+.rows li { display: grid; grid-template-columns: 40px 220px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--bk-border); align-items: baseline; }
+.rows b { font-size: 15px; font-weight: 600; }
+.rows p { font-size: 14.5px; color: var(--bk-text-2); }
+.num { font-family: var(--bk-mono); font-size: 12px; color: var(--bk-text-3); font-variant-numeric: tabular-nums; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: var(--bk-r-sm); border: 1px solid var(--bk-border); background: var(--bk-panel); font-size: 13px; font-weight: 500; cursor: pointer; color: var(--bk-text); text-decoration: none; }
+.btn:hover { border-color: var(--bk-border-2); background: var(--bk-sunk); }
+.copy { all: unset; cursor: pointer; font-family: var(--bk-mono); font-size: 12px; color: var(--bk-text-2); border-radius: 4px; }
+.copy:hover { color: var(--bk-text); text-decoration: underline; }
+.copy:focus-visible { outline: 2px solid var(--bk-focus); outline-offset: 2px; }
+pre.code { position: relative; margin: 0; padding: 16px 18px; border-radius: var(--bk-r); background: var(--bk-code); border: 1px solid var(--bk-border); overflow-x: auto; font-family: var(--bk-mono); font-size: 12.5px; line-height: 1.7; }
+pre.code .btn { position: absolute; top: 8px; right: 8px; padding: 4px 10px; font-family: var(--bk-font); font-size: 12px; }
+.badge { display: inline-flex; padding: 2px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+.badge--ok { background: var(--bk-ok-bg); color: var(--bk-ok); }
+.badge--no { background: var(--bk-no-bg); color: var(--bk-no); }
+.badge--warn { background: var(--bk-warn-bg); color: var(--bk-warn); }
+.badge--info { background: var(--bk-info-bg); color: var(--bk-info); }
+.badge--muted { background: var(--bk-sunk); color: var(--bk-text-2); }
+.frame { border: 1px solid var(--bk-border); border-radius: var(--bk-r); overflow: hidden; min-width: 0; }
+.frame__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 9px 16px; background: var(--bk-sunk); border-bottom: 1px solid var(--bk-border); font-size: 12px; color: var(--bk-text-3); font-weight: 500; }
+.frame__body { padding: 32px; }
+.frame__body--center { display: grid; place-items: center; min-height: 220px; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 12px); padding: 9px 16px; border-radius: 999px; background: var(--bk-invert); color: var(--bk-on-invert); font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 60; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* Home */
+.hero { display: grid; gap: 20px; }
+.hero h1 { font-size: 44px; line-height: 1.1; font-weight: 650; letter-spacing: -.03em; }
+.hero > p { font-size: 17px; color: var(--bk-text-2); max-width: 64ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 40px; padding-top: 20px; border-top: 1px solid var(--bk-border); }
+.meta div { display: grid; gap: 2px; }
+.meta dd { margin: 0; font-size: 14px; font-weight: 500; }
+.who { display: grid; gap: 14px; align-content: start; }
+.who ul { list-style: none; padding: 0; display: grid; border-top: 1px solid var(--bk-border); }
+.who a { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--bk-border); font-size: 14px; color: var(--bk-text-2); text-decoration: none; }
+.who a:hover { color: var(--bk-text); }
+
+/* Logo */
+.clear { width: min(100%, 400px); margin: 0 auto; }
+.clear__box { position: relative; padding: 16.66%; outline: 1px dashed var(--brand-text); background-image: repeating-linear-gradient(45deg, transparent 0 7px, var(--brand-tint) 7px 8px); }
+.clear__box .logo { background: var(--card); }
+.clear__x { position: absolute; font: 600 11px/1 var(--bk-mono); color: var(--brand-text); transform: translate(-50%, -50%); }
+.sizes { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 28px; }
+.sizes figure { display: grid; gap: 10px; }
+.sizes figcaption { font-size: 12px; color: var(--ink-muted); font-weight: 500; }
+.bgs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.bgs figure { display: grid; gap: 10px; min-width: 0; }
+.bgs__face { display: grid; place-items: center; aspect-ratio: 3 / 2; border-radius: var(--bk-r); border: 1px solid var(--bk-border); padding: 16px; }
+.bgs figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; }
+.bgs figcaption .ico { color: var(--bk-ok); }
+.never { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+.never li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--bk-border); font-size: 14px; color: var(--bk-text-2); }
+.never .ico { margin-top: 3px; color: var(--bk-no); }
+
+/* Colour */
+.core { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 16px; }
+.core__sw { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; min-height: 200px; padding: 20px; border-radius: var(--bk-r); border: 1px solid var(--bk-border); }
+.core__sw b { font-size: 18px; font-weight: 600; }
+.core__sw dl { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 4px 12px; font-size: 12.5px; }
+.core__sw dt { opacity: .7; }
+.core__sw dd { margin: 0; font-family: var(--bk-mono); }
+.core__sw .copy { color: inherit; }
+.tok-group { display: grid; gap: 10px; }
+.tok-group + .tok-group { margin-top: 24px; }
+.tok-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.tok { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid var(--bk-border); border-radius: var(--bk-r); background: var(--bk-panel); min-width: 0; }
+.tok__chip { display: grid; grid-template-rows: 1fr 1fr; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(128,128,128,.28); }
+.tok__body { display: grid; gap: 1px; min-width: 0; justify-items: start; }
+.tok__name { font-family: var(--bk-mono); font-size: 12.5px; font-weight: 500; color: var(--bk-text); overflow-wrap: anywhere; }
+.tok__ref { font-family: var(--bk-mono); font-size: 11px; color: var(--bk-text-3); overflow-wrap: anywhere; }
+.tok__use { font-size: 12px; color: var(--bk-text-2); line-height: 1.4; }
+.ramp { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; align-items: center; }
+.ramp + .ramp { margin-top: 12px; }
+.ramp__name { font-size: 13px; font-weight: 600; }
+.ramp__steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-radius: var(--bk-r-sm); overflow: hidden; border: 1px solid var(--bk-border); }
+.step { all: unset; cursor: pointer; display: flex; flex-direction: column; justify-content: flex-end; min-height: 60px; padding: 6px; font-family: var(--bk-mono); font-size: 10px; line-height: 1.3; }
+.step:focus-visible { outline: 2px solid var(--bk-focus); outline-offset: -2px; }
+
+/* Type */
+.face { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 24px; align-items: center; }
+.face__aa { font-size: 88px; line-height: .9; letter-spacing: -.03em; color: var(--ink); }
+.face__glyphs { font-size: 16px; line-height: 1.5; color: var(--ink-soft); overflow-wrap: anywhere; }
+.scale__row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 16px 28px; border-bottom: 1px solid var(--line); }
+.scale__row:last-child { border-bottom: 0; }
+.scale__meta { display: grid; gap: 2px; font-family: var(--bk-mono); font-size: 11.5px; color: var(--ink-muted); }
+.scale__meta b { font-size: 12.5px; color: var(--ink); font-weight: 500; }
+.scale__sample { min-width: 0; overflow-wrap: anywhere; color: var(--ink); }
+
+/* Spacing, radius, elevation */
+.space-row { display: grid; grid-template-columns: 90px 56px minmax(0, 1fr); gap: 16px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--bk-border); }
+.space-row:last-child { border-bottom: 0; }
+.space-row i { display: block; height: 12px; border-radius: 3px; background: var(--bk-invert); opacity: .8; max-width: 100%; }
+.gridviz { position: relative; display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; height: 132px; }
+.gridviz i { background: var(--brand-tint); border-radius: 4px; }
+.gridviz__spans { position: absolute; inset: auto 0 16px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+.gridviz__spans div { height: 44px; border-radius: 6px; display: grid; place-items: center; font-size: 12px; font-weight: 600; }
+.radii { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 16px; }
+.rad { display: grid; gap: 8px; }
+.rad__shape { aspect-ratio: 1; background: var(--card); border: 1.5px solid var(--brand-text); }
+.rad b { font-family: var(--bk-mono); font-size: 12px; font-weight: 500; color: var(--ink); }
+.rad span { font-size: 12px; color: var(--ink-muted); }
+.shadows { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 28px; }
+.shd { display: grid; gap: 10px; }
+.shd__box { height: 92px; border-radius: var(--radius-xl); background: var(--card); }
+.shd b { font-family: var(--bk-mono); font-size: 12px; font-weight: 500; color: var(--ink); }
+.shd span { font-size: 12px; color: var(--ink-muted); }
+.callout { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; padding: 16px 20px; border-radius: var(--bk-r); background: var(--bk-info-bg); color: var(--bk-text); font-size: 14px; }
+.callout .ico { margin-top: 3px; color: var(--bk-info); }
+
+/* Icons */
+.icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+.icon { all: unset; cursor: pointer; display: grid; justify-items: center; gap: 10px; padding: 20px 6px; color: var(--ink); box-shadow: inset -1px -1px 0 var(--line); transition: background-color .15s; }
+.icon:hover { background: var(--sand); }
+.icon:focus-visible { outline: 2px solid var(--bk-focus); outline-offset: -2px; }
+.icon svg { width: 24px; height: 24px; }
+.icon span { font-family: var(--bk-mono); font-size: 10.5px; color: var(--ink-muted); }
+
+/* Motion */
+.curve { display: grid; gap: 12px; align-content: start; }
+.curve svg { width: 100%; max-width: 180px; height: auto; }
+.plot-grid { stroke: var(--bk-border); fill: none; }
+.plot-line { stroke: var(--bk-text); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+.plot-handle { stroke: var(--bk-text-3); stroke-dasharray: 3 3; fill: none; }
+.plot-pt { fill: var(--bk-panel); stroke: var(--bk-text-3); stroke-width: 1.5; }
+.track { position: relative; height: 32px; border-radius: 999px; background: var(--bk-sunk); border: 1px solid var(--bk-border); }
+.track i { position: absolute; top: 4px; left: 4px; width: 22px; height: 22px; border-radius: 50%; background: var(--bk-invert); transition: transform 1.2s var(--e, linear); }
+.track.on i { transform: translateX(calc(var(--w, 200px) - 32px)); }
+.dur { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 14px; align-items: center; padding: 5px 0; }
+.dur b { font-family: var(--bk-mono); font-size: 12px; font-weight: 500; text-align: right; }
+.dur__bar { height: 28px; display: flex; align-items: center; padding: 0 10px; border-radius: 6px; background: var(--bk-sunk); border: 1px solid var(--bk-border); font-size: 12.5px; color: var(--bk-text-2); white-space: nowrap; overflow: hidden; }
+
+/* Component doc block */
+.comp { display: grid; gap: 20px; scroll-margin-top: 24px; }
+.comp + .comp { margin-top: 64px; padding-top: 64px; border-top: 1px solid var(--bk-border); }
+.comp-head { display: grid; gap: 6px; }
+.comp-head h2 { font-size: 22px; font-weight: 600; letter-spacing: -.015em; }
+.comp-head p { color: var(--bk-text-2); max-width: 68ch; }
+.comp-body { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.spec { display: grid; padding: 4px 20px; }
+.spec div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--bk-border); font-size: 13.5px; }
+.spec div:last-child { border-bottom: 0; }
+.spec dt { color: var(--bk-text-3); }
+.spec dd { margin: 0; color: var(--bk-text); min-width: 0; }
+.dd { display: grid; gap: 16px; }
+.dd .card { padding: 18px 20px; }
+.dd p { font-size: 14px; color: var(--bk-text); }
+.demo { display: grid; gap: 24px; }
+.demo__row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.demo__label { font-family: var(--bk-mono); font-size: 11px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .04em; }
+.states { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 16px; }
+.states figure { display: grid; gap: 8px; justify-items: start; }
+.states figcaption { font-size: 12px; color: var(--ink-muted); }
+.sec + .comp { margin-top: 64px; padding-top: 64px; border-top: 1px solid var(--bk-border); }
+.tbl--log td:nth-child(1) { width: 24%; } .tbl--log td:nth-child(2) { width: 10%; } .tbl--log td:nth-child(3) { width: 14%; }
+.vis { padding: 14px; border-radius: 10px; margin: 2px 0 6px; border: 1px solid var(--bk-border); }
+.tbl--voice { min-width: 900px; }
+.tbl--voice td { min-width: 110px; }
+.lib-sum { display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 16px 20px; border: 1px solid var(--bk-border); border-radius: var(--bk-r); background: var(--bk-sunk); }
+.lib-sum div { display: grid; gap: 2px; }
+.lib-sum b { font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tbl a { color: var(--bk-text); text-decoration: none; }
+.tbl a:hover { text-decoration: underline; }
+.comp-title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.comp-meta { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ver { font-family: var(--bk-mono); font-size: 11.5px; font-weight: 500; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--bk-border); color: var(--bk-text-2); background: var(--bk-panel); }
+.clog { border: 1px solid var(--bk-border); border-radius: var(--bk-r); background: var(--bk-panel); }
+.clog summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; font-size: 13.5px; font-weight: 600; cursor: pointer; }
+.clog summary::-webkit-details-marker { display: none; }
+.clog summary .ico { transition: transform .2s; color: var(--bk-text-3); }
+.clog[open] summary .ico { transform: rotate(180deg); }
+.clog ol { list-style: none; margin: 0; padding: 0 20px 8px; }
+.clog li { display: grid; grid-template-columns: 72px 104px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-top: 1px solid var(--bk-border); font-size: 13.5px; color: var(--bk-text-2); }
+.clog li b { font-family: var(--bk-mono); font-size: 12px; font-weight: 500; color: var(--bk-text); }
+@media (max-width: 640px) { .clog li { grid-template-columns: 64px minmax(0, 1fr); } .clog li span:last-child { grid-column: 1 / -1; } }
+
+/* =====================================================================
+   PRODUCT COMPONENTS. Read only product tokens, so they work for any
+   product. tools/build.js copies the block below to tokens/components.css.
+   ===================================================================== */
+/* ds:start */
+.p { background: var(--paper); color: var(--ink); font-family: var(--font-body); }
+.ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border: 1px solid transparent; border-radius: var(--radius-pill); padding: 0 24px; font-family: var(--font-body); font-size: 15px; line-height: 1; font-weight: 600; white-space: nowrap; cursor: pointer; text-decoration: none; transition: background-color .3s var(--glide), color .3s var(--glide), border-color .3s var(--glide), transform .15s var(--glide); }
+.ds-btn svg { width: 16px; height: 16px; flex: none; }
+.ds-btn:active { transform: scale(.98); }
+.ds-btn:focus-visible, .ds-btn.is-focus { outline: 2px solid var(--focus); outline-offset: 3px; }
+.ds-btn--primary { background: var(--brand); color: var(--on-brand); }
+.ds-btn--primary:hover, .ds-btn--primary.is-hover { background: var(--brand-deep); }
+.ds-btn--secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.ds-btn--secondary:hover { border-color: var(--ink); }
+.ds-btn--ghost { background: transparent; color: var(--ink); padding: 0 8px; }
+.ds-btn--ghost:hover { color: var(--brand-text); }
+.ds-btn--danger { background: var(--danger); color: var(--on-danger); }
+.ds-btn--danger:hover { filter: brightness(.92); }
+.ds-btn--lg { min-height: 56px; padding: 0 32px; font-size: 18px; font-weight: 700; }
+.ds-btn--icon { width: 44px; padding: 0; background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.ds-btn--sm { min-height: 36px; padding: 0 16px; font-size: 14px; }
+.ds-btn.is-press { transform: scale(.98); background: var(--brand-deep); }
+.ds-btn:disabled, .ds-btn.is-disabled { background: var(--sand); color: var(--ink-muted); border-color: transparent; cursor: not-allowed; filter: none; }
+.ds-btn.is-loading { pointer-events: none; }
+.ds-spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: ds-spin .8s linear infinite; }
+@keyframes ds-spin { to { transform: rotate(360deg); } }
+.ds-field { display: grid; gap: 8px; min-width: 0; align-content: start; }
+.ds-field__label { font-size: 13px; line-height: 1.4; font-weight: 600; color: var(--ink-soft); }
+.ds-field__input { width: 100%; min-height: 44px; background: var(--card); border: 1px solid var(--line-strong); border-radius: var(--radius-md); padding: 0 14px; font-family: var(--font-body); font-size: 16px; color: var(--ink); outline: none; transition: border-color .2s, box-shadow .2s; }
+.ds-field__input::placeholder { color: var(--ink-muted); }
+.ds-field__input:focus, .ds-field__input.is-focus { border-color: var(--brand); box-shadow: var(--shadow-halo); }
+.ds-field__input:disabled { background: var(--sand); color: var(--ink-muted); border-color: var(--line); cursor: not-allowed; }
+.ds-field__input[readonly] { background: var(--paper-deep); border-style: dashed; }
+.ds-field__help { font-size: 12.5px; line-height: 1.4; color: var(--ink-muted); }
+.ds-field--error .ds-field__input { border-color: var(--danger); }
+.ds-field--error .ds-field__help { color: var(--danger); }
+.ds-field--success .ds-field__input { border-color: var(--success); }
+.ds-field--success .ds-field__help { color: var(--success); }
+.ds-search { position: relative; display: block; }
+.ds-search svg { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--ink-muted); }
+.ds-search .ds-field__input { padding-left: 42px; border-radius: var(--radius-pill); }
+.ds-check { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink); cursor: pointer; }
+.ds-check input { appearance: none; -webkit-appearance: none; flex: none; width: 20px; height: 20px; margin: 0; border: 1.5px solid var(--line-strong); border-radius: 6px; background: var(--card); display: grid; place-content: center; cursor: pointer; transition: background-color .2s, border-color .2s; }
+.ds-check input:checked { background: var(--brand); border-color: var(--brand); }
+.ds-check input:checked::after { content: ""; width: 9px; height: 5px; border: 2px solid var(--on-brand); border-top: 0; border-right: 0; transform: translateY(-1px) rotate(-45deg); }
+.ds-check input[type="radio"] { border-radius: 50%; }
+.ds-check input[type="radio"]:checked { background: var(--card); }
+.ds-check input[type="radio"]:checked::after { width: 10px; height: 10px; border: 0; border-radius: 50%; background: var(--brand); transform: none; }
+.ds-check input:disabled { background: var(--sand); border-color: var(--line); cursor: not-allowed; }
+.ds-check:has(input:disabled) { color: var(--ink-muted); cursor: not-allowed; }
+.ds-check input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ds-switch input { width: 40px; height: 24px; border: 0; border-radius: 999px; background: var(--line-strong); position: relative; display: block; }
+.ds-switch input::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--card); transition: transform .25s var(--glide); }
+.ds-switch input:checked { background: var(--brand); }
+.ds-switch input:checked::after { width: 18px; height: 18px; border: 0; transform: translateX(16px); background: var(--card); }
+.ds-switch input:disabled { background: var(--line); }
+.ds-card { display: grid; gap: 10px; align-content: start; background: var(--card); border-radius: var(--radius-xl); box-shadow: 0 0 0 1px var(--ring); padding: 24px; color: var(--ink); text-decoration: none; transition: transform .4s var(--glide), box-shadow .4s var(--glide); min-width: 0; }
+.ds-card--link:hover, .ds-card--link.is-hover { transform: translateY(-4px); box-shadow: 0 0 0 1px var(--ring), var(--shadow-lift); }
+.ds-card__eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.ds-card__title { font-family: var(--font-display); font-size: 20px; line-height: 1.25; font-weight: 600; }
+.ds-card__text { font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+.ds-tag { display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-pill); padding: 4px 11px; font-size: 12px; line-height: 1.4; font-weight: 600; background: var(--sand); color: var(--ink-soft); white-space: nowrap; }
+.ds-tag i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.ds-tag--brand { background: var(--brand-tint); color: var(--brand-tint-text); }
+.ds-tag--success { background: var(--success-tint); color: var(--success); }
+.ds-tag--warning { background: var(--warning-tint); color: var(--warning); }
+.ds-tag--danger { background: var(--danger-tint); color: var(--danger); }
+.ds-tag--info { background: var(--info-tint); color: var(--info); }
+.ds-alert { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 12px; align-items: start; border-radius: var(--radius-md); padding: 14px 16px; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.ds-alert svg { width: 20px; height: 20px; margin-top: 1px; }
+.ds-alert b { display: block; font-weight: 600; }
+.ds-alert span { color: var(--ink-soft); }
+.ds-alert--info { background: var(--info-tint); } .ds-alert--info svg { color: var(--info); }
+.ds-alert--success { background: var(--success-tint); } .ds-alert--success svg { color: var(--success); }
+.ds-alert--warning { background: var(--warning-tint); } .ds-alert--warning svg { color: var(--warning); }
+.ds-alert--danger { background: var(--danger-tint); } .ds-alert--danger svg { color: var(--danger); }
+.ds-toast { display: inline-grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; align-items: center; max-width: 420px; padding: 12px 12px 12px 14px; border-radius: var(--radius-md); background: var(--card); box-shadow: 0 0 0 1px var(--ring), var(--shadow-float); font-size: 14.5px; color: var(--ink); }
+.ds-toast__icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--success-tint); color: var(--success); }
+.ds-toast__icon svg { width: 16px; height: 16px; }
+.ds-toast b { display: block; font-weight: 600; }
+.ds-toast span { color: var(--ink-soft); font-size: 13.5px; }
+.ds-progress { display: grid; gap: 8px; }
+.ds-progress__head { display: flex; justify-content: space-between; gap: 16px; font-size: 14.5px; }
+.ds-progress__head b { font-family: var(--font-display); font-weight: 700; color: var(--brand-text); font-variant-numeric: tabular-nums; }
+.ds-progress__track { height: 8px; border-radius: var(--radius-pill); background: var(--sand); overflow: hidden; }
+.ds-progress__fill { height: 100%; border-radius: var(--radius-pill); background: var(--brand); }
+.ds-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+.ds-steps li { position: relative; display: grid; justify-items: center; gap: 8px; text-align: center; font-size: 13px; color: var(--ink-muted); }
+.ds-steps li::before { content: ""; position: absolute; top: 14px; left: calc(-50% + 18px); right: calc(50% + 18px); height: 2px; background: var(--line); }
+.ds-steps li:first-child::before { display: none; }
+.ds-steps li.is-done::before, .ds-steps li.is-current::before { background: var(--brand); }
+.ds-steps i { position: relative; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--line-strong); background: var(--card); font-style: normal; font-size: 12.5px; font-weight: 600; color: var(--ink-muted); }
+.ds-steps i svg { width: 14px; height: 14px; }
+.ds-steps .is-done i { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+.ds-steps .is-current i { border: 2px solid var(--brand); color: var(--brand-text); }
+.ds-steps .is-current, .ds-steps .is-done { color: var(--ink); font-weight: 500; }
+.ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.ds-nav__links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+.ds-nav__link { position: relative; font-size: 15px; font-weight: 500; color: var(--ink-soft); text-decoration: none; }
+.ds-nav__link:hover, .ds-nav__link[aria-current] { color: var(--ink); }
+.ds-nav__link[aria-current]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; border-radius: 2px; background: var(--brand); }
+.ds-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); }
+.ds-tabs button { position: relative; border: 0; background: none; padding: 10px 14px; font-family: var(--font-body); font-size: 14.5px; font-weight: 500; color: var(--ink-soft); cursor: pointer; }
+.ds-tabs button[aria-selected="true"] { color: var(--ink); }
+.ds-tabs button[aria-selected="true"]::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: -1px; height: 2px; border-radius: 2px; background: var(--brand); }
+.ds-tabs button:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; border-radius: 6px; }
+.ds-table-wrap { position: relative; overflow-x: auto; background: var(--card); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px var(--ring); }
+.ds-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+.ds-table th { text-align: left; padding: 12px 16px; font-size: 12px; font-weight: 600; color: var(--ink-muted); border-bottom: 1px solid var(--line); white-space: nowrap; }
+.ds-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+.ds-table tr:last-child td { border-bottom: 0; }
+.ds-table tbody tr:hover { background: var(--paper); }
+.ds-table .is-num { text-align: right; font-variant-numeric: tabular-nums; }
+.ds-table .is-act { width: 56px; text-align: right; }
+.ds-table tr.is-sel { background: var(--brand-tint); }
+.ds-empty { display: grid; justify-items: center; gap: 10px; text-align: center; padding: 20px 8px; }
+.ds-empty__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--brand-tint); color: var(--brand-tint-text); }
+.ds-empty__icon svg { width: 22px; height: 22px; }
+.ds-empty b { font-size: 16px; font-weight: 600; }
+.ds-empty span { font-size: 14px; color: var(--ink-soft); max-width: 32ch; }
+.ds-skel { display: grid; gap: 12px; padding: 4px 0; }
+.ds-skel i { display: block; height: 12px; border-radius: 6px; background: linear-gradient(90deg, var(--sand) 0%, var(--paper-deep) 50%, var(--sand) 100%); background-size: 200% 100%; animation: ds-shimmer 1.4s linear infinite; }
+@keyframes ds-shimmer { to { background-position: -200% 0; } }
+.p button:focus-visible, .p a:focus-visible, .p summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+textarea.ds-field__input { min-height: 96px; padding: 12px 14px; line-height: 1.5; resize: vertical; }
+.ds-select { position: relative; display: block; }
+.ds-select .ds-field__input { display: flex; align-items: center; padding-right: 40px; cursor: pointer; text-align: left; }
+.ds-select > svg { position: absolute; right: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--ink-muted); pointer-events: none; }
+.ds-menu { display: grid; gap: 2px; min-width: 220px; padding: 6px; background: var(--card); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px var(--ring), var(--shadow-float); }
+.ds-menu button { all: unset; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border-radius: 8px; font-size: 14.5px; color: var(--ink); cursor: pointer; }
+.ds-menu button:hover, .ds-menu button.is-active { background: var(--brand-tint); color: var(--brand-tint-text); }
+.ds-menu button svg { width: 16px; height: 16px; }
+.ds-menu hr { border: 0; height: 1px; margin: 4px 6px; background: var(--line); }
+.ds-menu .is-danger { color: var(--danger); }
+.ds-menu .is-danger:hover { background: var(--danger-tint); color: var(--danger); }
+.ds-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: var(--radius-pill); border: 1px solid var(--line-strong); background: var(--card); font-family: var(--font-body); font-size: 14px; font-weight: 500; color: var(--ink); cursor: pointer; transition: background-color .2s, border-color .2s; }
+.ds-chip:hover { border-color: var(--ink); }
+.ds-chip[aria-pressed="true"] { background: var(--brand-tint); border-color: var(--brand); color: var(--brand-tint-text); }
+.ds-chip svg { width: 14px; height: 14px; }
+.ds-chip:disabled { color: var(--ink-muted); border-color: var(--line); cursor: not-allowed; }
+.ds-cal { display: inline-grid; gap: 10px; padding: 16px; background: var(--card); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px var(--ring), var(--shadow-float); }
+.ds-cal__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 15px; font-weight: 600; }
+.ds-cal__head button { all: unset; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: var(--ink-soft); cursor: pointer; }
+.ds-cal__head button:hover { background: var(--sand); }
+.ds-cal__head svg { width: 16px; height: 16px; }
+.ds-cal__grid { display: grid; grid-template-columns: repeat(7, 36px); gap: 2px; text-align: center; }
+.ds-cal__grid > span { padding: 4px 0; font-size: 12px; color: var(--ink-muted); }
+.ds-cal__grid button { all: unset; display: grid; place-items: center; height: 36px; border-radius: 50%; font-size: 14px; color: var(--ink); cursor: pointer; font-variant-numeric: tabular-nums; }
+.ds-cal__grid button:hover { background: var(--sand); }
+.ds-cal__grid .is-today { box-shadow: inset 0 0 0 1.5px var(--brand); }
+.ds-cal__grid .is-sel, .ds-cal__grid .is-sel:hover { background: var(--brand); color: var(--on-brand); }
+.ds-cal__grid button:disabled { color: var(--line-strong); cursor: default; background: none; }
+.ds-badge { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: var(--radius-pill); background: var(--brand); color: var(--on-brand); font-size: 11.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ds-badge--neutral { background: var(--sand); color: var(--ink-soft); }
+.ds-badge-wrap { display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 500; }
+.ds-avatar { position: relative; display: inline-grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: var(--brand-tint); color: var(--brand-tint-text); font-size: 14px; font-weight: 600; }
+.ds-avatar--sm { width: 28px; height: 28px; font-size: 11px; }
+.ds-avatar--lg { width: 56px; height: 56px; font-size: 18px; }
+.ds-avatar--neutral { background: var(--sand); color: var(--ink-soft); }
+.ds-avatar__status { position: absolute; right: 0; bottom: 0; width: 25%; height: 25%; min-width: 8px; min-height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 2px var(--paper); }
+.ds-avatars { display: flex; }
+.ds-avatars .ds-avatar { box-shadow: 0 0 0 2px var(--paper); }
+.ds-avatars .ds-avatar + .ds-avatar { margin-left: -8px; }
+.ds-person { display: inline-flex; align-items: center; gap: 12px; font-size: 14.5px; }
+.ds-person b { display: block; font-weight: 600; }
+.ds-person small { color: var(--ink-muted); font-size: 12.5px; }
+.ds-accordion { background: var(--card); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px var(--ring); }
+.ds-accordion details + details { border-top: 1px solid var(--line); }
+.ds-accordion summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; }
+.ds-accordion summary::-webkit-details-marker { display: none; }
+.ds-accordion summary svg { flex: none; width: 18px; height: 18px; color: var(--ink-muted); transition: transform .25s var(--glide); }
+.ds-accordion details[open] summary svg { transform: rotate(180deg); }
+.ds-accordion details p { padding: 0 20px 16px; font-size: 14.5px; color: var(--ink-soft); }
+.ds-scrim { display: grid; place-items: center; min-height: 300px; padding: 24px; border-radius: var(--radius-lg); background: var(--scrim); }
+.ds-dialog { display: grid; gap: 10px; width: min(100%, 420px); padding: 24px; background: var(--card); border-radius: var(--radius-xl); box-shadow: var(--shadow-float); }
+.ds-dialog__title { font-family: var(--font-display); font-size: 20px; line-height: 1.3; font-weight: 600; }
+.ds-dialog p { font-size: 14.5px; color: var(--ink-soft); }
+.ds-dialog__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+.ds-tip { position: relative; display: inline-flex; }
+.ds-tip__bubble { position: absolute; bottom: calc(100% + 10px); left: 0; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--ink); color: var(--paper); font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+.ds-tip__bubble::after { content: ""; position: absolute; top: 100%; left: 16px; border: 5px solid transparent; border-top-color: var(--ink); }
+.ds-spin--sm { width: 12px; height: 12px; }
+.ds-spin--lg { width: 28px; height: 28px; border-width: 3px; }
+.ds-crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px; }
+.ds-crumbs li { display: inline-flex; align-items: center; gap: 6px; }
+.ds-crumbs a { color: var(--ink-soft); text-decoration: none; }
+.ds-crumbs a:hover { color: var(--ink); text-decoration: underline; }
+.ds-crumbs svg { width: 14px; height: 14px; color: var(--ink-muted); }
+.ds-crumbs [aria-current] { color: var(--ink); font-weight: 500; }
+.ds-pages { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.ds-pages button { all: unset; box-sizing: border-box; display: grid; place-items: center; min-width: 36px; height: 36px; padding: 0 6px; border-radius: 10px; font-size: 14px; color: var(--ink); cursor: pointer; font-variant-numeric: tabular-nums; }
+.ds-pages button:hover { background: var(--sand); }
+.ds-pages button[aria-current] { background: var(--brand); color: var(--on-brand); }
+.ds-pages button:disabled { color: var(--line-strong); cursor: default; background: none; }
+.ds-pages button svg { width: 16px; height: 16px; }
+.ds-pages span { min-width: 24px; text-align: center; color: var(--ink-muted); }
+.ds-field__row { display: flex; justify-content: space-between; gap: 12px; }
+.ds-menu__empty { display: grid; gap: 6px; justify-items: start; padding: 12px; font-size: 14px; color: var(--ink-soft); }
+.ds-check input:indeterminate { background: var(--brand); border-color: var(--brand); }
+.ds-check input:indeterminate::after { content: ""; width: 10px; height: 2px; border: 0; border-radius: 1px; background: var(--on-brand); transform: none; }
+.ds-alert__act { margin-top: 10px; }
+.ds-progress__head b { display: inline-flex; align-items: center; gap: 4px; }
+.ds-progress__head b svg { width: 14px; height: 14px; }
+.ds-progress--done .ds-progress__head b { color: var(--success); }
+.ds-progress--done .ds-progress__fill { background: var(--success); }
+.ds-inline-load { display: inline-flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--ink-soft); }
+.ds-btn--solid { background: var(--brand); color: var(--on-brand); border-color: transparent; }
+.ds-btn--solid:hover { background: var(--brand-deep); }
+.ds-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.ds-toolbar .ds-search { flex: 1 1 220px; }
+.ds-bulk { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 8px 16px; border-radius: var(--radius-md); background: var(--ink); color: var(--paper); font-size: 14px; font-weight: 500; }
+.ds-bulk .ds-btn--ghost, .ds-bulk .ds-btn--ghost:hover { color: var(--paper); }
+.ds-bulk .ds-btn--ghost:hover { text-decoration: underline; }
+.ds-sort { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; gap: 4px; cursor: pointer; font: inherit; color: inherit; border-radius: 4px; }
+.ds-sort svg { width: 12px; height: 12px; }
+.ds-sort:hover { color: var(--ink); }
+.ds-table th[aria-sort] { color: var(--ink); }
+.ds-table th.is-num .ds-sort { justify-content: flex-end; }
+.ds-table .is-chk { width: 48px; padding-right: 0; }
+.ds-tfoot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 13.5px; color: var(--ink-soft); }
+.ds-chat { display: grid; gap: 8px; max-width: 440px; }
+.ds-msg { position: relative; display: grid; gap: 4px; max-width: 82%; padding: 10px 14px; border-radius: 18px; font-size: 14.5px; line-height: 1.45; }
+.ds-msg small { font-size: 11.5px; color: var(--ink-soft); }
+.ds-msg--in { justify-self: start; background: var(--sand); color: var(--ink); border-bottom-left-radius: 6px; }
+.ds-msg--out { justify-self: end; background: var(--brand); color: var(--on-brand); border-bottom-right-radius: 6px; }
+.ds-msg--out small { color: var(--on-brand); }
+.ds-msg--failed { background: var(--danger-tint); color: var(--ink); box-shadow: inset 0 0 0 1px var(--danger); }
+.ds-msg--failed small { color: var(--danger); font-weight: 600; }
+.ds-msg--react { margin-bottom: 12px; }
+.ds-react { position: absolute; right: 10px; bottom: -12px; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; background: var(--card); box-shadow: 0 0 0 1px var(--ring), var(--shadow-xs); font-size: 12px; color: var(--ink); }
+.ds-link { all: unset; cursor: pointer; text-decoration: underline; font-weight: 600; border-radius: 3px; }
+.ds-chat__sys { justify-self: center; font-size: 12.5px; color: var(--ink-muted); }
+.ds-chat__unread { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; color: var(--brand-text); }
+.ds-chat__unread::before, .ds-chat__unread::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.ds-attach { justify-self: end; display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px; background: var(--card); box-shadow: 0 0 0 1px var(--ring); font-size: 14px; }
+.ds-attach b { display: block; font-weight: 600; }
+.ds-attach small { color: var(--ink-muted); font-size: 12px; }
+.ds-attach__icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--brand-tint); color: var(--brand-tint-text); }
+.ds-attach__icon svg { width: 18px; height: 18px; }
+.ds-typing { display: inline-flex; align-items: center; gap: 4px; padding: 14px 16px; }
+.ds-typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-muted); animation: ds-blink 1.2s infinite; }
+.ds-typing i:nth-child(2) { animation-delay: .2s; }
+.ds-typing i:nth-child(3) { animation-delay: .4s; }
+@keyframes ds-blink { 0%, 60%, 100% { opacity: .3; } 30% { opacity: 1; } }
+.ds-composer { display: flex; align-items: center; gap: 8px; max-width: 440px; margin-top: 16px; }
+.ds-composer .ds-field__input { flex: 1; min-width: 0; }
+.ds-side { display: grid; gap: 2px; width: min(100%, 260px); padding: 10px; background: var(--card); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px var(--ring); }
+.ds-side a, .ds-side summary { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 8px; font-size: 14.5px; color: var(--ink-soft); text-decoration: none; cursor: pointer; list-style: none; }
+.ds-side summary { justify-content: space-between; font-weight: 600; color: var(--ink); }
+.ds-side summary::-webkit-details-marker { display: none; }
+.ds-side summary svg { width: 16px; height: 16px; color: var(--ink-muted); transition: transform .2s var(--glide); }
+.ds-side details[open] summary svg { transform: rotate(180deg); }
+.ds-side a:hover, .ds-side summary:hover { background: var(--sand); color: var(--ink); }
+.ds-side details a { margin-left: 12px; }
+.ds-side a[aria-current] { background: var(--brand-tint); color: var(--brand-tint-text); font-weight: 600; }
+.ds-side a.ds-side__back { margin-bottom: 6px; color: var(--ink); font-weight: 500; }
+.ds-side__back svg { width: 16px; height: 16px; }
+.ds-bottomnav { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; width: min(100%, 360px); background: var(--card); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px var(--ring); }
+.ds-bottomnav a { display: grid; justify-items: center; align-content: center; gap: 2px; min-height: 56px; padding: 6px 4px; font-size: 11.5px; font-weight: 500; color: var(--ink-muted); text-decoration: none; }
+.ds-bottomnav a[aria-current] { color: var(--brand-text); }
+@media (prefers-reduced-motion: reduce) { .ds-spin, .ds-skel i { animation: none; } .ds-typing i { animation: none; opacity: .6; } .ds-card--link:hover { transform: none; } }
+/* ds:end */
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .comp-body { grid-template-columns: minmax(0, 1fr); }
+  .bgs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  :root { --bk-gut: 32px; }
+  .side { transform: translateX(-100%); transition: transform .3s ease; width: min(300px, 86vw); box-shadow: 0 24px 48px rgba(0,0,0,.2); }
+  .side.open { transform: none; }
+  .main { margin-left: 0; }
+  .topbar { display: flex; position: sticky; top: 0; z-index: 25; align-items: center; justify-content: space-between; gap: 12px; padding-block: calc(10px + env(safe-area-inset-top, 0px)) 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: var(--bk-side); border-bottom: 1px solid var(--bk-border); }
+  .topbar__brand { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; }
+  .topbar .btn { min-height: 40px; }
+  .chapter, .sec, .comp { scroll-margin-top: 72px; }
+  .grid-3, .core { grid-template-columns: minmax(0, 1fr); }
+  .core__sw { min-height: 140px; }
+}
+@media (max-width: 640px) {
+  :root { --bk-gut: 16px; }
+  .chapter { padding-block: 48px; }
+  .part .wrap { padding-block: 32px; }
+  .part h2 { font-size: 30px; }
+  .hero h1 { font-size: 32px; } .ch-head h1 { font-size: 26px; }
+  .grid-2, .never { grid-template-columns: minmax(0, 1fr); }
+  .rows li { grid-template-columns: 32px minmax(0, 1fr); }
+  .rows li p { grid-column: 2; }
+  .face { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .scale__row { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 14px 18px; }
+  .frame__body { padding: 20px; }
+  .ramp { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .ramp__steps { overflow-x: auto; grid-auto-columns: minmax(48px, 1fr); }
+  .ds-nav__links { display: none; }
+  .ds-steps li span { display: none; }
+  .space-row { grid-template-columns: 76px 48px minmax(0, 1fr); }
+  .gridviz, .gridviz__spans { gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
+</style>
+<style id="product-css"></style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar__brand" id="topBrand"></div>
+  <button class="btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="side">Menu</button>
+</div>
+
+<aside class="side" id="side" aria-label="Brand book navigation">
+  <div class="side__head" id="sideHead"></div>
+  <nav class="side__nav" id="nav"></nav>
+  <div class="side__foot">
+    <div><span class="label">Book</span>
+      <div class="seg" role="group" aria-label="Book appearance">
+        <button type="button" data-theme-set="" aria-pressed="true">Auto</button>
+        <button type="button" data-theme-set="light" aria-pressed="false">Light</button>
+        <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+    <div><span class="label">Product previews</span>
+      <div class="seg" role="group" aria-label="Product preview theme">
+        <button type="button" data-prev="light" aria-pressed="true">Light</button>
+        <button type="button" data-prev="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<main class="main" id="main"></main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- =====================================================================
+     PRODUCT DATA. The only part that changes per product.
+     Edit this block, then run: node tools/build.js
+     ===================================================================== -->
+<script id="brand-data">
+var BRAND = {
+  name: "Cura42",
+  version: "2.2",
+  updated: "23 Nov 2026",
+  owner: "Easwar R",
+  purpose: "The single source of truth for how Cura42 looks, sounds and behaves, across the website, the product and every piece of communication. If anything else disagrees, this book wins.",
+
+  logo: { src: "assets/logo/cura42-logo-horizontal.png", ratio: 4, alt: "Cura42",
+    clearSpace: "Keep clear space equal to the logo’s height (X) on every side.",
+    sizes: [[24, "minimum"], [32, "navigation"], [40, "print, slides"]],
+    backgrounds: [["Paper", "#FAF6F0"], ["White", "#FFFFFF"], ["Deep paper", "#F4EDE1"], ["Ink, 32 px or larger", "#1A1612"]],
+    never: ["Stretch, squash or change the proportions", "Rotate or tilt the logo", "Recolour it, including to the UI brand colour", "Add shadows, outlines, gradients or glows", "Place it on brand red, accents or busy images", "Separate or rearrange the mark and wordmark"],
+    files: [["cura42-logo-horizontal.png", "PNG, 500 × 125, transparent", "Web and documents", "assets/logo/cura42-logo-horizontal.png"], ["SVG master, stacked, app icon", "Not yet available", "Request from design; don’t crop the PNG", ""]],
+    note: "The logo file uses a brighter red than the UI brand colour. Keep the file exactly as supplied." },
+
+  fonts: {
+    display: { family: "Parkinsans", stack: "\"Parkinsans\", \"Instrument Sans\", system-ui, sans-serif", src: "assets/fonts/Parkinsans-Variable.woff2", weights: "500 700", role: "Headlines, numbers", source: "Self-hosted variable font" },
+    body: { family: "Instrument Sans", stack: "\"Instrument Sans\", system-ui, sans-serif", google: "Instrument+Sans:wght@400;500;600;700", weights: "400 600", role: "Text, interface", source: "Google Fonts" }
+  },
+
+  overview: {
+    about: [
+      "Cura42 builds AI agents for hospitals. The agents work alongside a hospital’s own teams and stay in touch with each patient before, during and after care, so the next appointment, procedure and referral stay with the hospital that treated them.",
+      "Hospitals meet patients later than they should and lose touch with them earlier than they want to. Cura42 closes the gaps between visits without asking more of the care team."
+    ],
+    offer: [
+      ["Digital Front Door", "Patients find a doctor, book on any channel and get reports and reminders where they already book."],
+      ["Care Coordination AI Agents", "Agents prepare patients before a visit, guide them on the day and check in once they are home."],
+      ["Patient Longitudinal Record", "Each patient’s history from the EMR, HMS and home in one record that every tool builds on."]
+    ],
+    audiences: [["Hospital leaders", "Outcomes, patient retention and proof."], ["Operations teams", "Fewer dropped hand-offs, less manual follow-up."], ["Clinicians", "Tools that give time back, not more screens."], ["Patients", "Clear next steps in plain language."]],
+    principles: [["Paper first", "About 90% of any screen is neutral. Brand red is about 5%; accents live only in illustrations."], ["One red thing", "Each view has one brand-red focal point: the primary action or one accent phrase."], ["Air is the luxury", "Sections breathe. When unsure, add space, not decoration."], ["Lift, don’t shout", "Surfaces are flat. Depth appears only on hover and on floating layers."], ["Say it plainly", "Short sentences, concrete outcomes, no hype."]],
+    personality: [["Calm", "Clinical or cold"], ["Warm", "Cute or playful"], ["Exact", "Technical for its own sake"], ["Confident", "Boastful"], ["Human", "Robotic, even though we build AI"]]
+  },
+
+  voice: {
+    summary: "We sound like a thoughtful colleague who understands hospitals. The voice stays the same everywhere; the tone adjusts to the moment.",
+    traits: [["Calm", "We state things simply and let the facts carry weight."], ["Warm", "We talk about patients and teams, never “users” or “leads”."], ["Exact", "Real numbers, real outcomes. Nothing rounded up, nothing invented."]],
+    situations: [
+      ["Guiding", "Calm, one step at a time", "First, confirm your phone number. Then choose a time that suits you.", "One step at a time keeps people from feeling lost."],
+      ["Informing", "Plain and factual", "Your report is ready. It was added to your record on 22 Nov.", "Facts first, with no medical jargon."],
+      ["Reminding", "Warm, never nagging", "Your follow-up with Dr. Rao is tomorrow at 10:30. Reply 1 to confirm.", "Gives the what, the when and one easy way to act."],
+      ["Responding to a problem", "Calm, accountable, helpful", "We couldn’t send your request. Check your connection and try again.", "Says what happened and how to fix it, without blame."],
+      ["Confirming", "Warm, brief", "Request sent. Someone from our team will be in touch shortly.", "Closes the loop and sets an expectation."],
+      ["Headline", "Calm, declarative", "Extending attention at the heart of care.", "States the idea in one line."]
+    ],
+    do: ["Say “we” for Cura42 and “you” for the hospital.", "Keep language simple: familiar words, short sentences.", "Use sentence case for headlines, buttons and menus.", "Use digits and sourced numbers: 12 hospitals.", "Use British/Indian spelling: organisation, colour.", "Keep headlines under 10 words."],
+    dont: ["Use exclamation marks or emoji.", "Use hype: revolutionary, cutting-edge, seamless.", "Round up or invent a statistic.", "Type labels in capitals; styles handle that.", "Write “Click here” or “Submit”."],
+    care: { title: "Writing about health", rules: ["Be supportive and respectful. Treat every patient as able to understand their own care.", "Don’t blame or judge: write “Let’s find a new time”, not “You missed your appointment”.", "Don’t exaggerate or promise outcomes: no “guaranteed recovery”, no “cure”.", "Don’t make medical claims the care team hasn’t approved; point to the hospital’s own guidance.", "Use the clinician’s name and the hospital’s own words for treatments and procedures.", "When something is urgent, say what to do and who to call first."] },
+    ui: [
+      ["Button", "Verb + object, 2–3 words", "Request a demo", "Submit", "Says what happens next."],
+      ["Field label", "A noun, sentence case, no colon", "Phone number", "Enter your phone number:", "Short labels scan faster and translate better."],
+      ["Helper text", "One short sentence that helps before the mistake", "We’ll only use this to confirm your visit.", "This field is required for processing.", "Explains why, in the person’s terms."],
+      ["Validation message", "What to do, not what failed", "Enter a 10-digit phone number", "Invalid input", "Tells people how to fix it."],
+      ["Empty state", "What will appear, plus one action", "No follow-ups yet. Discharged patients appear here.", "Nothing to show", "Explains the blank and gives a next step."],
+      ["Loading message", "Name what is loading", "Loading your records…", "Please wait", "Names the thing instead of being vague."],
+      ["Alert", "The situation, then what to do", "3 follow-ups are due today.", "Attention!", "Factual and actionable."],
+      ["Confirmation", "Name the action and its effect", "Remove patient from list? They’ll stop getting reminders.", "Are you sure?", "Names the consequence."]
+    ],
+    terms: [["patients", "users, leads, cases", "People, not records."], ["care team", "staff resources", "Respectful and human."], ["AI agent", "bot, robot", "Honest about what it is without sounding cold."], ["follow-up", "touchpoint", "A plain word people already use."], ["attention", "engagement", "Matches what care teams give."], ["book a demo", "get started now", "Specific about the action."]]
+  },
+
+  /* Primitive palette: raw values, never used directly in components. */
+  primitives: [
+    ["Neutral", [["neutral-0", "#FFFFFF"], ["neutral-50", "#FAF6F0"], ["neutral-100", "#F4EDE1"], ["neutral-150", "#F2E9E1"], ["neutral-200", "#E7DCCB"], ["neutral-300", "#B7B3AD"], ["neutral-400", "#968775"], ["neutral-450", "#958C82"], ["neutral-500", "#7D7266"], ["neutral-600", "#6B6157"], ["neutral-700", "#423A32"], ["neutral-750", "#3A322B"], ["neutral-800", "#2E2621"], ["neutral-850", "#241C18"], ["neutral-900", "#1A1612"], ["neutral-950", "#120F0C"]]],
+    ["Rose", [["rose-50", "#FCE6EC"], ["rose-300", "#EE7A97"], ["rose-500", "#C7335A"], ["rose-600", "#A32A4A"], ["rose-900", "#3A1B25"]]],
+    ["Green", [["green-50", "#E5F3EA"], ["green-300", "#7FCB9C"], ["green-700", "#276B43"], ["green-950", "#16271D"]]],
+    ["Amber", [["amber-50", "#FFF1D6"], ["amber-300", "#F2B54A"], ["amber-700", "#8A5100"], ["amber-950", "#2E2410"]]],
+    ["Red", [["red-50", "#FDE7E4"], ["red-300", "#F38A7E"], ["red-700", "#B42318"], ["red-950", "#33191A"]]],
+    ["Blue", [["blue-50", "#E3F0FA"], ["blue-300", "#86BCEB"], ["blue-700", "#2D6A9F"], ["blue-950", "#152433"]]],
+    ["Accent", [["accent-yellow", "#FFD76A"], ["accent-orange", "#FFB36A"], ["accent-lavender", "#CFA9F5"], ["accent-sky", "#BEE7FF"], ["accent-mint", "#BFECCF"], ["accent-pink", "#F7D9E5"]]]
+  ],
+
+  /* Semantic tokens: [name, light, dark, use]. Components use only these. */
+  semantic: [
+    ["Surface", [["paper", "neutral-50", "neutral-900", "Page background"], ["paper-deep", "neutral-100", "neutral-950", "App shell, alternate bands"], ["card", "neutral-0", "neutral-850", "Cards, panels, inputs"], ["sand", "neutral-150", "neutral-800", "Quiet fills, disabled"], ["scrim", "rgba(26,22,18,.45)", "rgba(0,0,0,.6)", "Behind dialogs"]]],
+    ["Text", [["ink", "neutral-900", "neutral-50", "Headlines, body"], ["ink-soft", "neutral-700", "neutral-300", "Secondary text, labels"], ["ink-muted", "neutral-600", "neutral-450", "Meta, placeholders, help"]]],
+    ["Border", [["line", "neutral-200", "neutral-750", "Dividers (decorative)"], ["line-strong", "neutral-400", "neutral-500", "Control borders"], ["ring", "rgba(26,22,18,.06)", "rgba(250,246,240,.08)", "1 px card ring"]]],
+    ["Brand", [["brand", "rose-500", "rose-500", "Primary action, progress"], ["brand-deep", "rose-600", "rose-600", "Hover, pressed"], ["brand-text", "rose-500", "rose-300", "Brand-coloured text, links"], ["brand-tint", "rose-50", "rose-900", "Selected, hover wash"], ["brand-tint-text", "rose-600", "rose-300", "Text on brand-tint"], ["on-brand", "neutral-0", "neutral-0", "Text on brand"], ["focus", "rose-500", "rose-300", "Focus ring"]]],
+    ["Status", [["success", "green-700", "green-300", "Success text, icons"], ["success-tint", "green-50", "green-950", "Success background"], ["warning", "amber-700", "amber-300", "Warning text, icons"], ["warning-tint", "amber-50", "amber-950", "Warning background"], ["danger", "red-700", "red-300", "Error, destructive"], ["danger-tint", "red-50", "red-950", "Error background"], ["on-danger", "neutral-0", "neutral-900", "Text on danger"], ["info", "blue-700", "blue-300", "Information"], ["info-tint", "blue-50", "blue-950", "Info background"]]]
+  ],
+  core: [["Brand red", "brand"], ["Paper", "paper"], ["Ink", "ink"]],
+  colourRules: { do: ["Use semantic tokens in design and code, never primitives or hex.", "Use brand for fills and brand-text for brand-coloured words.", "Use line-strong for anything people operate."], dont: ["Use accents for buttons, text or large areas.", "Put two brand-red focal points in one view.", "Communicate status with colour alone."] },
+
+  type: [
+    ["display-xl", "display", 96, 52, 0.98, 700, "-0.02em", "Extending attention"],
+    ["display-l", "display", 80, 40, 1.0, 700, "-0.02em", "At the heart of care"],
+    ["h1", "display", 64, 32, 1.05, 700, "-0.015em", "See how AI fits your patient journey."],
+    ["h2", "display", 48, 24, 1.08, 600, "-0.01em", "Service lines"],
+    ["h3", "display", 36, 18, 1.15, 600, "-0.01em", "Digital Front Door"],
+    ["h4", "display", 28, 16, 1.25, 500, "0", "Thank you."],
+    ["lead", "body", 22, 18, 1.5, 400, "0", "Hospitals meet patients later than they should."],
+    ["body", "body", 16, 16, 1.65, 400, "0", "Cura42 AI agents extend your teams’ attention across the whole patient relationship."],
+    ["caption", "body", 15, 15, 1.5, 500, "0", "12 hospitals · one digital front door"],
+    ["label", "body", 13, 13, 1.4, 600, "0.06em", "AI AGENTS FOR HOSPITALS"],
+    ["ui-button", "body", 15, 15, 1, 600, "0", "Request a demo"],
+    ["ui-meta", "body", 12, 12, 1.4, 500, "0", "Updated 2 min ago"]
+  ],
+  typeRules: { do: ["One display-xl per page.", "Lead text up to 60 characters per line, body about 65.", "Tabular figures for numbers in tables."], dont: ["Set body copy in the display face.", "Add font sizes or weights outside the scale.", "Set input text below 16 px."] },
+
+  spacing: [["space-1", 4], ["space-2", 8], ["space-3", 12], ["space-4", 16], ["space-5", 20], ["space-6", 24], ["space-8", 32], ["space-10", 40], ["space-12", 48], ["space-16", 64], ["space-24", 96], ["space-48", 192]],
+  layout: { max: "1200 px", grid: [["Mobile", "< 768 px", "4", "20 px", "64 px"], ["Tablet", "768–1023 px", "8", "40 px", "96 px"], ["Desktop", "≥ 1024 px", "12", "64 px", "192 px"]] },
+  radius: [["radius-xs", "2px", "Dark-band boxes"], ["radius-sm", "8px", "Small chips"], ["radius-md", "12px", "Inputs, alerts"], ["radius-lg", "18px", "Menus, tables"], ["radius-xl", "28px", "Cards"], ["radius-2xl", "32px", "Feature panels"], ["radius-pill", "9999px", "Buttons, tags"]],
+  shadows: [["shadow-xs", "0 1px 2px rgba(26,22,18,.04)", "0 1px 2px rgba(0,0,0,.3)", "Resting chips"], ["shadow-lift", "0 30px 60px -34px rgba(26,22,18,.4)", "0 40px 80px -40px rgba(0,0,0,.6)", "Card hover"], ["shadow-float", "0 24px 48px -24px rgba(26,22,18,.35)", "0 24px 48px -24px rgba(0,0,0,.6)", "Menus, toasts"], ["shadow-halo", "0 0 0 4px rgba(199,51,90,.14)", "0 0 0 4px rgba(238,122,151,.2)", "Focused inputs"]],
+  surfaceRule: "Cards rest with a 1 px ring and no shadow. A shadow appears only on hover for linked cards and on floating layers (menus, toasts). Never combine a border and a resting shadow.",
+  motion: { curves: [["glide", "0.16,1,0.3,1", "Default: entrances, lifts, colour changes."], ["silk", "0.65,0,0.35,1", "Between two states: fades, tabs."], ["linear", "0,0,1,1", "Only for continuous loops."]], durations: [[150, "Press feedback"], [200, "Field focus, toggles"], [300, "Button colour, menus"], [400, "Card lift"], [800, "Progress fill"]] },
+
+  /* Copy used inside component previews. */
+  examples: {
+    primary: "Request a demo", secondary: "View case study", ghost: "Learn more", danger: "Remove patient", loading: "Sending",
+    fields: [["Name", "Dr. Priya Raman"], ["Email", "priya@hospital", "Enter a full email address, like name@hospital.org"], ["Phone", "+91 98765 43210", "Number verified"]],
+    search: "Search patients", checks: ["Email updates", "SMS reminders", "WhatsApp reminders"], radios: ["Morning", "Afternoon", "Evening"], switch: "Send reminders",
+    card: ["Case study", "How Kauvery Hospital gave its 12 hospitals one digital front door", "Appointments, reports and follow-ups in one place."],
+    tags: [["Draft", ""], ["New", "brand"], ["Confirmed", "success"], ["Due today", "warning"], ["Missed", "danger"], ["Referred", "info"]],
+    alerts: [["info", "WhatsApp reminders", "Turn them on for each department in Settings."], ["warning", "3 follow-ups are due today", "Patients discharged on Friday need a call."], ["danger", "We couldn’t send your request", "Check your connection and try again."]],
+    toast: ["Request sent", "We’ll be in touch shortly."],
+    progress: [["Patient access", 72], ["Care coordination", 41], ["Follow-ups reviewed", 100]], steps: ["Details", "Department", "Schedule", "Confirm"],
+    nav: ["Service lines", "Resources", "About"], navAction: "Book a demo", tabs: ["Today", "Upcoming", "Completed"],
+    table: { cols: ["Patient", "Department", "Due", "Status"], rows: [["Anita Sharma", "Cardiology", "10:30", "warning", "Due today"], ["Ravi Kumar", "Orthopaedics", "11:00", "info", "Referred"], ["Meena Iyer", "General medicine", "12:15", "success", "Confirmed"]] },
+    empty: ["No follow-ups yet", "Discharged patients appear here.", "Add patient"], error: ["Couldn’t load follow-ups", "Check your connection and try again."],
+    chat: { messages: [["in", "Hi Anita, this is Cura42 for your hospital. How is your recovery going?"], ["out", "Better, thank you. A little stiff in the mornings."], ["system", "Nurse Rao joined the chat"], ["in", "That’s common. Try the gentle stretches from your discharge sheet."]], reaction: 1, attach: ["discharge-sheet.pdf", "240 KB"], failed: "Can I move my visit to Friday?", unread: "1 unread", composer: "Write a message" },
+    sideNav: [["Follow-ups", ["Today", "Upcoming", "Completed"]], ["Records", ["Reports", "Prescriptions"]]], back: "Patients", mobileNav: ["Today", "Visits", "Messages", "Profile"],
+    noResults: ["No patients match", "Try a different search, or clear your filters.", "Clear filters"], done: ["All follow-ups done", "Every follow-up for today is done."], inlineLoad: "Loading your records…",
+    select: ["Department", ["Cardiology", "Orthopaedics", "General medicine", "Nephrology", "Paediatrics"], 0], menu: ["View record", "Reschedule", "Send reminder", "Remove patient"],
+    textarea: ["Notes", "Patient prefers calls in the morning."], chips: ["All", "Due today", "Referred", "Missed"],
+    avatars: ["Anita Sharma", "Ravi Kumar", "Meena Iyer", "Joseph Thomas", "Priya Raman"],
+    accordion: [["What does an audit include?", "A 20-minute review of where patients are most likely to fall through the cracks, with five proven AI workflows."], ["Which systems does Cura42 connect to?", "Your EMR, HMS and messaging channels, connected once in a common structure."], ["Who can see patient data?", "Only the teams and agents you give access to. Permissions are built in."]],
+    dialog: ["Remove patient from list?", "Anita Sharma will stop getting follow-up reminders. You can add them again later.", "Remove patient", "Cancel"], tooltip: ["Reschedule", "Last contacted 2 days ago"],
+    crumbs: ["Home", "Patients", "Anita Sharma"], pages: [12, 3], badge: ["Follow-ups", 3]
+  },
+
+  changes: [
+    ["2.2", "23 Nov 2026", "Whole book", "Voice & writing guide expanded (tone by situation, health wording, UI patterns, length guide); chat component; responsive and accessibility notes for every component; richer table, select, selection, navigation, loading and feedback states; web and mobile guidance; token naming; visual do and don’t examples", "Design library improvement recommendations", "Easwar R", "Published"],
+    ["2.1", "23 Nov 2026", "Components", "Full component library: 18 components with versions, status and change logs; open items removed", "Team feedback", "Easwar R", "Published"],
+    ["2.0", "23 Nov 2026", "Whole book", "Merged brand book and design system: primitive and semantic tokens, full component states, patterns, usage guidelines, change history", "Consolidate design library audit", "Easwar R", "Published"],
+    ["1.2", "23 Nov 2026", "Overview", "Product explained in text; single scroll", "Team feedback", "Easwar R", "Published"],
+    ["1.1", "23 Nov 2026", "Whole book", "Neutral book theme; logo kept at true proportions", "Reuse across products", "Easwar R", "Published"],
+    ["1.0", "23 Nov 2026", "Whole book", "First edition from the cura42_proto codebase", "New brand book", "Easwar R", "Published"]
+  ],
+  /* Component library: version, status (Stable, Beta, New, Deprecated, Draft), last update and change log per component. */
+  library: { version: "2.2.0", updated: "23 Nov 2026" },
+  components: {
+    button: { version: "2.0.0", status: "Stable", log: [["2.0.0", "23 Nov 2026", "Added destructive, icon-only, small and loading; one 44 px default height; ink variant retired"], ["1.0.0", "23 Nov 2026", "Primary, ink, secondary and ghost taken from the website"]] },
+    field: { version: "2.1.0", status: "Stable", log: [["2.1.0", "23 Nov 2026", "Added character limit counter"], ["2.0.0", "23 Nov 2026", "Boxed input replaces the underline; added textarea, search, success, disabled and read-only"], ["1.0.0", "23 Nov 2026", "Underlined field from the website contact form"]] },
+    select: { version: "1.1.0", status: "New", log: [["1.1.0", "23 Nov 2026", "Added invalid and no-results states"], ["1.0.0", "23 Nov 2026", "Added select and action menu"]] },
+    selection: { version: "1.1.0", status: "New", log: [["1.1.0", "23 Nov 2026", "Added indeterminate checkbox"], ["1.0.0", "23 Nov 2026", "Added checkbox, radio and switch"]] },
+    chips: { version: "1.0.0", status: "New", log: [["1.0.0", "23 Nov 2026", "Added filter and choice chips"]] },
+    datepicker: { version: "1.0.0", status: "Beta", log: [["1.0.0", "23 Nov 2026", "Added single-date picker; keyboard support to be confirmed in code"]] },
+    card: { version: "1.1.0", status: "Stable", log: [["1.1.0", "23 Nov 2026", "Surface rule: ring at rest, shadow only on hover"], ["1.0.0", "23 Nov 2026", "28 px card with ring from the website"]] },
+    tag: { version: "1.1.0", status: "Stable", log: [["1.1.0", "23 Nov 2026", "Added status variants and count badge"], ["1.0.0", "23 Nov 2026", "Neutral and brand tags"]] },
+    avatar: { version: "1.0.0", status: "New", log: [["1.0.0", "23 Nov 2026", "Added avatar sizes, status dot and group"]] },
+    table: { version: "1.1.0", status: "New", log: [["1.1.0", "23 Nov 2026", "Added toolbar with search and filters, sortable headers, bulk action bar, pagination and a no-results state"], ["1.0.0", "23 Nov 2026", "Added table with status tags, selection and row actions"]] },
+    accordion: { version: "1.0.0", status: "New", log: [["1.0.0", "23 Nov 2026", "Added accordion"]] },
+    chat: { version: "1.0.0", status: "New", log: [["1.0.0", "23 Nov 2026", "Added chat: messages, receipts, attachments, reactions, system messages, failed state with retry, typing indicator and composer"]] },
+    feedback: { version: "2.1.0", status: "Stable", log: [["2.1.0", "23 Nov 2026", "Added error recovery action"], ["2.0.0", "23 Nov 2026", "Notice renamed Alert; added toast; success always uses success tokens"], ["1.0.0", "23 Nov 2026", "Success notice from the contact form"]] },
+    dialog: { version: "1.0.0", status: "Beta", log: [["1.0.0", "23 Nov 2026", "Added confirmation and destructive dialog"]] },
+    tooltip: { version: "1.0.0", status: "New", log: [["1.0.0", "23 Nov 2026", "Added tooltip"]] },
+    progress: { version: "1.2.0", status: "Stable", log: [["1.2.0", "23 Nov 2026", "Added complete state"], ["1.1.0", "23 Nov 2026", "Added stepper"], ["1.0.0", "23 Nov 2026", "Progress bar from the assessment report"]] },
+    loader: { version: "1.1.0", status: "New", log: [["1.1.0", "23 Nov 2026", "Added inline loading"], ["1.0.0", "23 Nov 2026", "Added spinner and skeleton"]] },
+    navigation: { version: "1.2.0", status: "Stable", log: [["1.2.0", "23 Nov 2026", "Added collapsible side navigation, back link and mobile bottom bar"], ["1.1.0", "23 Nov 2026", "Added tabs"], ["1.0.0", "23 Nov 2026", "Top navigation from the website"]] },
+    breadcrumbs: { version: "1.0.0", status: "New", log: [["1.0.0", "23 Nov 2026", "Added breadcrumbs and pagination"]] }
+  }
+};
+</script>
+
+<!-- =====================================================================
+     STANDARD GUIDANCE. The same for every product (template content).
+     ===================================================================== -->
+<script id="guide-data">
+var GUIDE = {
+  components: [
+    { id: "button", cat: "Actions", name: "Button", purpose: "Starts an action. The label says exactly what happens next.",
+      anatomy: "Container · label · optional leading or trailing icon", variants: "Primary, secondary, ghost, destructive, icon-only · S 36 px, M 44 px, L 56 px",
+      states: "Default, hover, focus, pressed, disabled, loading", behaviour: "Loading keeps the width, shows a spinner and blocks repeat clicks. Icon-only buttons need an accessible name.",
+      responsive: "Full width on phones when it is the only action; height stays 44 px.", a11y: "Visible label or accessible name; 44 px target; visible focus ring.",
+      tokens: "brand, brand-deep, on-brand, line-strong, danger, on-danger, radius-pill", do: "Use one primary action per view; supporting actions are secondary or ghost.", dont: "Show several competing primary buttons in the same area." },
+    { id: "field", cat: "Inputs", name: "Text field & textarea", purpose: "Lets people enter and edit text, on one line or several.",
+      anatomy: "Label · input · helper or error text · optional icon · optional character count", variants: "Text, textarea, search (pill with leading icon)",
+      states: "Default, focused, filled, error, success, disabled, read-only, character limit", behaviour: "The label stays visible above the input. Validate on blur and show how to fix the error in the helper line. A counter shows characters used when a limit applies.",
+      responsive: "One column on phones; input text stays 16 px so mobile browsers don’t zoom.", a11y: "Persistent label tied to the input; errors written in text and linked to the field.",
+      tokens: "card, line-strong, brand, danger, success, ink-muted, radius-md", do: "Show a persistent label and an error that explains the fix.", dont: "Rely on placeholder text as the only label." },
+    { id: "select", cat: "Inputs", name: "Select & menu", purpose: "Choose one option from a list, or pick an action from a menu.",
+      anatomy: "Label · trigger with chevron · floating list · items · optional divider", variants: "Select (form value), action menu",
+      states: "Closed, open, item hover, item selected, disabled, invalid, no results", behaviour: "The list opens below the trigger and closes on selection, Escape or outside click. With no matches it says so and offers to clear the search. Destructive actions sit last, after a divider.",
+      responsive: "On phones the list opens as a bottom sheet.", a11y: "Arrow keys move through options, Enter selects, Escape closes.",
+      tokens: "card, line-strong, brand-tint, brand-tint-text, danger, shadow-float, radius-lg", do: "Use a select for 5 or more options; use radios for fewer.", dont: "Hide primary actions inside a menu." },
+    { id: "selection", cat: "Inputs", name: "Checkbox, radio & switch", purpose: "Choose options. Checkbox for many, radio for one, switch for an instant on/off.",
+      anatomy: "Control · label · optional description", variants: "Checkbox (with indeterminate), radio group, switch",
+      states: "Unselected, selected, indeterminate, focus, disabled", behaviour: "The whole label is clickable. A switch applies immediately; checkboxes and radios apply on save. Indeterminate shows when only some child options are chosen.",
+      responsive: "Targets stay 44 px tall; labels wrap instead of truncating.", a11y: "Groups have a visible heading; state is never shown by colour alone.",
+      tokens: "brand, on-brand, line-strong, sand", do: "Use a switch only for settings that take effect at once.", dont: "Use a switch inside a form that needs a Save button." },
+    { id: "chips", cat: "Inputs", name: "Chip", purpose: "Filters a list or toggles a choice in one tap.",
+      anatomy: "Pill · label · optional icon or count", variants: "Filter chip (multi), choice chip (single)",
+      states: "Default, hover, selected, focus, disabled", behaviour: "Selected chips show a check and brand tint. Filters apply immediately and can be combined.",
+      responsive: "A row of chips scrolls sideways on phones instead of wrapping into many lines.", a11y: "Selected state is announced and also shown by a check, not colour alone.",
+      tokens: "card, line-strong, brand, brand-tint, brand-tint-text, radius-pill", do: "Keep chip labels to one or two words.", dont: "Use chips as primary navigation." },
+    { id: "datepicker", cat: "Inputs", name: "Date picker", purpose: "Picks a single date from a calendar.",
+      anatomy: "Month header · previous/next · weekday row · day grid", variants: "Single date (inline or in a popover)",
+      states: "Default, hover, today, selected, outside month, disabled, invalid value", behaviour: "Arrow keys move between days; Enter selects. Past or unavailable dates are disabled, not hidden. A typed date that doesn’t exist shows an error in the field.",
+      responsive: "On phones it opens as a bottom sheet with a larger day grid.", a11y: "Today and the selected day are announced; every day is reachable by keyboard.",
+      tokens: "card, brand, on-brand, sand, ink-muted, shadow-float, radius-lg", do: "Let people type the date as well as pick it.", dont: "Make people click through months to reach a date far away." },
+    { id: "card", cat: "Content", name: "Card", purpose: "Groups related content into one scannable surface.",
+      anatomy: "Surface · eyebrow · title · text · optional action", variants: "Static, linked",
+      states: "Default, hover (linked)", behaviour: "A linked card is one link; hover lifts it 4 px with shadow-lift.",
+      responsive: "Cards stack to one column below 768 px.", a11y: "A linked card has one link with a clear name; heading order is kept.",
+      tokens: "card, ring, shadow-lift, radius-xl", do: "Follow the surface rule: a ring at rest, a shadow only on hover.", dont: "Put a card inside a card, or mix borders and shadows at random." },
+    { id: "tag", cat: "Content", name: "Tag & badge", purpose: "Tags name a category or status; badges show a count.",
+      anatomy: "Pill · optional dot · label; badge: number in a small pill", variants: "Neutral, brand, success, warning, danger, info · count badge",
+      states: "Static (never clickable)", behaviour: "The word carries the meaning; colour only supports it. Counts above 99 show 99+.",
+      responsive: "Tags wrap onto the next line; labels never truncate.", a11y: "Status is in the text, not only the colour.",
+      tokens: "sand, brand, brand-tint, *-tint, status colours, radius-pill", do: "Use the same word and colour for the same status everywhere.", dont: "Use colour alone to show status." },
+    { id: "avatar", cat: "Content", name: "Avatar", purpose: "Represents a person with a photo or their initials.",
+      anatomy: "Circle · photo or initials · optional status dot", variants: "S 28 px, M 40 px, L 56 px · single, group",
+      states: "Default, with status", behaviour: "Initials use the first letter of the first and last name. Groups overlap and show +N after four.",
+      responsive: "Same sizes on every screen; groups show +N when space is short.", a11y: "Give an accessible name unless the person’s name is shown beside it.",
+      tokens: "brand-tint, brand-tint-text, sand, success, paper", do: "Always pair an avatar with the person’s name nearby.", dont: "Use avatars as the only way to identify someone." },
+    { id: "table", cat: "Content", name: "Table & data view", purpose: "Compares records row by row, with sorting, filtering and bulk actions.",
+      anatomy: "Toolbar (search, filters) · bulk action bar · header row · body rows · status · row action · pagination", variants: "Default, selectable, with toolbar",
+      states: "Default, hover, selected, sorted, empty, no results, loading", behaviour: "Click a header to sort; filters sit above the table; selecting rows shows a bulk action bar. Pagination sits below. Text aligns left, numbers right; status is a tag; row actions sit at the end.",
+      responsive: "The table scrolls sideways inside its frame on phones; name and status columns come first.", a11y: "Real header cells; sortable headers announce direction; row actions have names.",
+      tokens: "card, line, ink-muted, brand-tint, ink, paper, radius-lg", do: "Keep headers, status and row actions in the same place on every table.", dont: "Mix column alignment or hide important status." },
+    { id: "accordion", cat: "Content", name: "Accordion", purpose: "Shows and hides sections of related content.",
+      anatomy: "Container · header with chevron · panel", variants: "Single open, multiple open",
+      states: "Collapsed, expanded, focus", behaviour: "The whole header toggles the panel. The chevron rotates when open.",
+      responsive: "Full width on every screen.", a11y: "The header is a button; the expanded state is announced.",
+      tokens: "card, ring, line, ink-soft, radius-lg", do: "Use for FAQs and secondary detail.", dont: "Hide content people need to finish a task." },
+    { id: "chat", cat: "Communication", name: "Chat", purpose: "Shows a conversation between people, or between a person and an agent.",
+      anatomy: "Message bubble · timestamp or receipt · attachment · reaction · system line · unread divider · typing indicator · composer", variants: "Incoming, outgoing, system, attachment",
+      states: "Typing, sending, sent, read, failed, unread, with attachment, with reaction", behaviour: "Outgoing messages show Sending, then Sent or Read. A failed message keeps its text and offers Retry. The typing indicator appears after 1 second of activity and clears after 5. An unread divider marks where new messages start.",
+      responsive: "Bubbles fill up to 80% of the width; the composer stays pinned to the bottom on phones.", a11y: "New messages are announced politely; failed messages say what to do; attachments name the file.",
+      tokens: "sand, brand, on-brand, danger, danger-tint, ink-muted, radius-xl", do: "Keep failed messages visible with a clear Retry.", dont: "Remove a failed message or retry silently." },
+    { id: "feedback", cat: "Feedback", name: "Alert & toast", purpose: "Tells people what happened and what to do next.",
+      anatomy: "Icon · title · message · optional action", variants: "Inline alert (info, success, warning, danger), toast, error recovery (alert with an action)",
+      states: "Visible, dismissed", behaviour: "Inline alerts stay until resolved. Toasts confirm a completed action and close after 5 seconds. Errors offer a way to recover, such as Try again.",
+      responsive: "Toasts sit at the bottom on phones and at the top right on desktop.", a11y: "Errors use role alert; toasts use role status and stay long enough to read.",
+      tokens: "*-tint, status colours, card, shadow-float, radius-md", do: "Use success tokens for success, every time.", dont: "Style a success message with the brand colour." },
+    { id: "dialog", cat: "Feedback", name: "Dialog", purpose: "Asks for a decision before the person continues.",
+      anatomy: "Scrim · panel · title · message · actions", variants: "Confirmation, destructive confirmation",
+      states: "Open, closing", behaviour: "Focus moves into the dialog and returns to the trigger on close. Escape and Cancel close it; the main action sits on the right.",
+      responsive: "Becomes a bottom sheet on phones.", a11y: "Focus is trapped inside; the page behind is inert while it is open.",
+      tokens: "scrim, card, ink-soft, danger, shadow-float, radius-xl", do: "Name the action on the button, for example “Delete item”, not “OK”.", dont: "Use a dialog for information that could be inline." },
+    { id: "tooltip", cat: "Feedback", name: "Tooltip", purpose: "Gives a short label or hint on hover or focus.",
+      anatomy: "Trigger · bubble · arrow", variants: "Label (for icon buttons), hint",
+      states: "Hidden, visible", behaviour: "Appears after 300 ms on hover or immediately on keyboard focus. Never holds links or actions.",
+      responsive: "Touch screens have no hover; put the hint in visible text there.", a11y: "Shown on keyboard focus as well as hover.",
+      tokens: "ink, paper, radius-sm", do: "Use to name icon-only buttons.", dont: "Put essential information only in a tooltip." },
+    { id: "progress", cat: "Feedback", name: "Progress & stepper", purpose: "Shows how far along a task or score is.",
+      anatomy: "Label · value · track · fill; or numbered steps with connectors", variants: "Progress bar, stepper",
+      states: "Upcoming, current, complete", behaviour: "Always show the number with the bar. Steppers mark completed steps with a check. A complete bar turns green and says Complete.",
+      responsive: "Steppers collapse to “Step 2 of 4” on narrow screens.", a11y: "Bars expose their value and range; the current step is announced.",
+      tokens: "brand, brand-text, success, sand, line-strong", do: "Use a stepper for tasks with 3 to 6 steps.", dont: "Show progress without a label or value." },
+    { id: "loader", cat: "Feedback", name: "Spinner & skeleton", purpose: "Shows that something is loading.",
+      anatomy: "Spinner ring; inline loading text; skeleton blocks in the shape of the content", variants: "Spinner S/M/L, inline loading, skeleton lines and cards",
+      states: "Initial loading, inline loading", behaviour: "Use a skeleton for page and section loads; a spinner only inside buttons or small areas. Both stop under reduced motion.",
+      responsive: "Skeletons match the layout at each breakpoint.", a11y: "Loading regions are marked busy; spinners stop under reduced motion.",
+      tokens: "brand, sand, paper-deep", do: "Match the skeleton to the real layout.", dont: "Show a full-page spinner for content that loads in parts." },
+    { id: "navigation", cat: "Navigation", name: "Navigation & tabs", purpose: "Moves between pages, or between views of the same page.",
+      anatomy: "Logo · links · action; side groups; tab list with active indicator; back link; bottom bar", variants: "Top navigation, side navigation (collapsible), tabs, back link, mobile bottom bar",
+      states: "Default, hover, active, collapsed, expanded, focus", behaviour: "The active item has a 2 px brand underline or tint. Groups in side navigation collapse and expand. Back goes to the previous list, not the previous page.",
+      responsive: "Below 768 px the top links move into a menu, or into a bottom bar of four items.", a11y: "The current page is announced; the menu button names its state.",
+      tokens: "ink, ink-soft, brand, brand-tint, line", do: "Keep one clear active state.", dont: "Use tabs to move to a different page." },
+    { id: "breadcrumbs", cat: "Navigation", name: "Breadcrumbs & pagination", purpose: "Shows where a page sits, and moves through long lists.",
+      anatomy: "Crumb links with separators · current page; previous, pages, next", variants: "Breadcrumbs, pagination",
+      states: "Default, hover, current, disabled", behaviour: "The last crumb is the current page and is not a link. Pagination shows the first, last and nearby pages.",
+      responsive: "Long trails collapse the middle to “…” on phones.", a11y: "Each is wrapped in a labelled navigation region.",
+      tokens: "ink, ink-soft, ink-muted, brand, on-brand, sand", do: "Use breadcrumbs from the third level down.", dont: "Use pagination for fewer than 20 items." }
+  ],
+  exampleDefaults: {
+    select: ["Team", ["Design", "Engineering", "Product", "Support", "Sales"], 1], menu: ["View details", "Edit", "Duplicate", "Delete"],
+    textarea: ["Notes", "Add any details the team should know."], chips: ["All", "Active", "Pending", "Archived"],
+    date: { year: 2026, month: 11, selected: 14, today: 9 }, avatars: ["Alex Morgan", "Sam Lee", "Riya Shah", "Jo Park", "Kim Ito"],
+    accordion: [["What is included?", "Everything listed in your plan, with no hidden extras."], ["Can I change it later?", "Yes. Changes apply from the next cycle."], ["Who can see my data?", "Only people you invite."]],
+    dialog: ["Delete this item?", "It will be removed for everyone. You can’t undo this.", "Delete", "Cancel"], tooltip: ["Edit", "Last updated 2 days ago"],
+    crumbs: ["Home", "Projects", "Project name"], pages: [12, 3], badge: ["Inbox", 4],
+    chat: { messages: [["in", "Hi Alex, thanks for getting in touch. How can we help today?"], ["out", "I’d like to change my appointment."], ["system", "Sam from Support joined the chat"], ["in", "Of course. Which day works better for you?"]], reaction: 1, attach: ["schedule.pdf", "240 KB"], failed: "Friday morning, please.", unread: "1 unread", composer: "Write a message" },
+    sideNav: [["Work", ["Today", "Upcoming", "Completed"]], ["Reports", ["Weekly", "Monthly"]]], back: "Back to list", mobileNav: ["Home", "Items", "Messages", "Profile"],
+    noResults: ["No results", "Try a different search, or clear your filters.", "Clear filters"], done: ["All caught up", "Everything for today is done."], inlineLoad: "Loading…"
+  },
+  patterns: [
+    { id: "forms", name: "Forms", preview: "forms", rules: ["One column for most forms; two columns only for short, related fields.", "Labels above fields, always visible.", "Mark optional fields, not required ones.", "Validate on blur; keep the person’s input when there is an error.", "Primary action last, aligned to the start of the form."] },
+    { id: "steps", name: "Multi-step flows", preview: "steps", rules: ["Use a stepper for 3 to 6 steps; show where the person is and what is done.", "Save progress as people move forward, and let them go back without losing input.", "Keep Back on the left as a ghost button and Next or Finish as the one primary action.", "End with a clear completion state that says what happens next."] },
+    { id: "states", name: "Empty, loading & error", preview: "states", wide: true, rules: ["Loading: show a skeleton in the shape of the content for the first load; use an inline spinner with a short message for updates.", "Empty: say what will appear and give one action to start.", "No results: say what was searched and offer to clear filters.", "Error: say what went wrong in plain words and offer Retry.", "Complete: confirm the result and say what happens next.", "Never leave a blank area without explanation."] },
+    { id: "feedback", name: "Feedback", rules: ["Toast: confirm an action that just finished. It closes by itself.", "Inline alert: keep a message next to the thing it is about until it is resolved.", "Dialog: ask for a decision before something hard to undo.", "Show one message at a time; never stack more than two.", "Use success tokens for success and danger tokens for errors. Always say what to do next."] },
+    { id: "data", name: "Tables & data views", rules: ["Put search and filters above the table, and keep the filters visible once applied.", "Sort by clicking a header; show which column is sorted and in which direction.", "Show bulk actions only when rows are selected.", "Paginate beyond 20 rows and say how many rows exist.", "On phones, keep name and status visible and let the rest scroll sideways."] },
+    { id: "nav", name: "Navigation & chat", rules: ["Keep the same labels and order across web and mobile.", "Show one active state; collapse secondary groups by default.", "Back returns to the list the person came from.", "In chat, keep failed messages visible with Retry, mark unread messages, and show who is typing."] }
+  ],
+  usage: [
+    ["Buttons", "Use one clear primary action and secondary styles for the rest.", "Show several competing primary actions in one area."],
+    ["Colour", "Use semantic tokens for meaning and states.", "Use raw hex values, or colour alone to show status."],
+    ["Typography", "Use approved text styles and hierarchy.", "Add one-off font sizes or weights without review."],
+    ["Forms", "Show labels, validation and helpful error messages.", "Rely on placeholder text, or show errors without a fix."],
+    ["Cards & surfaces", "Follow the surface rule consistently.", "Combine borders and shadows at random."],
+    ["Spacing & layout", "Use the spacing scale, align to the grid and keep one focal point per view.", "Add one-off gaps, or crowd a view with competing focal points."],
+    ["Icons", "Use the icon set at 16, 20 or 24 px.", "Mix icon styles or use icons without clear meaning."],
+    ["Tables & data", "Keep headers, sorting, status and row actions consistent.", "Use inconsistent alignment or hide status."],
+    ["Feedback", "Confirm results and say how to recover from errors.", "Show success in the brand colour, or an error with no fix."],
+    ["Content", "Use plain words from the word list and the writing patterns.", "Use jargon, blame, exaggerated promises or unclear claims."]
+  ],
+  keepInMind: ["Text stays readable on its background in both themes (aim for 4.5:1); use the approved pairs in the colour chapter.", "Every interactive element shows a visible focus ring.", "Touch targets are at least 44 × 44 px.", "Fields keep a visible label; errors are written in words next to the field.", "Status, selection and validation never rely on colour alone.", "Icon-only controls have an accessible name, and reading order follows the visual order.", "Check each component at 200% text size and at phone width before it ships."],
+  platforms: [
+    ["Foundations", "Tokens, type scale, icons, voice", "—", "—"],
+    ["Navigation", "Labels and their order", "Top and side navigation", "Bottom bar and back link"],
+    ["Interaction", "States, feedback wording", "Hover and keyboard shortcuts", "Touch, 44 px targets, bottom sheets"],
+    ["Layout", "Spacing scale, card and surface rule", "12-column grid, up to 1200 px", "One column, 16–20 px gutters"],
+    ["Pickers & menus", "Options and labels", "Popover below the trigger", "Bottom sheet"]
+  ],
+  tokenNaming: [
+    ["Primitive", "<scale>-<step>", "rose-500", "Use primitives directly in components"],
+    ["Surface", "<role>", "card", "Hard-code white or black"],
+    ["Text", "ink, ink-<level>", "ink-muted", "Use text tokens as backgrounds"],
+    ["Brand", "brand, brand-<variant>", "brand-deep", "Name a token after its colour"],
+    ["Status", "<status>, <status>-tint", "danger-tint", "Use status colours for decoration"],
+    ["Spacing", "space-<step>", "space-4", "Use one-off pixel values"],
+    ["Radius", "radius-<size>", "radius-xl", "Mix radius sizes inside one component"],
+    ["Shadow", "shadow-<purpose>", "shadow-lift", "Rest a card on a shadow"]
+  ],
+  lengthGuide: [
+    ["Button", "2–3 words", "25 characters"],
+    ["Field label", "1–3 words", "30 characters"],
+    ["Helper text", "One sentence", "90 characters"],
+    ["Validation message", "One sentence", "110 characters"],
+    ["Toast", "Title and one line", "40 and 80 characters"],
+    ["Dialog title", "A question or an action", "8 words"],
+    ["Empty state", "Title and one line", "40 and 100 characters"]
+  ],
+  contentChecks: ["Accessibility: write link and button text that makes sense on its own; don’t refer to colour or position (“the red button”); give meaningful images alt text.", "Readability: use familiar words and sentences under 20 words. Read it aloud once.", "Length: stay within the length guide. Text can grow by up to 40% when translated.", "Localisation: write whole sentences instead of joining fragments; avoid idioms and puns; keep text out of images; format dates, times and numbers by locale."],
+  icons: {
+    "arrow-right": '<path d="M5 12h14M13 6l6 6-6 6"/>', "arrow-left": '<path d="M19 12H5M11 6l-6 6 6 6"/>', "chevron-right": '<path d="m9 6 6 6-6 6"/>', "chevron-down": '<path d="m6 9 6 6 6-6"/>',
+    "check": '<path d="m5 12.5 4.5 4.5L19 7.5"/>', "x": '<path d="M18 6 6 18M6 6l12 12"/>', "plus": '<path d="M12 5v14M5 12h14"/>', "minus": '<path d="M5 12h14"/>',
+    "search": '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/>', "menu": '<path d="M4 7h16M4 12h16M4 17h16"/>', "more": '<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>', "filter": '<path d="M4 5h16l-6 8v6l-4-2v-4z"/>',
+    "home": '<path d="M3 11 12 4l9 7M5 10v10h14V10M10 20v-6h4v6"/>', "user": '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>', "users": '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.3A6.5 6.5 0 0 1 21.5 20"/>', "calendar": '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>', "bell": '<path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 8 2.5 8h-17S6 15 6 9z"/><path d="M10.3 20.5a1.9 1.9 0 0 0 3.4 0"/>', "message": '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"/>', "mail": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>',
+    "file": '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>', "download": '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>', "upload": '<path d="M12 15V4M7 9l5-5 5 5M5 20h14"/>', "edit": '<path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17v3zM14 7l3 3"/>',
+    "trash": '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/>', "link": '<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1-1"/>', "external": '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>', "eye": '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    "lock": '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>', "settings": '<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>', "shield": '<path d="M12 3 4.5 6v6c0 4.6 3.2 7.8 7.5 9 4.3-1.2 7.5-4.4 7.5-9V6z"/><path d="m9 12 2 2 4-4"/>', "heart-pulse": '<path d="M19.5 13 12 20.5 4.5 13A5 5 0 1 1 12 6.4 5 5 0 1 1 19.5 13z"/><path d="M4 12h4l1.5-2.5 3 5 1.5-2.5h6"/>',
+    "activity": '<path d="M3 12h4l3-8 4 16 3-8h4"/>', "building": '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 7v6M9 10h6M10 21v-4h4v4"/>', "info": '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>', "alert": '<path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4M12 17h.01"/>',
+    "check-circle": '<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>', "x-circle": '<circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/>', "help": '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5V14M12 17h.01"/>', "doc": '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>',
+    "paperclip": '<path d="m21 11-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/>', "send": '<path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/>', "refresh": '<path d="M20 11a8 8 0 0 0-14.5-4M4 5v4h4M4 13a8 8 0 0 0 14.5 4M20 19v-4h-4"/>', "sort": '<path d="M8 4v16M4 8l4-4 4 4M16 20V4M12 16l4 4 4-4"/>', "chevron-up": '<path d="m6 15 6-6 6 6"/>', "smile": '<circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9.5h.01M15 9.5h.01"/>'
+  }
+};
+</script>
+
+<!-- =====================================================================
+     BOOK ENGINE. Renders the book from BRAND and GUIDE. Same for every product.
+     ===================================================================== -->
+<script>
+(function () {
+  var B = BRAND, G = GUIDE, E = Object.assign({}, G.exampleDefaults, B.examples), root = document.documentElement;
+  var META = function (id) { return (B.components && B.components[id]) || { version: "0.1.0", status: "Draft", log: [["0.1.0", B.updated, "Added from the template"]] }; };
+  var STATUS = function (s) { var m = { Stable: "ok", Published: "ok", Approved: "ok", Beta: "info", "In review": "info", New: "warn", Proposed: "warn", Deprecated: "no", Draft: "muted" }; return '<span class="badge badge--' + (m[s] || "muted") + '">' + String(s).replace(/</g, "&lt;") + '</span>'; };
+  var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
+  var svgOf = function (name, size) { return '<svg xmlns="http://www.w3.org/2000/svg" width="' + (size || 24) + '" height="' + (size || 24) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + G.icons[name] + '</svg>'; };
+  var ic = function (name) { return svgOf(name, 16).replace("<svg ", '<svg class="ico" aria-hidden="true" '); };
+  var logo = function (w, alt) { return '<img class="logo" style="--lw:' + w + ';aspect-ratio:' + B.logo.ratio + ' / 1" src="' + B.logo.src + '" alt="' + esc(alt === undefined ? B.logo.alt : alt) + '">'; };
+  var list = function (items) { return '<ul class="list">' + items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>'; };
+  var table = function (heads, rows, cls) { return '<div class="tbl-wrap"><table class="tbl ' + (cls || "") + '">' + (heads ? '<thead><tr>' + heads.map(function (h) { return '<th>' + h + '</th>'; }).join("") + '</tr></thead>' : '') + '<tbody>' + rows.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join("") + '</tr>'; }).join("") + '</tbody></table></div>'; };
+  var dodont = function (d, n) { return '<div class="grid-2"><div class="card rule rule--do"><span class="rule__tag">' + ic("check-circle") + 'Do</span>' + list(d) + '</div><div class="card rule rule--dont"><span class="rule__tag">' + ic("x-circle") + 'Don’t</span>' + list(n) + '</div></div>'; };
+  var sec = function (title, desc, body, id) { return '<section class="sec"' + (id ? ' id="' + id + '"' : '') + '><div class="sec-head"><h2>' + title + '</h2>' + (desc ? '<p>' + desc + '</p>' : '') + '</div>' + body + '</section>'; };
+  var frame = function (body, bar, cls) { return '<div class="frame p pv">' + (bar ? '<div class="frame__bar">' + bar + '</div>' : '') + '<div class="frame__body ' + (cls || "") + '">' + body + '</div></div>'; };
+  function lum(h) { h = String(h).replace("#", ""); if (h.length !== 6) return 1; return [0, 2, 4].map(function (i) { var v = parseInt(h.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }).reduce(function (a, v, i) { return a + v * [.2126, .7152, .0722][i]; }, 0); }
+
+  /* ---------- Resolve tokens and inject product CSS ---------- */
+  var prim = {}; B.primitives.forEach(function (g) { g[1].forEach(function (p) { prim[p[0]] = p[1]; }); });
+  var hexOf = function (v) { return prim[v] || v; };
+  var semVal = function (v) { return prim[v] ? "var(--" + v + ")" : v; };
+  var light = "", dark = "";
+  B.primitives.forEach(function (g) { g[1].forEach(function (p) { light += "--" + p[0] + ":" + p[1] + ";"; }); });
+  B.semantic.forEach(function (g) { g[1].forEach(function (t) { light += "--" + t[0] + ":" + semVal(t[1]) + ";"; dark += "--" + t[0] + ":" + semVal(t[2]) + ";"; }); });
+  B.spacing.forEach(function (s) { light += "--" + s[0] + ":" + s[1] + "px;"; });
+  B.radius.forEach(function (r) { light += "--" + r[0] + ":" + r[1] + ";"; });
+  B.shadows.forEach(function (s) { light += "--" + s[0] + ":" + s[1] + ";"; dark += "--" + s[0] + ":" + s[2] + ";"; });
+  light += "--font-display:" + B.fonts.display.stack + ";--font-body:" + B.fonts.body.stack + ";";
+  B.motion.curves.forEach(function (c) { light += "--" + c[0] + ":" + (c[0] === "linear" ? "linear" : "cubic-bezier(" + c[1] + ")") + ";"; });
+  var faces = ""; ["display", "body"].forEach(function (k) {
+    var f = B.fonts[k];
+    if (f.src) faces += '@font-face{font-family:"' + f.family + '";src:url("' + f.src + '") format("woff2");font-weight:' + f.weights + ';font-display:swap}';
+    if (f.google) { var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=" + f.google + "&display=swap"; document.head.appendChild(l); }
+  });
+  document.getElementById("product-css").textContent = faces + ".p{" + light + "}.p.p--dark{" + dark + "}";
+  document.title = B.name + " Brand Book";
+
+  /* ---------- Structure ---------- */
+  var PARTS = [
+    { n: "1", id: "part-brand", title: "Brand", desc: "Who we are, how we sound and how the logo is used. For everyone.", chapters: ["overview", "voice", "logo"] },
+    { n: "2", id: "part-foundations", title: "Foundations", desc: "Colour, type, space, shape, icons and motion. The values everything is built from.", chapters: ["colour", "typography", "spacing", "elevation", "icons", "motion"] },
+    { n: "3", id: "part-components", title: "Components", desc: "Every component with its purpose, anatomy, variants, states, behaviour and usage.", chapters: ["components"] },
+    { n: "4", id: "part-patterns", title: "Patterns & usage", desc: "How components combine, and the do’s and don’ts that keep screens consistent.", chapters: ["patterns", "usage"] },
+    { n: "5", id: "part-developers", title: "Developers & governance", desc: "How to build with the system and how changes are recorded.", chapters: ["tokens", "history"] }
+  ];
+  var TITLES = { overview: "Overview", voice: "Voice & writing", logo: "Logo", colour: "Colour", typography: "Typography", spacing: "Spacing & layout", elevation: "Radius & elevation", icons: "Iconography", motion: "Motion", components: "Components", patterns: "Patterns", usage: "Do’s & don’ts", tokens: "Tokens & setup", history: "Change history" };
+  var DOCS = { overview: "docs/brand/01-overview.md", voice: "docs/brand/02-voice-and-writing.md", logo: "docs/brand/03-logo.md", colour: "docs/foundations/04-colour.md", typography: "docs/foundations/05-typography.md", spacing: "docs/foundations/06-spacing-and-layout.md", elevation: "docs/foundations/07-radius-and-elevation.md", icons: "docs/foundations/08-iconography.md", motion: "docs/foundations/09-motion.md", components: "docs/components/10-components.md", patterns: "docs/patterns/11-patterns.md", usage: "docs/patterns/12-dos-and-donts.md", tokens: "docs/developers/13-tokens-and-setup.md", history: "CHANGE-HISTORY.md" };
+  var LEADS = {
+    overview: "What " + esc(B.name) + " is about, who we speak to, and the principles and personality behind every decision.",
+    voice: esc(B.voice.summary),
+    logo: "Use the supplied file at its original proportions, every time.",
+    colour: "Primitives are the raw palette. Semantic tokens give each colour a job; designs and code use semantic tokens only. Click any value to copy it.",
+    typography: "Two typefaces and one scale for web and product.",
+    spacing: "A 4 px spacing scale and a 12-column grid capped at " + esc(B.layout.max) + ".",
+    elevation: "Corner radius, borders and shadows, and the rule for when to use each.",
+    icons: "One line-icon set on a 24 px grid. Click an icon to copy its SVG.",
+    motion: "Smooth and unhurried. Motion guides the eye and never performs.",
+    components: "The full component library. Each component shows its version, status and change log, then its purpose, live preview, anatomy, variants, states, behaviour and usage.",
+    patterns: "Recurring combinations of components and the rules behind them.",
+    usage: "Quick rules that keep every screen consistent.",
+    tokens: "Every value in this book is a token. Code uses token names, never raw values.",
+    history: "What changed in the book and in each component, why, and who changed it."
+  };
+  var CH = {};
+
+  CH.overview = function () {
+    var o = B.overview;
+    return sec("What " + esc(B.name) + " is about", "", '<div class="prose">' + o.about.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join("") + '</div>' + table(["Product", "What it does"], o.offer.map(function (r) { return [esc(r[0]), esc(r[1])]; }), "tbl--fixed")) +
+      sec("Who we speak to", "", table(["Audience", "What they want from us"], o.audiences.map(function (r) { return [esc(r[0]), esc(r[1])]; }), "tbl--fixed")) +
+      sec("Principles", "Every design and writing decision should pass all of them.", '<ol class="rows">' + o.principles.map(function (p, i) { return '<li><span class="num">0' + (i + 1) + '</span><b>' + esc(p[0]) + '</b><p>' + esc(p[1]) + '</p></li>'; }).join("") + '</ol>') +
+      sec("Personality", "", table(["We are", "We are not"], o.personality.map(function (r) { return [esc(r[0]), esc(r[1])]; }), "tbl--fixed"));
+  };
+
+  CH.voice = function () {
+    var v = B.voice;
+    return sec("Our voice", "", '<div class="grid-3">' + v.traits.map(function (t) { return '<div class="card stack"><h3>' + esc(t[0]) + '</h3><p>' + esc(t[1]) + '</p></div>'; }).join("") + '</div>') +
+      sec("Tone by situation", "The voice stays the same. The tone changes with what the reader is doing.", table(["Situation", "How it sounds", "Example", "Why it works"], v.situations.map(function (r) { return r.map(esc); }))) +
+      sec("Writing principles", "", dodont(v.do, v.dont)) +
+      sec(esc(v.care.title), "", '<div class="card">' + list(v.care.rules) + '</div>') +
+      sec("UI writing patterns", "A pattern for each piece of interface text, with preferred and poor wording and why the preferred one works.", table(["Element", "Pattern", "Write", "Not", "Why it works"], v.ui.map(function (r) { return r.map(esc); }), "tbl--voice")) +
+      sec("Word list", "Preferred terms and what to avoid. Keep these aligned with the product’s content terminology.", table(["Use", "Avoid", "Why"], v.terms.map(function (r) { return r.map(esc); }), "tbl--fixed")) +
+      sec("Length guide", "Shorter text reads faster and survives translation.", table(["Element", "Aim for", "Limit"], G.lengthGuide.map(function (r) { return r.map(esc); }), "tbl--fixed")) +
+      sec("Before you publish", "Check every piece of content for these before it ships.", '<div class="card">' + list(G.contentChecks) + '</div>');
+  };
+
+  CH.logo = function () {
+    var L = B.logo, r = L.ratio;
+    var sizes = L.sizes.map(function (s) { return '<figure>' + logo((s[0] * r) + "px", "") + '<figcaption>' + s[0] + ' px · ' + esc(s[1]) + '</figcaption></figure>'; }).join("");
+    return sec("Primary logo", "", frame(logo("360px"), "", "frame__body--center")) +
+      sec("Clear space and minimum size", esc(L.clearSpace), '<div class="grid-2">' +
+        frame('<div class="clear"><div class="clear__box">' + logo("100%", "") + '<span class="clear__x" style="left:50%;top:' + (100 / 6).toFixed(1) + '%">X</span><span class="clear__x" style="left:50%;top:' + (500 / 6).toFixed(1) + '%">X</span><span class="clear__x" style="left:8.3%;top:50%">X</span><span class="clear__x" style="left:91.7%;top:50%">X</span></div></div>', "<span>Clear space</span>", "frame__body--center") +
+        frame('<div class="sizes">' + sizes + '</div>', "<span>Minimum sizes (height)</span>", "frame__body--center") + '</div>') +
+      sec("Approved backgrounds", "", '<div class="bgs">' + L.backgrounds.map(function (b) { return '<figure><div class="bgs__face" style="background:' + b[1] + '">' + logo("68%", "") + '</div><figcaption>' + ic("check") + esc(b[0]) + ' <span class="num">' + b[1] + '</span></figcaption></figure>'; }).join("") + '</div>') +
+      sec("Never", "", '<ul class="never">' + L.never.map(function (t) { return '<li>' + ic("x") + '<span>' + esc(t) + '</span></li>'; }).join("") + '</ul>') +
+      sec("Files", L.note ? esc(L.note) : "", table(["File", "Format", "Use"], L.files.map(function (f) { return [f[3] ? '<a href="' + f[3] + '">' + esc(f[0]) + '</a>' : esc(f[0]), esc(f[1]), esc(f[2])]; })));
+  };
+
+  CH.colour = function () {
+    var semMap = {}; B.semantic.forEach(function (g) { g[1].forEach(function (t) { semMap[t[0]] = t; }); });
+    var core = '<div class="core">' + B.core.map(function (c) {
+      var t = semMap[c[1]], hx = hexOf(t[1]), fg = lum(hx) > 0.4 ? "#18181b" : "#ffffff";
+      return '<div class="core__sw" style="background:' + hx + ';color:' + fg + '"><b>' + esc(c[0]) + '</b><dl><dt>Token</dt><dd>' + c[1] + '</dd><dt>HEX</dt><dd><button class="copy" data-copy="' + hx + '">' + hx + '</button></dd><dt>Primitive</dt><dd>' + t[1] + '</dd><dt>Use</dt><dd style="font-family:var(--bk-font)">' + esc(t[3]) + '</dd></dl></div>';
+    }).join("") + '</div>';
+    var sem = B.semantic.map(function (g) {
+      return '<div class="tok-group"><span class="label">' + g[0] + '</span><div class="tok-grid">' + g[1].map(function (t) {
+        return '<div class="tok"><span class="tok__chip"><i style="background:' + hexOf(t[1]) + '"></i><i style="background:' + hexOf(t[2]) + '"></i></span><span class="tok__body"><button class="copy tok__name" data-copy="' + t[0] + '">' + t[0] + '</button><span class="tok__ref">' + (prim[t[1]] ? t[1] : "custom") + ' · ' + (prim[t[2]] ? t[2] : "custom") + '</span><span class="tok__use">' + esc(t[3]) + '</span></span></div>';
+      }).join("") + '</div></div>';
+    }).join("");
+    var ramps = B.primitives.map(function (g) {
+      return '<div class="ramp"><span class="ramp__name">' + g[0] + '</span><div class="ramp__steps">' + g[1].map(function (p) {
+        var fg = lum(p[1]) > 0.4 ? "#18181b" : "#ffffff";
+        return '<button class="step" style="background:' + p[1] + ';color:' + fg + '" data-copy="' + p[1] + '" title="' + p[0] + ' ' + p[1] + '"><span>' + p[0].replace(/^[a-z]+-/, "") + '</span><span>' + p[1].slice(1) + '</span></button>';
+      }).join("") + '</div></div>';
+    }).join("");
+    return sec("Core colours", "", core) +
+      sec("Semantic tokens", "Each chip shows the light value (top) and dark value (bottom), with the primitive it points to.", sem) +
+      sec("Primitive palette", "The raw values behind the semantic tokens. One neutral scale; never use primitives directly.", '<div class="card" style="padding:20px">' + ramps + '</div>') +
+      sec("Rules", "", dodont(B.colourRules.do, B.colourRules.dont));
+  };
+
+  CH.typography = function () {
+    var fam = function (k) { var f = B.fonts[k]; return frame('<div class="face"><div class="face__aa" style="font-family:var(--font-' + k + ');font-weight:' + (k === "display" ? 700 : 500) + '">Aa</div><div class="stack" style="gap:6px"><b style="font-family:var(--font-' + k + ');font-size:22px;font-weight:600">' + esc(f.family) + '</b><p class="face__glyphs" style="font-family:var(--font-' + k + ')">ABCDEFGHIJKLM abcdefghijklm 0123456789</p></div></div>', '<span>' + esc(f.role) + '</span><span>' + esc(f.source) + ' · ' + f.weights.replace(" ", "–") + '</span>'); };
+    var rows = B.type.map(function (t) {
+      var cap = Math.min(t[2], 56), size = "clamp(" + Math.max(12, Math.round(cap * .55)) + "px," + (cap / 11).toFixed(2) + "vw," + cap + "px)", dims = t[2] === t[3] ? t[2] : t[2] + " / " + t[3];
+      return '<div class="scale__row"><div class="scale__meta"><b>' + t[0] + '</b><span>' + dims + ' · ' + t[4] + ' · ' + t[5] + '</span></div><div class="scale__sample" style="font-family:var(--font-' + t[1] + ');font-size:' + size + ';line-height:' + t[4] + ';font-weight:' + t[5] + ';letter-spacing:' + t[6] + '">' + esc(t[7]) + '</div></div>';
+    }).join("");
+    return sec("Typefaces", "", '<div class="grid-2">' + fam("display") + fam("body") + '</div>') +
+      sec("Type scale", "Size desktop / mobile · line height · weight. Samples preview at up to 56 px.", '<div class="frame p pv">' + rows + '</div>') +
+      sec("Rules", "", dodont(B.typeRules.do, B.typeRules.dont));
+  };
+
+  CH.spacing = function () {
+    return sec("Spacing scale", "Use only these steps, with gap on flex and grid layouts.", '<div class="card" style="padding:8px 24px">' + B.spacing.map(function (s) { return '<div class="space-row"><code style="border:0;background:none;padding:0">' + s[0] + '</code><span class="num">' + s[1] + ' px</span><i style="width:' + s[1] + 'px"></i></div>'; }).join("") + '</div>') +
+      sec("Grid", "The standard desktop split is text 6 columns, media 6 columns.", frame('<div class="gridviz">' + new Array(13).join("<i></i>") + '<div class="gridviz__spans"><div style="grid-column:1/7;background:var(--ink);color:var(--paper)">Text · 6</div><div style="grid-column:7/13;background:var(--sand);color:var(--ink-soft)">Media · 6</div></div></div>', "<span>Desktop · 12 columns</span><span>Max width " + esc(B.layout.max) + "</span>") +
+        table(["Breakpoint", "Width", "Columns", "Side gutter", "Section padding"], B.layout.grid.map(function (r) { return r.map(esc); }))) +
+      sec("Web and mobile", "What is shared across platforms, and what is intentionally different.", table(["Area", "Shared", "Web", "Mobile"], G.platforms.map(function (r) { return r.map(esc); })));
+  };
+
+  CH.elevation = function () {
+    return sec("Corner radius", "", frame('<div class="radii">' + B.radius.map(function (r) { return '<div class="rad"><div class="rad__shape" style="border-radius:' + r[1] + ' 0 0 0"></div><b>' + r[0] + '</b><span>' + (r[1] === "9999px" ? "full" : r[1]) + ' · ' + esc(r[2]) + '</span></div>'; }).join("") + '</div>')) +
+      sec("Surface rule", "", '<div class="callout">' + ic("info") + '<p>' + esc(B.surfaceRule) + '</p></div>') +
+      sec("Shadows", "", frame('<div class="shadows">' + B.shadows.map(function (s) { return '<div class="shd"><div class="shd__box" style="box-shadow:0 0 0 1px var(--ring),var(--' + s[0] + ')"></div><b>' + s[0] + '</b><span>' + esc(s[3]) + '</span></div>'; }).join("") + '</div>')) +
+      sec("Borders", "", table(["Use", "Token", "Width"], [["Card edge", "<code>ring</code>", "1 px"], ["Divider", "<code>line</code>", "1 px"], ["Controls", "<code>line-strong</code>", "1 px"], ["Focus ring", "<code>focus</code>", "2 px, 2–3 px offset"]], "tbl--fixed"));
+  };
+
+  CH.icons = function () {
+    var names = Object.keys(G.icons);
+    return '<section class="sec"><div class="frame p pv"><div class="frame__bar"><span>' + names.length + ' icons · 24 px grid · 2 px stroke · round caps · currentColor</span><button class="btn" type="button" id="copyAllIcons">Copy all as SVG sprite</button></div><div class="icons">' +
+      names.map(function (n) { return '<button class="icon" type="button" data-icon="' + n + '" title="Copy ' + n + ' SVG">' + svgOf(n) + '<span>' + n + '</span></button>'; }).join("") +
+      '</div></div><p class="small">Use at 16 px in buttons, 20 px in lists and alerts, 24 px on its own. Every icon is also a file in <code>assets/icons/</code>.</p></section>';
+  };
+
+  CH.motion = function () {
+    var curves = B.motion.curves.map(function (c) {
+      var p = c[1].split(",").map(Number), s = 200, x1 = p[0] * s, y1 = s - p[1] * s, x2 = p[2] * s, y2 = s - p[3] * s, css = c[0] === "linear" ? "linear" : "cubic-bezier(" + p.join(", ") + ")";
+      return '<div class="card curve"><h3>' + c[0] + '</h3><svg viewBox="-8 -8 216 216" aria-hidden="true"><rect class="plot-grid" width="200" height="200" rx="6"/><path class="plot-handle" d="M0 200L' + x1 + ' ' + y1 + 'M200 0L' + x2 + ' ' + y2 + '"/><path class="plot-line" d="M0 200C' + x1 + ' ' + y1 + ' ' + x2 + ' ' + y2 + ' 200 0"/><circle class="plot-pt" cx="' + x1 + '" cy="' + y1 + '" r="4"/><circle class="plot-pt" cx="' + x2 + '" cy="' + y2 + '" r="4"/></svg><code style="justify-self:start;white-space:normal">' + css + '</code><p>' + esc(c[2]) + '</p><div class="track" style="--e:' + css + '"><i></i></div></div>';
+    }).join("");
+    return '<section class="sec"><div class="sec-head sec-head--row"><div class="stack" style="gap:6px"><h2>Easing</h2><p class="muted">Press play to compare.</p></div><button class="btn" id="play" type="button">Play</button></div><div class="grid-3">' + curves + '</div></section>' +
+      sec("Durations", "Everything renders in its final state when reduced motion is on.", '<div class="card" style="padding:14px 24px">' + B.motion.durations.map(function (d) { return '<div class="dur"><b>' + d[0] + ' ms</b><div class="dur__bar" style="width:' + Math.max(32, d[0] / 8) + '%">' + esc(d[1]) + '</div></div>'; }).join("") + '</div>');
+  };
+
+  /* Component previews: generic markup, product copy from BRAND.examples */
+  var arrow = svgOf("arrow-right", 16);
+  var pagesHtml = function (total, cur) {
+    var items = [1, cur - 1, cur, cur + 1, total].filter(function (v, i, a) { return v >= 1 && v <= total && a.indexOf(v) === i; }), pg = "", last = 0;
+    items.forEach(function (p) { if (p - last > 1) pg += '<li><span>…</span></li>'; pg += '<li><button type="button"' + (p === cur ? ' aria-current="page"' : '') + '>' + p + '</button></li>'; last = p; });
+    return '<nav aria-label="Pagination"><ul class="ds-pages"><li><button type="button" aria-label="Previous page">' + svgOf("arrow-left", 16) + '</button></li>' + pg + '<li><button type="button" aria-label="Next page">' + svgOf("arrow-right", 16) + '</button></li></ul></nav>';
+  };
+  var stepsHtml = function (cur) {
+    return '<ol class="ds-steps" aria-label="Example stepper">' + E.steps.map(function (s, i) { var st = cur >= E.steps.length || i < cur ? "is-done" : i === cur ? "is-current" : ""; return '<li class="' + st + '"' + (i === cur ? ' aria-current="step"' : '') + '><i>' + (st === "is-done" ? svgOf("check", 14) : i + 1) + '</i><span>' + esc(s) + '</span></li>'; }).join("") + '</ol>';
+  };
+  var emptyCard = function (label, icon, title, text, action, tone) {
+    return '<div class="ds-card"><span class="demo__label">' + label + '</span><div class="ds-empty"><span class="ds-empty__icon"' + (tone ? ' style="background:var(--' + tone + '-tint);color:var(--' + tone + ')"' : '') + '>' + svgOf(icon, 22) + '</span><b>' + esc(title) + '</b><span>' + esc(text) + '</span>' + (action ? '<button class="ds-btn ds-btn--secondary ds-btn--sm" type="button">' + esc(action) + '</button>' : '') + '</div></div>';
+  };
+  var PREV = {
+    button: function () {
+      return '<div class="demo"><div class="demo__row"><button class="ds-btn ds-btn--primary">' + esc(E.primary) + arrow + '</button><button class="ds-btn ds-btn--secondary">' + esc(E.secondary) + '</button><button class="ds-btn ds-btn--ghost">' + esc(E.ghost) + arrow + '</button><button class="ds-btn ds-btn--danger">' + esc(E.danger) + '</button><button class="ds-btn ds-btn--icon" aria-label="More options">' + svgOf("more", 18) + '</button></div>' +
+        '<div class="states">' + [["", "Default"], ["is-hover", "Hover"], ["is-focus", "Focus"], ["is-press", "Pressed"], ["is-disabled", "Disabled"]].map(function (s) { return '<figure><span class="ds-btn ds-btn--primary ' + s[0] + '">Button</span><figcaption>' + s[1] + '</figcaption></figure>'; }).join("") +
+        '<figure><span class="ds-btn ds-btn--primary is-loading"><i class="ds-spin"></i>' + esc(E.loading) + '</span><figcaption>Loading</figcaption></figure></div></div>';
+    },
+    field: function () {
+      var f = E.fields, ta = E.textarea;
+      var fld = function (id, label, input, help, cls) { return '<label class="ds-field ' + (cls || "") + '"><span class="ds-field__label">' + esc(label) + '</span>' + input.replace("<input ", '<input id="' + id + '" ') + '<span class="ds-field__help">' + esc(help) + '</span></label>'; };
+      return '<form class="demo" onsubmit="event.preventDefault()"><div class="grid-2" style="gap:24px">' +
+        fld("ex-f1", f[0][0], '<input class="ds-field__input" placeholder="' + esc(f[0][1]) + '">', "Default") +
+        fld("ex-f2", f[0][0], '<input class="ds-field__input is-focus" value="' + esc(f[0][1]) + '">', "Focused") +
+        fld("ex-f3", f[1][0], '<input class="ds-field__input" value="' + esc(f[1][1]) + '" aria-invalid="true">', f[1][2], "ds-field--error") +
+        fld("ex-f4", f[2][0], '<input class="ds-field__input" value="' + esc(f[2][1]) + '">', f[2][2], "ds-field--success") +
+        fld("ex-f5", f[0][0], '<input class="ds-field__input" value="' + esc(f[0][1]) + '" disabled>', "Disabled") +
+        fld("ex-f6", f[0][0], '<input class="ds-field__input" value="' + esc(f[0][1]) + '" readonly>', "Read-only") +
+        '</div><label class="ds-field"><span class="ds-field__label">' + esc(ta[0]) + '</span><textarea class="ds-field__input" id="ex-ta" rows="3" maxlength="200">' + esc(ta[1]) + '</textarea><span class="ds-field__help ds-field__row"><span>Textarea with character limit</span><span>' + ta[1].length + ' / 200</span></span></label>' +
+        '<label class="ds-search"><span class="vh">' + esc(E.search) + '</span>' + svgOf("search", 18) + '<input class="ds-field__input" id="ex-search" placeholder="' + esc(E.search) + '"></label></form>';
+    },
+    select: function () {
+      var s = E.select, caret = svgOf("chevron-down", 18);
+      return '<div class="demo"><div class="grid-2" style="gap:24px;align-items:start"><div class="stack" style="gap:12px"><span class="demo__label">Select · open</span><label class="ds-field"><span class="ds-field__label">' + esc(s[0]) + '</span><span class="ds-select"><button type="button" class="ds-field__input is-focus" aria-haspopup="listbox" aria-expanded="true">' + esc(s[1][s[2]]) + '</button>' + caret + '</span></label><div class="ds-menu" role="listbox" aria-label="' + esc(s[0]) + '">' + s[1].map(function (o, i) { return '<button type="button" role="option" aria-selected="' + (i === s[2]) + '"' + (i === s[2] ? ' class="is-active"' : '') + '>' + esc(o) + (i === s[2] ? svgOf("check", 16) : '') + '</button>'; }).join("") + '</div></div>' +
+        '<div class="stack" style="gap:12px"><span class="demo__label">Action menu</span><button class="ds-btn ds-btn--icon" type="button" aria-label="More actions" aria-expanded="true">' + svgOf("more", 18) + '</button><div class="ds-menu" role="menu">' + E.menu.map(function (m, i, a) { return (i === a.length - 1 ? '<hr>' : '') + '<button type="button" role="menuitem"' + (i === a.length - 1 ? ' class="is-danger"' : '') + '>' + esc(m) + '</button>'; }).join("") + '</div></div></div>' +
+        '<div class="grid-2" style="gap:24px;align-items:start"><div class="stack" style="gap:12px"><span class="demo__label">Invalid value</span><label class="ds-field ds-field--error"><span class="ds-field__label">' + esc(s[0]) + '</span><span class="ds-select"><button type="button" class="ds-field__input">Choose an option</button>' + caret + '</span><span class="ds-field__help">Choose ' + esc(s[0].toLowerCase()) + ' to continue</span></label></div>' +
+        '<div class="stack" style="gap:12px"><span class="demo__label">No results</span><div class="ds-menu"><div class="ds-menu__empty"><span>No matches for “' + esc(s[1][0].slice(0, 4)) + 'x”</span><button class="ds-btn ds-btn--ghost ds-btn--sm" type="button" style="padding:0">Clear search</button></div></div></div></div></div>';
+    },
+    selection: function () {
+      return '<div class="grid-3" style="gap:24px"><div class="stack" style="gap:12px"><span class="demo__label">Checkbox</span><label class="ds-check"><input type="checkbox" id="ex-call" data-indeterminate>All channels</label>' + E.checks.map(function (c, i) { return '<label class="ds-check" style="margin-left:30px"><input type="checkbox" id="ex-c' + i + '"' + (i === 0 ? " checked" : "") + (i === 2 ? " disabled" : "") + '>' + esc(c) + '</label>'; }).join("") + '</div>' +
+        '<div class="stack" style="gap:12px" role="radiogroup" aria-label="Example radio group"><span class="demo__label">Radio</span>' + E.radios.map(function (c, i) { return '<label class="ds-check"><input type="radio" name="ex-r" id="ex-r' + i + '"' + (i === 1 ? " checked" : "") + '>' + esc(c) + '</label>'; }).join("") + '</div>' +
+        '<div class="stack" style="gap:12px"><span class="demo__label">Switch</span><label class="ds-check ds-switch"><input type="checkbox" role="switch" id="ex-s1" checked>' + esc(E.switch) + '</label><label class="ds-check ds-switch"><input type="checkbox" role="switch" id="ex-s2">' + esc(E.switch) + '</label><label class="ds-check ds-switch"><input type="checkbox" role="switch" id="ex-s3" disabled>Disabled</label></div></div>';
+    },
+    chips: function () { return '<div class="demo"><div class="stack" style="gap:10px"><span class="demo__label">Filter chips</span><div class="demo__row" style="gap:8px">' + E.chips.map(function (c, i) { return '<button type="button" class="ds-chip" aria-pressed="' + (i === 1) + '">' + (i === 1 ? svgOf("check", 14) : '') + esc(c) + '</button>'; }).join("") + '<button type="button" class="ds-chip" disabled>Disabled</button></div></div></div>'; },
+    datepicker: function () {
+      var d = E.date, first = new Date(d.year, d.month, 1), days = new Date(d.year, d.month + 1, 0).getDate(), prevDays = new Date(d.year, d.month, 0).getDate(), off = (first.getDay() + 6) % 7, cells = "";
+      for (var i = off; i > 0; i--) cells += '<button type="button" disabled>' + (prevDays - i + 1) + '</button>';
+      for (var n = 1; n <= days; n++) cells += '<button type="button"' + (n < d.today ? ' disabled' : '') + (n === d.selected ? ' class="is-sel" aria-pressed="true"' : n === d.today ? ' class="is-today" aria-current="date"' : '') + '>' + n + '</button>';
+      var month = first.toLocaleString("en-GB", { month: "long", year: "numeric" });
+      return '<div class="demo__row" style="align-items:flex-start;gap:32px"><div class="ds-cal" role="group" aria-label="Date picker"><div class="ds-cal__head"><button type="button" aria-label="Previous month">' + svgOf("arrow-left", 16) + '</button><span>' + month + '</span><button type="button" aria-label="Next month">' + svgOf("arrow-right", 16) + '</button></div><div class="ds-cal__grid">' + ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"].map(function (w) { return '<span>' + w + '</span>'; }).join("") + cells + '</div></div>' +
+        '<div class="stack" style="gap:10px;font-size:13px;color:var(--ink-soft)"><span class="demo__label">Key</span><span><b style="color:var(--ink)">' + d.today + '</b> · today (ring)</span><span><b style="color:var(--ink)">' + d.selected + '</b> · selected (brand fill)</span><span>Earlier days · disabled</span></div></div>';
+    },
+    card: function () {
+      var c = E.card;
+      return '<div class="grid-2"><div class="ds-card"><span class="ds-card__eyebrow">' + esc(c[0]) + '</span><span class="ds-card__title">' + esc(c[1]) + '</span><span class="ds-card__text">' + esc(c[2]) + '</span><span class="demo__label" style="margin-top:6px">Static · ring, no shadow</span></div>' +
+        '<a class="ds-card ds-card--link is-hover" href="#c-card"><span class="ds-card__eyebrow">' + esc(c[0]) + '</span><span class="ds-card__title">' + esc(c[1]) + '</span><span class="ds-card__text">' + esc(c[2]) + '</span><span class="demo__label" style="margin-top:6px">Linked · hover state</span></a></div>';
+    },
+    tag: function () { return '<div class="demo"><div class="stack" style="gap:10px"><span class="demo__label">Tags</span><div class="demo__row" style="gap:8px">' + E.tags.map(function (t) { return '<span class="ds-tag' + (t[1] ? " ds-tag--" + t[1] : "") + '">' + (t[1] && t[1] !== "brand" ? "<i></i>" : "") + esc(t[0]) + '</span>'; }).join("") + '</div></div><div class="stack" style="gap:10px"><span class="demo__label">Badges</span><div class="demo__row"><span class="ds-badge-wrap">' + esc(E.badge[0]) + '<span class="ds-badge">' + E.badge[1] + '</span></span><span class="ds-badge-wrap">Archived<span class="ds-badge ds-badge--neutral">12</span></span><span class="ds-badge-wrap">Overflow<span class="ds-badge">99+</span></span></div></div></div>'; },
+    avatar: function () {
+      var ini = function (n) { var p = n.split(" "); return (p[0][0] + (p.length > 1 ? p[p.length - 1][0] : "")).toUpperCase(); }, a = E.avatars;
+      return '<div class="demo"><div class="demo__row" style="gap:20px"><span class="ds-avatar ds-avatar--sm">' + ini(a[0]) + '</span><span class="ds-avatar">' + ini(a[0]) + '</span><span class="ds-avatar ds-avatar--lg">' + ini(a[0]) + '<i class="ds-avatar__status"></i></span><span class="ds-avatar ds-avatar--neutral">' + ini(a[1]) + '</span>' +
+        '<span class="ds-avatars" aria-label="' + a.length + ' people">' + a.slice(0, 4).map(function (n, i) { return '<span class="ds-avatar' + (i % 2 ? ' ds-avatar--neutral' : '') + '">' + ini(n) + '</span>'; }).join("") + (a.length > 4 ? '<span class="ds-avatar ds-avatar--neutral">+' + (a.length - 4) + '</span>' : '') + '</span></div>' +
+        '<span class="ds-person"><span class="ds-avatar">' + ini(a[1]) + '<i class="ds-avatar__status"></i></span><span><b>' + esc(a[1]) + '</b><small>Online</small></span></span></div>';
+    },
+    table: function () {
+      var T = E.table, nr = T.rows.length, bulk = E.menu.slice(-2);
+      var chk = function (id, label, extra) { return '<label class="ds-check"><input type="checkbox" id="' + id + '" aria-label="' + esc(label) + '"' + (extra || '') + '></label>'; };
+      var th = function (label, sort, num) { return '<th' + (sort ? ' aria-sort="' + sort + '"' : '') + (num ? ' class="is-num"' : '') + '><button class="ds-sort" type="button">' + esc(label) + svgOf(sort === 'ascending' ? 'chevron-up' : 'sort', 12) + '</button></th>'; };
+      var rows = T.rows.map(function (r, i) { return '<tr' + (i === 1 ? ' class="is-sel"' : '') + '><td class="is-chk">' + chk('ex-t' + i, 'Select ' + r[0], i === 1 ? ' checked' : '') + '</td><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td><td class="is-num">' + esc(r[2]) + '</td><td><span class="ds-tag ds-tag--' + r[3] + '"><i></i>' + esc(r[4]) + '</span></td><td class="is-act"><button class="ds-btn ds-btn--ghost" aria-label="Row actions for ' + esc(r[0]) + '" style="min-height:32px;padding:0 6px">' + svgOf("more", 18) + '</button></td></tr>'; }).join("");
+      return '<div class="demo"><div class="ds-toolbar"><label class="ds-search"><span class="vh">' + esc(E.search) + '</span>' + svgOf("search", 18) + '<input class="ds-field__input" id="ex-tsearch" placeholder="' + esc(E.search) + '"></label>' + E.chips.slice(0, 3).map(function (c, i) { return '<button type="button" class="ds-chip" aria-pressed="' + (i === 1) + '">' + (i === 1 ? svgOf("check", 14) : '') + esc(c) + '</button>'; }).join("") + '</div>' +
+        '<div class="ds-bulk" role="status"><span>1 selected</span><button class="ds-btn ds-btn--ghost ds-btn--sm" type="button">' + esc(bulk[0]) + '</button><button class="ds-btn ds-btn--ghost ds-btn--sm" type="button">' + esc(bulk[1]) + '</button></div>' +
+        '<div class="ds-table-wrap"><table class="ds-table"><thead><tr><th class="is-chk">' + chk('ex-tall', 'Select all rows', ' data-indeterminate') + '</th>' + th(T.cols[0]) + '<th>' + esc(T.cols[1]) + '</th>' + th(T.cols[2], 'ascending', true) + '<th>' + esc(T.cols[3]) + '</th><th class="is-act"><span class="vh">Actions</span></th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+        '<div class="ds-tfoot"><span>Showing 1–' + nr + ' of 36</span>' + pagesHtml(12, 1) + '</div>' +
+        '<div class="stack" style="gap:10px"><span class="demo__label">No results</span>' + emptyCard('Filtered view', 'search', E.noResults[0], E.noResults[1], E.noResults[2]) + '</div></div>';
+    },
+    accordion: function () { return '<div class="ds-accordion">' + E.accordion.map(function (q, i) { return '<details' + (i === 0 ? ' open' : '') + '><summary>' + esc(q[0]) + svgOf("chevron-down", 18) + '</summary><p>' + esc(q[1]) + '</p></details>'; }).join("") + '</div>'; },
+    chat: function () {
+      var C = E.chat, m = C.messages;
+      var msg = function (dir, text, cls, meta) { return '<div class="ds-msg ds-msg--' + dir + (cls ? ' ' + cls : '') + '"><span>' + esc(text) + '</span>' + (meta || '') + '</div>'; };
+      var convo = msg('in', m[0][1]) + msg('out', m[1][1], '', '<small>Read 10:32</small>') + '<div class="ds-chat__sys">' + esc(m[2][1]) + '</div><div class="ds-chat__unread"><span>' + esc(C.unread) + '</span></div>' +
+        msg('in', m[3][1], 'ds-msg--react', '<span class="ds-react">' + svgOf('smile', 12) + C.reaction + '</span>') +
+        '<div class="ds-attach"><span class="ds-attach__icon">' + svgOf('file', 18) + '</span><span><b>' + esc(C.attach[0]) + '</b><small>' + esc(C.attach[1]) + '</small></span></div>' +
+        msg('out', C.failed, 'ds-msg--failed', '<small>Not sent · <button class="ds-link" type="button">Retry</button></small>') + '<div class="ds-msg ds-msg--in ds-typing" role="status" aria-label="Typing"><i></i><i></i><i></i></div>';
+      return '<div class="grid-2" style="gap:32px;align-items:start"><div><div class="ds-chat" role="log" aria-label="Example conversation">' + convo + '</div><div class="ds-composer"><label class="vh" for="ex-composer">' + esc(C.composer) + '</label><input class="ds-field__input" id="ex-composer" placeholder="' + esc(C.composer) + '" style="border-radius:999px"><button class="ds-btn ds-btn--icon" type="button" aria-label="Attach file">' + svgOf('paperclip', 18) + '</button><button class="ds-btn ds-btn--icon ds-btn--solid" type="button" aria-label="Send">' + svgOf('send', 18) + '</button></div></div>' +
+        '<div class="stack" style="gap:10px;font-size:13.5px;color:var(--ink-soft)"><span class="demo__label">Shown here</span><span>Incoming and outgoing messages</span><span>Read receipt</span><span>System message</span><span>Unread divider</span><span>Reaction</span><span>Attachment</span><span>Failed message with Retry</span><span>Typing indicator</span><span>Composer with attach and send</span></div></div>';
+    },
+    feedback: function () {
+      var icon = { info: "info", warning: "alert", danger: "x-circle", success: "check-circle" };
+      return '<div class="demo"><div class="stack" style="gap:10px">' + E.alerts.map(function (a) { return '<div class="ds-alert ds-alert--' + a[0] + '" role="' + (a[0] === "danger" ? "alert" : "status") + '">' + svgOf(icon[a[0]], 20) + '<div><b>' + esc(a[1]) + '</b><span>' + esc(a[2]) + '</span>' + (a[0] === "danger" ? '<div class="ds-alert__act"><button class="ds-btn ds-btn--secondary ds-btn--sm" type="button">Try again</button></div>' : '') + '</div></div>'; }).join("") + '</div>' +
+        '<div class="stack" style="gap:10px"><span class="demo__label">Toast · success</span><div><div class="ds-toast" role="status"><span class="ds-toast__icon">' + svgOf("check", 16) + '</span><div><b>' + esc(E.toast[0]) + '</b><span>' + esc(E.toast[1]) + '</span></div><button class="ds-btn ds-btn--ghost" aria-label="Dismiss" style="min-height:32px;padding:0 6px">' + svgOf("x", 16) + '</button></div></div></div></div>';
+    },
+    dialog: function () { var g = E.dialog; return '<div class="ds-scrim"><div class="ds-dialog" role="dialog" aria-modal="false" aria-labelledby="ex-dlg-t"><span class="ds-dialog__title" id="ex-dlg-t">' + esc(g[0]) + '</span><p>' + esc(g[1]) + '</p><div class="ds-dialog__actions"><button class="ds-btn ds-btn--secondary ds-btn--sm" type="button">' + esc(g[3]) + '</button><button class="ds-btn ds-btn--danger ds-btn--sm" type="button">' + esc(g[2]) + '</button></div></div></div>'; },
+    tooltip: function () { var t = E.tooltip; return '<div class="demo__row" style="flex-direction:column;align-items:flex-start;gap:56px;padding:44px 0 0 8px"><span class="ds-tip"><button class="ds-btn ds-btn--icon" type="button" aria-label="' + esc(t[0]) + '">' + svgOf("calendar", 18) + '</button><span class="ds-tip__bubble" role="tooltip">' + esc(t[0]) + '</span></span><span class="ds-tip"><span class="ds-tag">' + svgOf("info", 14) + 'Hint</span><span class="ds-tip__bubble" role="tooltip">' + esc(t[1]) + '</span></span></div>'; },
+    progress: function () {
+      return '<div class="demo"><div class="grid-3" style="gap:24px">' + E.progress.map(function (p) { var done = p[1] >= 100; return '<div class="ds-progress' + (done ? ' ds-progress--done' : '') + '"><div class="ds-progress__head"><span>' + esc(p[0]) + '</span><b>' + (done ? svgOf("check", 14) + 'Complete' : p[1] + '%') + '</b></div><div class="ds-progress__track" role="progressbar" aria-valuenow="' + p[1] + '" aria-valuemin="0" aria-valuemax="100" aria-label="' + esc(p[0]) + '"><div class="ds-progress__fill" style="width:' + p[1] + '%"></div></div></div>'; }).join("") + '</div>' +
+        '<div class="stack" style="gap:10px"><span class="demo__label">Stepper · in progress</span>' + stepsHtml(1) + '</div><div class="stack" style="gap:10px"><span class="demo__label">Stepper · complete</span>' + stepsHtml(E.steps.length) + '</div></div>';
+    },
+    loader: function () { return '<div class="grid-2" style="gap:24px;align-items:start"><div class="stack" style="gap:14px"><span class="demo__label">Spinner</span><div class="demo__row" style="gap:24px;color:var(--brand)"><i class="ds-spin ds-spin--sm"></i><i class="ds-spin"></i><i class="ds-spin ds-spin--lg"></i></div><span class="demo__label">Inline loading</span><span class="ds-inline-load" role="status"><i class="ds-spin ds-spin--sm"></i>' + esc(E.inlineLoad) + '</span><span><span class="ds-btn ds-btn--primary is-loading"><i class="ds-spin"></i>' + esc(E.loading) + '</span></span></div><div class="stack" style="gap:14px"><span class="demo__label">Skeleton</span><div class="ds-card"><div class="ds-skel"><i style="width:40%;height:16px"></i><i></i><i style="width:85%"></i><i style="width:60%"></i></div></div></div></div>'; },
+    navigation: function () {
+      var S = E.sideNav, mi = ["home", "calendar", "message", "user"];
+      return '<div class="demo"><nav class="ds-nav" aria-label="Example navigation">' + logo("112px") + '<ul class="ds-nav__links">' + E.nav.map(function (n, i) { return '<li><a class="ds-nav__link" href="#c-navigation"' + (i === 0 ? ' aria-current="page"' : '') + '>' + esc(n) + '</a></li>'; }).join("") + '</ul><a class="ds-btn ds-btn--primary ds-btn--sm" href="#c-navigation">' + esc(E.navAction) + '</a></nav>' +
+        '<div class="ds-tabs" role="tablist" aria-label="Example tabs">' + E.tabs.map(function (t, i) { return '<button type="button" role="tab" aria-selected="' + (i === 0) + '">' + esc(t) + '</button>'; }).join("") + '</div>' +
+        '<div class="grid-2" style="gap:24px;align-items:start"><div class="stack" style="gap:10px"><span class="demo__label">Side navigation · back link</span><nav class="ds-side" aria-label="Example side navigation"><a class="ds-side__back" href="#c-navigation">' + svgOf("arrow-left", 16) + esc(E.back) + '</a>' + S.map(function (g, gi) { return '<details' + (gi === 0 ? ' open' : '') + '><summary>' + esc(g[0]) + svgOf("chevron-down", 16) + '</summary>' + g[1].map(function (l, li) { return '<a href="#c-navigation"' + (gi === 0 && li === 0 ? ' aria-current="page"' : '') + '>' + esc(l) + '</a>'; }).join("") + '</details>'; }).join("") + '</nav></div>' +
+        '<div class="stack" style="gap:10px"><span class="demo__label">Mobile bottom bar</span><nav class="ds-bottomnav" aria-label="Example mobile navigation">' + E.mobileNav.map(function (l, i) { return '<a href="#c-navigation"' + (i === 0 ? ' aria-current="page"' : '') + '>' + svgOf(mi[i], 22) + esc(l) + '</a>'; }).join("") + '</nav></div></div></div>';
+    },
+    breadcrumbs: function () {
+      var c = E.crumbs;
+      return '<div class="demo"><div class="stack" style="gap:10px"><span class="demo__label">Breadcrumbs</span><nav aria-label="Breadcrumb"><ol class="ds-crumbs">' + c.map(function (x, i) { return '<li>' + (i < c.length - 1 ? '<a href="#c-breadcrumbs">' + esc(x) + '</a>' + svgOf("chevron-right", 14) : '<span aria-current="page">' + esc(x) + '</span>') + '</li>'; }).join("") + '</ol></nav></div>' +
+        '<div class="stack" style="gap:10px"><span class="demo__label">Pagination</span>' + pagesHtml(E.pages[0], E.pages[1]) + '</div></div>';
+    }
+  };
+
+  /* Side-by-side do and don't examples */
+  var VIS = {
+    button: [
+      '<div class="demo__row" style="gap:8px"><button class="ds-btn ds-btn--primary ds-btn--sm" type="button">Save</button><button class="ds-btn ds-btn--secondary ds-btn--sm" type="button">Cancel</button></div>',
+      '<div class="demo__row" style="gap:8px"><button class="ds-btn ds-btn--primary ds-btn--sm" type="button">Save</button><button class="ds-btn ds-btn--primary ds-btn--sm" type="button">Save draft</button><button class="ds-btn ds-btn--primary ds-btn--sm" type="button">Share</button></div>'
+    ],
+    field: [
+      '<label class="ds-field"><span class="ds-field__label">' + esc(E.fields[1][0]) + '</span><input class="ds-field__input" id="vis-f1" placeholder="name@company.com"><span class="ds-field__help">We’ll send updates here.</span></label>',
+      '<input class="ds-field__input" id="vis-f2" placeholder="' + esc(E.fields[1][0]) + '" aria-label="' + esc(E.fields[1][0]) + '">'
+    ],
+    tag: [
+      '<span class="ds-tag ds-tag--warning"><i></i>' + esc(E.tags[3][0]) + '</span>',
+      '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--warning)" role="img" aria-label="Status colour only"></span>'
+    ],
+    card: [
+      '<div class="ds-card" style="padding:14px"><span class="ds-card__title" style="font-size:15px">Title</span><span class="ds-card__text">A ring at rest, no shadow.</span></div>',
+      '<div class="ds-card" style="padding:14px;box-shadow:0 0 0 2px var(--line-strong),0 14px 26px -8px rgba(0,0,0,.35)"><span class="ds-card__title" style="font-size:15px">Title</span><span class="ds-card__text">Border and shadow together.</span></div>'
+    ],
+    feedback: [
+      '<div class="ds-alert ds-alert--success">' + svgOf("check-circle", 20) + '<div><b>' + esc(E.toast[0]) + '</b><span>Success colours.</span></div></div>',
+      '<div class="ds-alert" style="background:var(--brand-tint)"><span style="color:var(--brand-text)">' + svgOf("check-circle", 20) + '</span><div><b>' + esc(E.toast[0]) + '</b><span>Brand colour for success.</span></div></div>'
+    ]
+  };
+
+  CH.components = function () {
+    var lib = B.library || { version: "0.1.0", updated: B.updated }, counts = {};
+    G.components.forEach(function (c) { var s = META(c.id).status; counts[s] = (counts[s] || 0) + 1; });
+    var sum = '<div class="lib-sum"><div><span class="label">Library</span><b>v' + esc(lib.version) + '</b></div><div><span class="label">Components</span><b>' + G.components.length + '</b></div>' + Object.keys(counts).map(function (k) { return '<div><span class="label">' + esc(k) + '</span><b>' + counts[k] + '</b></div>'; }).join("") + '<div><span class="label">Updated</span><b>' + esc(lib.updated) + '</b></div></div>';
+    var cat = table(["Component", "Category", "Version", "Status", "Updated"], G.components.map(function (c) { var m = META(c.id); return ['<a href="#c-' + c.id + '">' + c.name + '</a>', esc(c.cat), '<span class="num" style="color:var(--bk-text)">' + esc(m.version) + '</span>', STATUS(m.status), '<span style="white-space:nowrap">' + esc(m.log[0][1]) + '</span>']; }));
+    return sec("Library", "Versions follow major.minor.patch: major for breaking changes, minor for additions, patch for fixes. Every component is documented the same way: purpose, anatomy, variants, states, behaviour, responsive rules and accessibility.", sum + cat) + G.components.map(function (c) {
+      var m = META(c.id), v = VIS[c.id];
+      var clog = '<details class="clog"><summary>Change log · ' + m.log.length + ' version' + (m.log.length > 1 ? 's' : '') + ic("chevron-down") + '</summary><ol>' + m.log.map(function (l) { return '<li><b>v' + esc(l[0]) + '</b><span>' + esc(l[1]) + '</span><span>' + esc(l[2]) + '</span></li>'; }).join("") + '</ol></details>';
+      var vis = function (i) { return v ? '<div class="p pv vis">' + v[i] + '</div>' : ''; };
+      return '<article class="comp" id="c-' + c.id + '"><div class="comp-head"><div class="comp-title"><h2>' + c.name + '</h2><span class="comp-meta"><span class="ver">v' + esc(m.version) + '</span>' + STATUS(m.status) + '</span></div><p>' + esc(c.purpose) + '</p></div>' + frame(PREV[c.id]()) +
+        '<div class="comp-body"><dl class="card spec"><div><dt>Anatomy</dt><dd>' + esc(c.anatomy) + '</dd></div><div><dt>Variants</dt><dd>' + esc(c.variants) + '</dd></div><div><dt>States</dt><dd>' + esc(c.states) + '</dd></div><div><dt>Behaviour</dt><dd>' + esc(c.behaviour) + '</dd></div>' + (c.responsive ? '<div><dt>Responsive</dt><dd>' + esc(c.responsive) + '</dd></div>' : '') + (c.a11y ? '<div><dt>Accessibility</dt><dd>' + esc(c.a11y) + '</dd></div>' : '') + '<div><dt>Tokens</dt><dd><code style="white-space:normal">' + esc(c.tokens) + '</code></dd></div></dl>' +
+        '<div class="dd"><div class="card rule rule--do"><span class="rule__tag">' + ic("check-circle") + 'Do</span>' + vis(0) + '<p>' + esc(c.do) + '</p></div><div class="card rule rule--dont"><span class="rule__tag">' + ic("x-circle") + 'Don’t</span>' + vis(1) + '<p>' + esc(c.dont) + '</p></div></div></div>' + clog + '</article>';
+    }).join("");
+  };
+
+  var PAT = {
+    forms: function () {
+      var f = E.fields;
+      return '<form class="demo" onsubmit="event.preventDefault()"><label class="ds-field"><span class="ds-field__label">' + esc(f[0][0]) + '</span><input class="ds-field__input" id="pf-1" value="' + esc(f[0][1]) + '"></label><label class="ds-field ds-field--error"><span class="ds-field__label">' + esc(f[1][0]) + '</span><input class="ds-field__input" id="pf-2" value="' + esc(f[1][1]) + '" aria-invalid="true"><span class="ds-field__help">' + esc(f[1][2]) + '</span></label><label class="ds-field"><span class="ds-field__label">' + esc(f[2][0]) + ' <span style="font-weight:400;color:var(--ink-muted)">(optional)</span></span><input class="ds-field__input" id="pf-3" placeholder="' + esc(f[2][1]) + '"></label><label class="ds-check"><input type="checkbox" id="pf-4" checked>' + esc(E.checks[0]) + '</label><div class="demo__row"><button class="ds-btn ds-btn--primary" type="submit">' + esc(E.primary) + '</button><button class="ds-btn ds-btn--ghost" type="button">Cancel</button></div></form>';
+    },
+    steps: function () {
+      var f = E.fields;
+      return '<div class="demo">' + stepsHtml(1) + '<label class="ds-field"><span class="ds-field__label">' + esc(f[0][0]) + '</span><input class="ds-field__input" id="ps-1" value="' + esc(f[0][1]) + '"></label><div class="demo__row" style="justify-content:space-between"><button class="ds-btn ds-btn--ghost" type="button">' + svgOf("arrow-left", 16) + 'Back</button><button class="ds-btn ds-btn--primary" type="button">Next' + arrow + '</button></div></div>';
+    },
+    states: function () {
+      return '<div class="grid-3">' +
+        '<div class="ds-card"><span class="demo__label">Initial loading</span><div class="ds-skel"><i style="width:60%"></i><i></i><i style="width:80%"></i><i style="width:40%"></i></div></div>' +
+        '<div class="ds-card"><span class="demo__label">Inline loading</span><div style="padding:18px 0"><span class="ds-inline-load" role="status"><i class="ds-spin ds-spin--sm" style="color:var(--brand)"></i>' + esc(E.inlineLoad) + '</span></div></div>' +
+        emptyCard("Empty", "users", E.empty[0], E.empty[1], E.empty[2]) +
+        emptyCard("No results", "search", E.noResults[0], E.noResults[1], E.noResults[2]) +
+        emptyCard("Error", "alert", E.error[0], E.error[1], "Retry", "danger") +
+        emptyCard("Complete", "check-circle", E.done[0], E.done[1], "", "success") + '</div>';
+    }
+  };
+
+  CH.patterns = function () {
+    return G.patterns.map(function (p) {
+      var pv = PAT[p.preview], rules = '<div class="card">' + list(p.rules) + '</div>';
+      return '<section class="sec" id="p-' + p.id + '"><div class="sec-head"><h2>' + p.name + '</h2></div>' + (pv ? (p.wide ? frame(pv()) + rules : '<div class="comp-body">' + frame(pv()) + rules + '</div>') : rules) + '</section>';
+    }).join("");
+  };
+
+  CH.usage = function () { return '<section class="sec">' + table(["Topic", "Do", "Don’t"], G.usage.map(function (r) { return r.map(esc); })) + '</section>'; };
+
+  CH.tokens = function () {
+    var inst = '<link rel="stylesheet" href="tokens/tokens.css">\n<link rel="stylesheet" href="tokens/components.css">';
+    if (B.fonts.body.google) inst = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=' + B.fonts.body.google + '&display=swap">\n' + inst;
+    var brandPrim = B.semantic[3][1][0][1];
+    var use = "/* primitive */\n--" + brandPrim + ": " + hexOf(brandPrim) + ";\n\n/* semantic */\n--brand: var(--" + brandPrim + ");\n\n/* in a component */\n.panel {\n  background: var(--card);\n  color: var(--ink);\n  border-radius: var(--radius-xl);\n  padding: var(--space-6);\n  box-shadow: 0 0 0 1px var(--ring);\n}";
+    return sec("Files", "", table(["File", "What it is"], [['<a href="tokens/tokens.json"><code>tokens/tokens.json</code></a>', "Primitives, semantic tokens and scales, as data."], ['<a href="tokens/tokens.css"><code>tokens/tokens.css</code></a>', "The same values as CSS variables, light and dark."], ['<a href="tokens/components.css"><code>tokens/components.css</code></a>', "Styles for every component (<code>ds-</code> classes)."], ["<code>assets/icons/</code>", "Every icon as an SVG file."]], "tbl--fixed")) +
+      sec("Install", "Switch any section to dark with <code>data-theme=\"dark\"</code>.", '<pre class="code" id="code-install"><button class="btn" type="button" data-copy-from="code-install">Copy</button>' + esc(inst) + '</pre>') +
+      sec("Primitive and semantic tokens", "Primitives hold raw values. Semantic tokens point to primitives and describe a job. Only semantic tokens appear in components.", '<pre class="code" id="code-use"><button class="btn" type="button" data-copy-from="code-use">Copy</button>' + esc(use) + '</pre>') +
+      sec("Token naming", "Name a token by its job, not its colour. Each family has one pattern.", table(["Family", "Pattern", "Example", "Don’t"], G.tokenNaming.map(function (r) { return [esc(r[0]), '<code>' + esc(r[1]) + '</code>', '<code>' + esc(r[2]) + '</code>', esc(r[3])]; }), "tbl--fixed")) +
+      sec("Keep in mind", "Not a formal audit; habits to build in from the start.", '<div class="card">' + list(G.keepInMind) + '</div>');
+  };
+
+  CH.history = function () {
+    var badge = STATUS, comp = [];
+    G.components.forEach(function (c) { META(c.id).log.forEach(function (l) { comp.push(['<a href="#c-' + c.id + '">' + c.name + '</a>', '<span class="num" style="color:var(--bk-text)">' + esc(l[0]) + '</span>', '<span style="white-space:nowrap">' + esc(l[1]) + '</span>', esc(l[2])]); }); });
+    return sec("Book change log", "Add a row for every change. Status is Proposed, In review, Approved, Published or Deprecated.", table(["Version", "Date", "Section", "Change", "Reason", "Owner", "Status"], B.changes.map(function (r) { var nw = function (t) { return '<span style="white-space:nowrap">' + esc(t) + '</span>'; }; return [esc(r[0]), nw(r[1]), nw(r[2]), esc(r[3]), esc(r[4]), nw(r[5]), badge(r[6])]; }), "tbl--wide")) +
+      sec("Component change log", "Every component release. The same entries sit with each component in the library.", table(["Component", "Version", "Date", "Change"], comp, "tbl--log"));
+  };
+
+  /* ---------- Assemble ---------- */
+  var who = [["Everyone", "Start with the brand.", [1]], ["Designers", "Build with foundations, components and patterns.", [2, 3, 4]], ["Developers", "Install tokens and record changes.", [5]]];
+  var main = '<section class="chapter" id="home"><div class="wrap"><div class="hero">' + logo("200px") + '<h1>Brand Book</h1><p>' + esc(B.purpose) + '</p><dl class="meta"><div><dt class="label">Version</dt><dd>' + esc(B.version) + '</dd></div><div><dt class="label">Updated</dt><dd>' + esc(B.updated) + '</dd></div><div><dt class="label">Owner</dt><dd>' + esc(B.owner) + '</dd></div></dl></div>' +
+    '<div class="grid-3" style="margin-top:48px">' + who.map(function (w) {
+      var links = []; w[2].forEach(function (pi) { PARTS[pi - 1].chapters.forEach(function (c) { links.push('<li><a href="#' + c + '">' + TITLES[c] + ic("chevron-right") + '</a></li>'); }); });
+      return '<div class="card who"><div class="stack" style="gap:4px"><h3>' + w[0] + '</h3><p>' + w[1] + '</p></div><ul>' + links.join("") + '</ul></div>';
+    }).join("") + '</div></div></section>';
+  var nav = '<div class="nav-group"><a class="nav-link" href="#home">Home</a></div>';
+  PARTS.forEach(function (P) {
+    main += '<div class="part" id="' + P.id + '"><div class="wrap"><span class="part__n">Part ' + P.n + '</span><h2>' + P.title + '</h2><p>' + P.desc + '</p></div></div>';
+    nav += '<div class="nav-group"><span class="nav-group__title">' + P.title + '</span>';
+    P.chapters.forEach(function (c, i) {
+      main += '<section class="chapter" id="' + c + '"><div class="wrap"><header class="ch-head"><h1>' + TITLES[c] + '</h1><p>' + LEADS[c] + '</p><a class="ch-src" href="' + DOCS[c] + '">' + ic("doc") + DOCS[c] + '</a></header>' + CH[c]() + '</div></section>';
+      nav += '<a class="nav-link" href="#' + c + '">' + TITLES[c] + '</a>';
+      if (c === "components") G.components.forEach(function (k) { nav += '<a class="nav-link nav-link--sub" href="#c-' + k.id + '">' + k.name + '</a>'; });
+    });
+    nav += '</div>';
+  });
+  document.getElementById("main").innerHTML = main;
+  document.querySelectorAll("[data-indeterminate]").forEach(function (el) { el.indeterminate = true; });
+  document.getElementById("nav").innerHTML = nav;
+  document.getElementById("sideHead").innerHTML = '<a href="#home" aria-label="Brand book home">' + logo("120px") + '</a><div class="side__title"><span>Brand Book</span><span class="side__ver">v' + esc(B.version) + '</span></div>';
+  document.getElementById("topBrand").innerHTML = logo("96px") + '<span>Brand Book</span>';
+
+  /* ---------- Behaviour ---------- */
+  var side = document.getElementById("side"), menuBtn = document.getElementById("menuBtn");
+  menuBtn.addEventListener("click", function () { var o = side.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", String(o)); });
+  side.addEventListener("click", function (e) { if (e.target.closest("a")) { side.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+  var links = {}; document.querySelectorAll(".nav-link").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+  function mark(id) { Object.keys(links).forEach(function (k) { if (k === id) links[k].setAttribute("aria-current", "true"); else links[k].removeAttribute("aria-current"); }); }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) mark(e.target.id); }); }, { rootMargin: "-25% 0px -70% 0px" });
+    document.querySelectorAll(".chapter, .comp").forEach(function (s) { io.observe(s); });
+  }
+  mark("home");
+
+  document.getElementById("play").addEventListener("click", function () { document.querySelectorAll(".track").forEach(function (t) { t.style.setProperty("--w", t.clientWidth + "px"); t.classList.toggle("on"); }); });
+
+  var tb = document.querySelectorAll("[data-theme-set]");
+  function setTheme(t) { if (t) root.setAttribute("data-theme", t); else root.removeAttribute("data-theme"); tb.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-theme-set") === t)); }); try { localStorage.setItem("bb-theme", t); } catch (e) {} }
+  tb.forEach(function (b) { b.addEventListener("click", function () { setTheme(b.getAttribute("data-theme-set")); }); });
+  var saved = ""; try { saved = localStorage.getItem("bb-theme") || ""; } catch (e) {} setTheme(saved);
+  var pb = document.querySelectorAll("[data-prev]");
+  pb.forEach(function (b) { b.addEventListener("click", function () { var d = b.getAttribute("data-prev") === "dark"; document.querySelectorAll(".pv").forEach(function (f) { f.classList.toggle("p--dark", d); }); pb.forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); }); }); });
+
+  var toast = document.getElementById("toast"), tt;
+  function show(m) { toast.textContent = m; toast.classList.add("on"); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove("on"); }, 1600); }
+  function copy(text, label, el) {
+    var fail = function () { try { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {} show("Press Ctrl+C to copy"); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { show("Copied " + label); }, fail); else fail();
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy],[data-copy-from],[data-icon],#copyAllIcons"); if (!b) return;
+    if (b.id === "copyAllIcons") { var sprite = '<svg xmlns="http://www.w3.org/2000/svg" style="display:none">\n' + Object.keys(G.icons).map(function (n) { return '  <symbol id="icon-' + n + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + G.icons[n] + '</symbol>'; }).join("\n") + '\n</svg>'; return copy(sprite, "icon sprite", b); }
+    if (b.hasAttribute("data-icon")) { var n = b.getAttribute("data-icon"); return copy(svgOf(n), n + " SVG", b); }
+    if (b.hasAttribute("data-copy-from")) { var el = document.getElementById(b.getAttribute("data-copy-from")); return copy(el.textContent.replace(/^Copy/, ""), "code", el); }
+    copy(b.getAttribute("data-copy"), b.getAttribute("data-copy"), b);
+  });
+})();
+</script>
+</body>
+</html>

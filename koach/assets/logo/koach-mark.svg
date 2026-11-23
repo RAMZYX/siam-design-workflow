@@ -1,0 +1,5 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Koach">
+  <rect x="3" y="6" width="13" height="28" rx="1.5" fill="#EE5A50" />
+  <path d="M16 6 H30 L16 20 Z" fill="#F6A43A" />
+  <path d="M16 20 A14 14 0 0 1 30 34 H16 Z" fill="#1A64B8" />
+</svg>
