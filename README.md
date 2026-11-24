@@ -6,6 +6,7 @@ This branch holds the brand books and design systems for Siam's products. It con
 | --- | --- | --- |
 | [`cura42/`](cura42/) | Cura42 | `cura42/index.html` |
 | [`koach/`](koach/) | Koach (Kauvery Hospital learning platform) | `koach/index.html` |
+| [`qcs/`](qcs/) | QCS (white-labelled product in the CareBrain admin panel) | `qcs/index.html` |
 
 Each folder is that product's single source of truth: brand, foundations, components, patterns, tokens and change history. See the README inside each folder for its structure and how to update it.
 
